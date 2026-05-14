@@ -1,0 +1,50 @@
+﻿{
+    "dataset_type":  "SP800-90B restart dataset",
+    "capture_id":  "random3_restart_smoke_2x16_20260514",
+    "output_file":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\restart\\random3_restart_smoke_2x16_20260514.bin",
+    "output_sha256":  "29CE915227539459DEC278043F2A9E96A92D459FF175B6EDD5B3C0928DE532A9",
+    "output_bytes":  32,
+    "bitstream":  "data\\vivado_runs\\fpga1_ro_trng_matrix\\random_seed3_x36y35\\seed_1\\RO_TRNG_top.bit",
+    "bitstream_resolved":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\vivado_runs\\fpga1_ro_trng_matrix\\random_seed3_x36y35\\seed_1\\RO_TRNG_top.bit",
+    "bitstream_sha256":  "99C40437B792753247654B1AA4D46DCA7069C3A0F93CD07CA97F8486369AA239",
+    "restart_method":  "program_bitstream",
+    "restart_count":  2,
+    "symbols_per_restart":  16,
+    "bits_per_symbol":  8,
+    "warmup_symbols_discarded":  0,
+    "settle_ms":  500,
+    "uart_port":  "COM3",
+    "baud":  115200,
+    "uart_format":  "8N1, no parity, no flow control",
+    "read_timeout_ms":  1000,
+    "idle_timeout_sec":  30,
+    "max_retries_per_restart":  2,
+    "retry_total":  0,
+    "formal_90b_restart_size":  false,
+    "start_time":  "2026-05-14 18:42:28",
+    "end_time":  "2026-05-14 18:48:13",
+    "duration_seconds":  345.402,
+    "capture_script":  "E:\\Project\\MLDSA\\RO_TRNG\\scripts\\capture_90b_restart_dataset.ps1",
+    "capture_script_sha256":  "95FB3F9A89B5514D717DD9B3F0CE9FD4D57BE2EBC3B4AFE9B662AAA112C564F0",
+    "row_records":  [
+                        {
+                            "restart_index":  0,
+                            "attempts":  1,
+                            "bytes_read":  16,
+                            "bytes_written":  16,
+                            "start_time":  "2026-05-14 18:42:28",
+                            "end_time":  "2026-05-14 18:45:26",
+                            "duration_seconds":  178.296
+                        },
+                        {
+                            "restart_index":  1,
+                            "attempts":  1,
+                            "bytes_read":  16,
+                            "bytes_written":  16,
+                            "start_time":  "2026-05-14 18:45:26",
+                            "end_time":  "2026-05-14 18:48:13",
+                            "duration_seconds":  166.804
+                        }
+                    ],
+    "notes":  "Pilot/smoke restart matrix; do not report as formal SP800-90B restart result."
+}

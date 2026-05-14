@@ -1,20 +1,18 @@
-# Fast Mode 总状态 - 2026-05-14
+﻿# Fast Mode 总状态 - 2026-05-14
 
-更新时间：2026-05-14 约 12:55。
+更新时间：2026-05-14 17:49。
 
 ## 当前阶段
 
 项目已经从“能不能采到数据”进入“证据链补强和论文可复现打包”阶段。
 
-当前硬件短队列仍在运行，必须继续保持 COM3/JTAG/Vivado 串行：
+当前硬件短队列已经全部完成：
 
 - 队列：`data/experiments/fast_mode/hardware_queue_short_20260514.csv`
 - 状态文档：`doc/fast_mode_short_queue_status_20260514.md`
-- 当前运行：`random1_repeat03`
-- 目标大小：20 MiB
-- 当前观察：文件正在增长，说明串口采集链路正常
+- 已完成：`random1_repeat03`、`random3_repeat03`、`random1_ro_freq_fixed_run04_5mib`、`random3_ro_freq_fixed_run04_5mib`
 
-不要并行启动第二个 Vivado/program/capture 队列，否则会抢 COM3、JTAG 或 `hw_server`。
+短队列已经结束，不需要再重跑整条 short queue。
 
 ## 已完成硬件证据
 
@@ -45,7 +43,7 @@
 
 可以主张：
 
-- 同一块 Zynq-7020、同一 RO-TRNG 结构、同一 UART 采集链路下，placement 会显著改变原始随机性。
+- 同一块 Zynq-7020 FPGA、同一 RO-TRNG 结构、同一 UART 采集链路下，placement 会显著改变原始随机性。
 - `random1` 是稳定坏例：10 MiB formal 中 `p1 = 0.337315512`，快速 bit min-entropy 为 `0.593605945`。
 - `random3` 是稳定好例：10 MiB formal 中 `p1 = 0.499968565`，快速 bit min-entropy 为 `0.999909299`。
 - 原始 `fpga1` baseline 表现也较好：10 MiB `p1 = 0.500035894`，快速 bit min-entropy 为 `0.999896436`。
@@ -77,7 +75,7 @@
 MinGW 路线已经跑通：
 
 - build script：`scripts/build_90b_mingw.ps1`
-- executable：`sim/SP800-90B_EntropyAssessment/cpp/ea_non_iid.exe`、`ea_iid.exe`、`ea_restart.exe`
+- executables：`sim/SP800-90B_EntropyAssessment/cpp/ea_non_iid.exe`、`ea_iid.exe`、`ea_restart.exe`
 - input preparation：`scripts/prepare_90b_inputs.py`
 - smoke runner：`scripts/run_90b_smoke.ps1`
 - result parser：`scripts/summarize_90b_results.py`
@@ -85,15 +83,18 @@ MinGW 路线已经跑通：
 - status：`doc/sp800_90b_blocker_20260514.md`
 
 已经完成 11 个布局的 1,000,000-symbol non-IID smoke，包含 MSB-first 和 LSB-first 两种 bit-order 敏感性检查。另对 `random1/random3/original` 做了 IID smoke 诊断，三个流都未通过 IID 路线的 LRS 检查，因此论文主线应使用 non-IID 估计。
-
 核心 8M bit-symbol non-IID 也已补完：
 
 - `random1_run01`：`H_original = 0.389520`
 - `random3_run01`：`H_original = 0.902345`
 - `original_fpga1_run01_10mib`：`H_original = 0.877727`
 
-`random1_repeat03` 的 repeat smoke 已补完：MSB `0.390399`，LSB `0.390783`，进一步说明坏 placement 的低熵表现可重复。
+20 MiB repeat 已补完并分析：
 
+- `random1_repeat03`：p1 仍偏置，90B repeat smoke MSB `0.390399`，LSB `0.390783`。
+- `random3_repeat03`：20 MiB TRNG p1 `0.499915`，快速 bit min-entropy `0.999755`，90B repeat smoke MSB `0.856158`，LSB `0.894588`。
+
+这进一步说明：坏 placement 和好 placement 的差异不是一次采集偶然，也不是 bit order 假象。
 关键观察：
 
 - `random1` 在 MSB/LSB 下都是明显低熵离群点：约 0.385/0.384。
@@ -106,33 +107,21 @@ MinGW 路线已经跑通：
 - `ea_restart.exe` 已经能编译，但还没有真正的 restart dataset；现有顺序 `.bin` 不能替代 restart 矩阵。
 - 最终投稿前建议用更现代的 MSYS2/WSL 工具链复现 headline 结果。
 
-## 正在进行的短队列
+Restart 执行更新：
 
-短队列目标是补强两个核心对照：
+- 新增 `scripts/capture_90b_restart_dataset.ps1` 和 `scripts/run_90b_restart.ps1`。
+- 已完成 `random3` 的真实硬件 restart smoke：2 restarts x 16 symbols，SHA256 为 `29CE915227539459DEC278043F2A9E96A92D459FF175B6EDD5B3C0928DE532A9`。
+- 该 smoke 只验证流程，不是正式 SP800-90B restart 结果。
+- reprogram-based restart 每行约 166-178 秒，正式 1000x1000 预计约 46-50 小时。因此需要决定：安排约两天独占板子的正式 run，或先改 RTL 增加可审计 design-level reset。
+- 详情见 `doc/sp800_90b_restart_execution_status_20260514.md`。
 
-1. `random1_repeat03`：20 MiB TRNG，已完成，验证坏例长时间稳定性。
-2. `random3_repeat03`：20 MiB TRNG，正在采集，验证好例长时间稳定性。
-3. `random1_ro_freq_fixed_run04_5mib`：RO_FREQ repeat。
-4. `random3_ro_freq_fixed_run04_5mib`：RO_FREQ repeat。
+## 短队列收尾
 
-队列完成后立即做：
-
-```powershell
-python scripts\summarize_trng_repeats.py
-python scripts\analyze_fast_mode_results.py
-python scripts\make_paper_artifacts_20260514.py
-```
-
-然后将 `random1_repeat03`、`random3_repeat03` 加入 SP800-90B smoke repeat。
+短队列已经全部完成，不再需要重跑。
 
 ## 下一步优先级
 
-P0：等短队列完成，不抢硬件。
-
 P0：持续更新 GitHub export，给 GPT/Claude 分析使用，但不上传大体积原始 `.bin`、`.bit`、`.dcp`。
-
 P0：把 SP800-90B smoke 结果纳入论文证据表，措辞为“non-IID smoke supports the placement-dependent gap”，不要写成认证。
-
 P1：设计 restart capture protocol。现有顺序流不能直接冒充 restart dataset。
-
-P1：如果冲更高水平，后续补多板、温度、电压、运行时间漂移；如果做不到，写成 limitation 和 future validation。
+P1：如果冲更高水平，后续补多板、温度/电压/运行时间漂移；如果做不到，写成 limitation 和 future validation。
