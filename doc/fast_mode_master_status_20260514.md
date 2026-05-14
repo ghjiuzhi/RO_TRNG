@@ -112,8 +112,9 @@ Restart 执行更新：
 - 新增 `scripts/capture_90b_restart_dataset.ps1` 和 `scripts/run_90b_restart.ps1`。
 - 已完成 `random3` 的真实硬件 restart smoke：2 restarts x 16 symbols，SHA256 为 `29CE915227539459DEC278043F2A9E96A92D459FF175B6EDD5B3C0928DE532A9`。
 - 已完成 `random3` 的 10x1000 restart pilot：10,000 bytes，SHA256 为 `65DB9381346C2CCB782DE4DD6425F80498A74F6C90437F10B751AA53D8E500AC`，0 次重试。
+- 已完成 `random1` 的 10x1000 restart pilot：10,000 bytes，SHA256 为 `C96F94F6529ACD50A7E70D20154F4E25DDC111732BC066F4ACB05352A2FF3428`，0 次重试。
 - 这些 restart smoke/pilot 只验证流程，不是正式 SP800-90B restart 结果。
-- reprogram-based restart 在 10x1000 pilot 中总耗时 3454.446 秒，约 57.57 分钟；按实测均值估算，正式 1000x1000 约需 96 小时。因此需要决定：安排约四天独占板子的正式 run，或先改 RTL 增加可审计 design-level reset。
+- reprogram-based restart 在 `random3` 10x1000 pilot 中约 57.57 分钟，在 `random1` 10x1000 pilot 中约 42.33 分钟；按实测均值估算，正式 1000x1000 约需 70-96 小时。因此需要决定：安排约三到四天独占板子的正式 run，或先改 RTL 增加可审计 design-level reset。
 - 详情见 `doc/sp800_90b_restart_execution_status_20260514.md`。
 
 ## 短队列收尾

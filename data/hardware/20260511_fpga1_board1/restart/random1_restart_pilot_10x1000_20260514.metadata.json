@@ -1,0 +1,122 @@
+﻿{
+    "dataset_type":  "SP800-90B restart dataset",
+    "capture_id":  "random1_restart_pilot_10x1000_20260514",
+    "output_file":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\restart\\random1_restart_pilot_10x1000_20260514.bin",
+    "output_sha256":  "C96F94F6529ACD50A7E70D20154F4E25DDC111732BC066F4ACB05352A2FF3428",
+    "output_bytes":  10000,
+    "bitstream":  "data\\vivado_runs\\fpga1_ro_trng_matrix\\random_seed1_x36y35\\seed_1\\RO_TRNG_top.bit",
+    "bitstream_resolved":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\vivado_runs\\fpga1_ro_trng_matrix\\random_seed1_x36y35\\seed_1\\RO_TRNG_top.bit",
+    "bitstream_sha256":  "D9EADAD39D560D1B89DC266ADB44A46D54823BE3D6D8CBD9AF2A57EE2994EF71",
+    "restart_method":  "program_bitstream",
+    "restart_count":  10,
+    "symbols_per_restart":  1000,
+    "bits_per_symbol":  8,
+    "warmup_symbols_discarded":  0,
+    "settle_ms":  500,
+    "uart_port":  "COM3",
+    "baud":  115200,
+    "uart_format":  "8N1, no parity, no flow control",
+    "read_timeout_ms":  1000,
+    "idle_timeout_sec":  30,
+    "max_retries_per_restart":  2,
+    "retry_total":  0,
+    "formal_90b_restart_size":  false,
+    "start_time":  "2026-05-14 20:10:58",
+    "end_time":  "2026-05-14 20:53:18",
+    "duration_seconds":  2540.081,
+    "capture_script":  "E:\\Project\\MLDSA\\RO_TRNG\\scripts\\capture_90b_restart_dataset.ps1",
+    "capture_script_sha256":  "95FB3F9A89B5514D717DD9B3F0CE9FD4D57BE2EBC3B4AFE9B662AAA112C564F0",
+    "row_records":  [
+                        {
+                            "restart_index":  0,
+                            "attempts":  1,
+                            "bytes_read":  1000,
+                            "bytes_written":  1000,
+                            "start_time":  "2026-05-14 20:10:58",
+                            "end_time":  "2026-05-14 20:13:26",
+                            "duration_seconds":  147.889
+                        },
+                        {
+                            "restart_index":  1,
+                            "attempts":  1,
+                            "bytes_read":  1000,
+                            "bytes_written":  1000,
+                            "start_time":  "2026-05-14 20:13:26",
+                            "end_time":  "2026-05-14 20:15:48",
+                            "duration_seconds":  142.053
+                        },
+                        {
+                            "restart_index":  2,
+                            "attempts":  1,
+                            "bytes_read":  1000,
+                            "bytes_written":  1000,
+                            "start_time":  "2026-05-14 20:15:48",
+                            "end_time":  "2026-05-14 20:18:20",
+                            "duration_seconds":  151.654
+                        },
+                        {
+                            "restart_index":  3,
+                            "attempts":  1,
+                            "bytes_read":  1000,
+                            "bytes_written":  1000,
+                            "start_time":  "2026-05-14 20:18:20",
+                            "end_time":  "2026-05-14 20:20:43",
+                            "duration_seconds":  143.432
+                        },
+                        {
+                            "restart_index":  4,
+                            "attempts":  1,
+                            "bytes_read":  1000,
+                            "bytes_written":  1000,
+                            "start_time":  "2026-05-14 20:20:43",
+                            "end_time":  "2026-05-14 20:22:54",
+                            "duration_seconds":  130.229
+                        },
+                        {
+                            "restart_index":  5,
+                            "attempts":  1,
+                            "bytes_read":  1000,
+                            "bytes_written":  1000,
+                            "start_time":  "2026-05-14 20:22:54",
+                            "end_time":  "2026-05-14 20:25:14",
+                            "duration_seconds":  140.805
+                        },
+                        {
+                            "restart_index":  6,
+                            "attempts":  1,
+                            "bytes_read":  1000,
+                            "bytes_written":  1000,
+                            "start_time":  "2026-05-14 20:25:14",
+                            "end_time":  "2026-05-14 20:27:34",
+                            "duration_seconds":  139.3
+                        },
+                        {
+                            "restart_index":  7,
+                            "attempts":  1,
+                            "bytes_read":  1000,
+                            "bytes_written":  1000,
+                            "start_time":  "2026-05-14 20:27:34",
+                            "end_time":  "2026-05-14 20:30:46",
+                            "duration_seconds":  192.229
+                        },
+                        {
+                            "restart_index":  8,
+                            "attempts":  1,
+                            "bytes_read":  1000,
+                            "bytes_written":  1000,
+                            "start_time":  "2026-05-14 20:30:46",
+                            "end_time":  "2026-05-14 20:44:20",
+                            "duration_seconds":  814.428
+                        },
+                        {
+                            "restart_index":  9,
+                            "attempts":  1,
+                            "bytes_read":  1000,
+                            "bytes_written":  1000,
+                            "start_time":  "2026-05-14 20:44:20",
+                            "end_time":  "2026-05-14 20:53:18",
+                            "duration_seconds":  537.874
+                        }
+                    ],
+    "notes":  "Pilot/smoke restart matrix; do not report as formal SP800-90B restart result."
+}

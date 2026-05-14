@@ -38,6 +38,20 @@
 
 这个 pilot 验证了 1000-symbol 行长度的采集流程，但仍不能作为正式 SP800-90B restart 结果，因为 `ea_restart` 正式要求 1000 x 1000 samples。
 
+`random1` 10x1000 对照 pilot 已完成：
+
+- bitstream：`data\vivado_runs\fpga1_ro_trng_matrix\random_seed1_x36y35\seed_1\RO_TRNG_top.bit`
+- 输出：`data\hardware\20260511_fpga1_board1\restart\random1_restart_pilot_10x1000_20260514.bin`
+- 规模：10 restarts x 1000 UART byte symbols
+- 输出大小：10,000 bytes
+- SHA256：`C96F94F6529ACD50A7E70D20154F4E25DDC111732BC066F4ACB05352A2FF3428`
+- metadata：`data\hardware\20260511_fpga1_board1\restart\random1_restart_pilot_10x1000_20260514.metadata.json`
+- 重试次数：0
+- bit-symbol MSB 展开：`data\hardware\20260511_fpga1_board1\restart\random1_restart_pilot_10x1000_20260514_bps1_msb.bin`
+- bit-symbol MSB SHA256：`F0D399BC8EDB350BA45D4ED36E19404BB526F03BAB9F4E407A4F3BA97953F105`
+
+至此，`random1` 坏 placement 和 `random3` 好 placement 都有同协议 restart pilot，可用于证明采集流程可复现，但仍不能写成正式 `ea_restart` 结果。
+
 ## 关键时间成本
 
 本次 2 行 smoke 的总耗时为 345.402 秒。
@@ -67,6 +81,10 @@
 | 9 | 1000 | 142.613 |
 
 按 10x1000 pilot 的实测均值估算，如果使用“每行 Vivado 重新配置 bitstream”作为 restart 方法，正式 1000 x 1000 restart dataset 约需 96 小时，且期间独占 JTAG、COM3 和 hw_server。
+
+`random1` 10x1000 pilot 的总耗时为 2540.081 秒，约 42.33 分钟；但第 8、9 行仍出现明显 Vivado 初始化长尾，分别为 814.428 秒和 537.874 秒。按这个实测均值估算，正式 1000 行约 70.56 小时。
+
+综合 `random1/random3` 两个 10x1000 pilot，reprogram-based formal restart 的合理预期是约 70-96 小时，取决于 Vivado/hw_server 初始化长尾。
 
 这个方法语义最清楚，但不适合“明天晚上前顺手补完”。如果必须在短时间内得到正式 restart 证据，需要增加一个可审计的 design-level reset 或 board-level reset 流程。
 
