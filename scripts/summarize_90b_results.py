@@ -10,16 +10,17 @@ from pathlib import Path
 
 
 H_RE = re.compile(r"H_original:\s*([0-9.]+)")
+LIMIT_RE = re.compile(r"_(\d+)m\.log$")
 
 
 def parse_name(path: Path) -> tuple[str, str, str, str]:
     name = path.name
     tool = "unknown"
-    if name.endswith("_non_iid_1m.log"):
-        stem = name[: -len("_non_iid_1m.log")]
+    if "_non_iid_" in name and name.endswith("m.log"):
+        stem = name.rsplit("_non_iid_", 1)[0]
         tool = "ea_non_iid"
-    elif name.endswith("_iid_1m.log"):
-        stem = name[: -len("_iid_1m.log")]
+    elif "_iid_" in name and name.endswith("m.log"):
+        stem = name.rsplit("_iid_", 1)[0]
         tool = "ea_iid"
     else:
         stem = path.stem
@@ -34,7 +35,7 @@ def parse_name(path: Path) -> tuple[str, str, str, str]:
 
 def summarize(log_dir: Path) -> list[dict[str, str]]:
     rows: list[dict[str, str]] = []
-    for log in sorted(log_dir.glob("*_1m.log")):
+    for log in sorted(log_dir.glob("*m.log")):
         raw = log.read_bytes()
         if raw.startswith(b"\xff\xfe") or raw.count(b"\x00") > len(raw) // 8:
             text = raw.decode("utf-16", errors="replace")
@@ -59,13 +60,15 @@ def summarize(log_dir: Path) -> list[dict[str, str]]:
             status = "iid_failed"
         else:
             status = "ok"
+        limit_match = LIMIT_RE.search(log.name)
+        limit_symbols = str(int(limit_match.group(1)) * 1_000_000) if limit_match else ""
         rows.append(
             {
                 "dataset": dataset,
                 "tool": tool,
                 "mode": mode,
                 "bits_per_symbol": bits_per_symbol,
-                "limit_symbols": "1000000" if "_1m" in log.stem else "",
+                "limit_symbols": limit_symbols,
                 "h_original_bits_per_symbol": match.group(1) if match else "",
                 "iid_chi_square": chi_square,
                 "iid_lrs": lrs,
@@ -99,11 +102,18 @@ def write_csv(rows: list[dict[str, str]], out_path: Path) -> None:
 
 def write_md(rows: list[dict[str, str]], out_path: Path) -> None:
     out_path.parent.mkdir(parents=True, exist_ok=True)
+    limits = sorted({row["limit_symbols"] for row in rows if row["limit_symbols"]})
+    if not limits:
+        sample_note = "saved log window per input"
+    elif len(limits) == 1:
+        sample_note = f"first {int(limits[0]):,} symbols per prepared input"
+    else:
+        sample_note = "mixed symbol windows: " + ", ".join(f"{int(v):,}" for v in limits)
     lines = [
         "# SP800-90B Smoke Summary",
         "",
         "- estimator: NIST SP800-90B EntropyAssessment `ea_non_iid` plus selected `ea_iid` diagnostics",
-        "- sample window: first 1,000,000 symbols per prepared input",
+        f"- sample window: {sample_note}",
         "- interpretation: smoke screening only; not a full validation campaign",
         "",
         "| dataset | tool | mode | bits/symbol | H_original | IID chi-square | IID LRS | status |",

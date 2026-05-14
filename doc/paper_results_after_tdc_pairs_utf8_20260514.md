@@ -54,6 +54,16 @@ SP800-90B non-IID smoke：
 
 这个结果很关键：`random1` 在两个 bit order 下都明显偏低，说明 placement 差异不是简单的打包 bit 顺序假象。
 
+核心 8M bit-symbol non-IID 结果进一步支持主结论：
+
+| dataset | 8M MSB H_original |
+| --- | ---: |
+| `random1_run01` | 0.389520 |
+| `random3_run01` | 0.902345 |
+| `original_fpga1_run01_10mib` | 0.877727 |
+
+`random1_repeat03` 的 1M repeat smoke 为 MSB `0.390399`、LSB `0.390783`，与 `random1_run01` 保持一致，是坏例可重复性的强证据。
+
 IID 诊断结果也支持采用 non-IID 路线：`random1`、`random3` 和原始 `fpga1` baseline 的 MSB-first 1M smoke 均未通过 LRS 检查。因此论文不能主张这些输出满足 IID 假设；应把 non-IID `H_original` 作为更保守的主结果。
 
 ## 机制假设修正

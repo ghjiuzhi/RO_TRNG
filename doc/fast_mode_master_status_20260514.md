@@ -86,6 +86,14 @@ MinGW 路线已经跑通：
 
 已经完成 11 个布局的 1,000,000-symbol non-IID smoke，包含 MSB-first 和 LSB-first 两种 bit-order 敏感性检查。另对 `random1/random3/original` 做了 IID smoke 诊断，三个流都未通过 IID 路线的 LRS 检查，因此论文主线应使用 non-IID 估计。
 
+核心 8M bit-symbol non-IID 也已补完：
+
+- `random1_run01`：`H_original = 0.389520`
+- `random3_run01`：`H_original = 0.902345`
+- `original_fpga1_run01_10mib`：`H_original = 0.877727`
+
+`random1_repeat03` 的 repeat smoke 已补完：MSB `0.390399`，LSB `0.390783`，进一步说明坏 placement 的低熵表现可重复。
+
 关键观察：
 
 - `random1` 在 MSB/LSB 下都是明显低熵离群点：约 0.385/0.384。
@@ -102,8 +110,8 @@ MinGW 路线已经跑通：
 
 短队列目标是补强两个核心对照：
 
-1. `random1_repeat03`：20 MiB TRNG，验证坏例长时间稳定性。
-2. `random3_repeat03`：20 MiB TRNG，验证好例长时间稳定性。
+1. `random1_repeat03`：20 MiB TRNG，已完成，验证坏例长时间稳定性。
+2. `random3_repeat03`：20 MiB TRNG，正在采集，验证好例长时间稳定性。
 3. `random1_ro_freq_fixed_run04_5mib`：RO_FREQ repeat。
 4. `random3_ro_freq_fixed_run04_5mib`：RO_FREQ repeat。
 

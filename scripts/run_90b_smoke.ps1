@@ -24,7 +24,7 @@ New-Item -ItemType Directory -Force $outputRoot | Out-Null
 foreach ($mode in $Modes) {
     $bitsPerSymbol = if ($mode -eq "bps8") { 8 } elseif ($mode -eq "bps1_msb" -or $mode -eq "bps1_lsb") { 1 } else { throw "Unknown mode $mode" }
     $pattern = "*_${mode}.bin"
-    $inputs = Get-ChildItem -Path $inputRoot -Filter $pattern | Sort-Object Name
+    $inputs = @(Get-ChildItem -Path $inputRoot -Filter $pattern | Sort-Object Name)
     if ($inputs.Count -eq 0) {
         Write-Warning "No inputs matched $pattern under $inputRoot"
         continue

@@ -1,0 +1,4 @@
+dataset,tool,mode,bits_per_symbol,limit_symbols,h_original_bits_per_symbol,iid_chi_square,iid_lrs,status,log
+original_fpga1_run01_10mib,ea_non_iid,bit-symbols-msb,1,8000000,0.877727,,,ok,data\sp800_90b\results_full8m_20260514\original_fpga1_run01_10mib_bps1_msb_non_iid_8m.log
+random1_run01,ea_non_iid,bit-symbols-msb,1,8000000,0.389520,,,ok,data\sp800_90b\results_full8m_20260514\random1_run01_bps1_msb_non_iid_8m.log
+random3_run01,ea_non_iid,bit-symbols-msb,1,8000000,0.902345,,,ok,data\sp800_90b\results_full8m_20260514\random3_run01_bps1_msb_non_iid_8m.log

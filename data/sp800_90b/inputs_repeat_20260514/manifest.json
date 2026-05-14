@@ -1,0 +1,42 @@
+{
+  "created_utc": "2026-05-14T05:11:48.933773+00:00",
+  "note": "Prepared for local SP800-90B EntropyAssessment runs; no tests were executed.",
+  "rows": [
+    {
+      "source": "data\\hardware\\20260511_fpga1_board1\\trng\\random1_repeat03.bin",
+      "source_sha256": "0d02918f7803a7885f611e15566cde14d531b2ade0525231065884f7d0583bd2",
+      "source_bytes": 20971520,
+      "offset_bytes": 0,
+      "read_bytes": 1000000,
+      "mode": "bit-symbols-msb",
+      "bits_per_symbol": 1,
+      "output": "data\\sp800_90b\\inputs_repeat_20260514\\random1_repeat03_bps1_msb.bin",
+      "output_bytes": 8000000,
+      "output_sha256": "28387c0da49d065a190955a5a9ec08eaefdda0a4ac39975f06d7b984c74c3134"
+    },
+    {
+      "source": "data\\hardware\\20260511_fpga1_board1\\trng\\random1_repeat03.bin",
+      "source_sha256": "0d02918f7803a7885f611e15566cde14d531b2ade0525231065884f7d0583bd2",
+      "source_bytes": 20971520,
+      "offset_bytes": 0,
+      "read_bytes": 1000000,
+      "mode": "bit-symbols-lsb",
+      "bits_per_symbol": 1,
+      "output": "data\\sp800_90b\\inputs_repeat_20260514\\random1_repeat03_bps1_lsb.bin",
+      "output_bytes": 8000000,
+      "output_sha256": "c6b1397c24de0c9eb9df607d663001cbb9b5136fa1947ab80029d1156eba0474"
+    },
+    {
+      "source": "data\\hardware\\20260511_fpga1_board1\\trng\\random1_repeat03.bin",
+      "source_sha256": "0d02918f7803a7885f611e15566cde14d531b2ade0525231065884f7d0583bd2",
+      "source_bytes": 20971520,
+      "offset_bytes": 0,
+      "read_bytes": 1000000,
+      "mode": "byte-symbols",
+      "bits_per_symbol": 8,
+      "output": "data\\sp800_90b\\inputs_repeat_20260514\\random1_repeat03_bps8.bin",
+      "output_bytes": 1000000,
+      "output_sha256": "78c53e7682c9d39189427240230345dc58ada6c7386bb122ec2aaf0c51ca3761"
+    }
+  ]
+}
