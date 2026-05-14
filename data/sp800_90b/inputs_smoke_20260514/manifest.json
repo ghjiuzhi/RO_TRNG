@@ -1,5 +1,5 @@
 {
-  "created_utc": "2026-05-14T03:52:32.994344+00:00",
+  "created_utc": "2026-05-14T04:50:26.878397+00:00",
   "note": "Prepared for local SP800-90B EntropyAssessment runs; no tests were executed.",
   "rows": [
     {
@@ -13,6 +13,18 @@
       "output": "data\\sp800_90b\\inputs_smoke_20260514\\original_fpga1_run01_10mib_bps1_msb.bin",
       "output_bytes": 8000000,
       "output_sha256": "526754f16e20832352295b2e6b8a50961abac83372aab58d7210418a38876519"
+    },
+    {
+      "source": "data\\hardware\\20260511_fpga1_board1\\trng\\original_fpga1_run01_10mib.bin",
+      "source_sha256": "109f93eeb99e1ace2def954e4ad7ae0f8e9f94da3acc85fc461bcb9e6fede9b3",
+      "source_bytes": 10485760,
+      "offset_bytes": 0,
+      "read_bytes": 1000000,
+      "mode": "bit-symbols-lsb",
+      "bits_per_symbol": 1,
+      "output": "data\\sp800_90b\\inputs_smoke_20260514\\original_fpga1_run01_10mib_bps1_lsb.bin",
+      "output_bytes": 8000000,
+      "output_sha256": "8d2082ef4b0b8afc1b58f9a0c06d44f1bb1ba78068a513c8d70d02d036b58c18"
     },
     {
       "source": "data\\hardware\\20260511_fpga1_board1\\trng\\original_fpga1_run01_10mib.bin",
@@ -44,6 +56,18 @@
       "source_bytes": 10485760,
       "offset_bytes": 0,
       "read_bytes": 1000000,
+      "mode": "bit-symbols-lsb",
+      "bits_per_symbol": 1,
+      "output": "data\\sp800_90b\\inputs_smoke_20260514\\random1_run01_bps1_lsb.bin",
+      "output_bytes": 8000000,
+      "output_sha256": "094ee8238eee91c9fcf76ed10196bd0274fe6e1d9e3dc39949a8b5788298d58b"
+    },
+    {
+      "source": "data\\hardware\\20260511_fpga1_board1\\trng\\random1_run01.bin",
+      "source_sha256": "48d17baa35460c4fe9142d38e7daad4ef1fe8538d74186658aec02d73f99c4e2",
+      "source_bytes": 10485760,
+      "offset_bytes": 0,
+      "read_bytes": 1000000,
       "mode": "byte-symbols",
       "bits_per_symbol": 8,
       "output": "data\\sp800_90b\\inputs_smoke_20260514\\random1_run01_bps8.bin",
@@ -61,6 +85,18 @@
       "output": "data\\sp800_90b\\inputs_smoke_20260514\\random2_run01_bps1_msb.bin",
       "output_bytes": 8000000,
       "output_sha256": "82e923b2eecc86fc45d5945a1438577c9db24979bf49f281168a1b10f2e26ca0"
+    },
+    {
+      "source": "data\\hardware\\20260511_fpga1_board1\\trng\\random2_run01.bin",
+      "source_sha256": "98f5ae37c7d727553f1221b78ac1a4301ab81d410c30cdf60d52db71e641670b",
+      "source_bytes": 10485760,
+      "offset_bytes": 0,
+      "read_bytes": 1000000,
+      "mode": "bit-symbols-lsb",
+      "bits_per_symbol": 1,
+      "output": "data\\sp800_90b\\inputs_smoke_20260514\\random2_run01_bps1_lsb.bin",
+      "output_bytes": 8000000,
+      "output_sha256": "37a5578ce5dc2ff7d5ad059f7cf51c343f240854a963c8379754fa591135d666"
     },
     {
       "source": "data\\hardware\\20260511_fpga1_board1\\trng\\random2_run01.bin",
@@ -92,6 +128,18 @@
       "source_bytes": 10485760,
       "offset_bytes": 0,
       "read_bytes": 1000000,
+      "mode": "bit-symbols-lsb",
+      "bits_per_symbol": 1,
+      "output": "data\\sp800_90b\\inputs_smoke_20260514\\random3_run01_bps1_lsb.bin",
+      "output_bytes": 8000000,
+      "output_sha256": "3930e011b509a6d274b51df40fdc7fffa83b6d6c912bf5029990420454c48dcf"
+    },
+    {
+      "source": "data\\hardware\\20260511_fpga1_board1\\trng\\random3_run01.bin",
+      "source_sha256": "42ba7d7466e4d8f3303ef544585ae322938fd9d83341b7f6a5f58e1439848c7d",
+      "source_bytes": 10485760,
+      "offset_bytes": 0,
+      "read_bytes": 1000000,
       "mode": "byte-symbols",
       "bits_per_symbol": 8,
       "output": "data\\sp800_90b\\inputs_smoke_20260514\\random3_run01_bps8.bin",
@@ -109,6 +157,18 @@
       "output": "data\\sp800_90b\\inputs_smoke_20260514\\compact_run01_bps1_msb.bin",
       "output_bytes": 8000000,
       "output_sha256": "b4c9b512463e972ccde28c53e65181e441667e13837a3ed0a9032089d1c3c65e"
+    },
+    {
+      "source": "data\\hardware\\20260511_fpga1_board1\\trng\\compact_run01.bin",
+      "source_sha256": "465a74cbd8ea45d543da994ff2c4b4fd147a906b15cdeb460aa8a643bcb74716",
+      "source_bytes": 10485760,
+      "offset_bytes": 0,
+      "read_bytes": 1000000,
+      "mode": "bit-symbols-lsb",
+      "bits_per_symbol": 1,
+      "output": "data\\sp800_90b\\inputs_smoke_20260514\\compact_run01_bps1_lsb.bin",
+      "output_bytes": 8000000,
+      "output_sha256": "c703287e66f58c45f9f83e7292e9512415254d1ddf0288a1e660117748160bd4"
     },
     {
       "source": "data\\hardware\\20260511_fpga1_board1\\trng\\compact_run01.bin",
@@ -140,6 +200,18 @@
       "source_bytes": 10485760,
       "offset_bytes": 0,
       "read_bytes": 1000000,
+      "mode": "bit-symbols-lsb",
+      "bits_per_symbol": 1,
+      "output": "data\\sp800_90b\\inputs_smoke_20260514\\sparse_run01_bps1_lsb.bin",
+      "output_bytes": 8000000,
+      "output_sha256": "d06df1e2fe4417cc061e36af14c27a891072436476ec1e290d826c6ab97c5442"
+    },
+    {
+      "source": "data\\hardware\\20260511_fpga1_board1\\trng\\sparse_run01.bin",
+      "source_sha256": "3f7a3b491848262bff1c3ae8e9a136c2226227b0c1b27da796227b6f2e2a5791",
+      "source_bytes": 10485760,
+      "offset_bytes": 0,
+      "read_bytes": 1000000,
       "mode": "byte-symbols",
       "bits_per_symbol": 8,
       "output": "data\\sp800_90b\\inputs_smoke_20260514\\sparse_run01_bps8.bin",
@@ -157,6 +229,18 @@
       "output": "data\\sp800_90b\\inputs_smoke_20260514\\row_run01_bps1_msb.bin",
       "output_bytes": 8000000,
       "output_sha256": "9fbac823068600e1e5312d7c63f2d0800380070f1a7bf6200755a264be8226a4"
+    },
+    {
+      "source": "data\\hardware\\20260511_fpga1_board1\\trng\\row_run01.bin",
+      "source_sha256": "2a3d04a19180ac5ef47351b7cbd608d781a9f2bd302690fde4d9b2e8a18497ad",
+      "source_bytes": 10485760,
+      "offset_bytes": 0,
+      "read_bytes": 1000000,
+      "mode": "bit-symbols-lsb",
+      "bits_per_symbol": 1,
+      "output": "data\\sp800_90b\\inputs_smoke_20260514\\row_run01_bps1_lsb.bin",
+      "output_bytes": 8000000,
+      "output_sha256": "cdcffccaabd0239262f79961a85a3244a9e4f02a726bf5a2345fdba4302c3eb5"
     },
     {
       "source": "data\\hardware\\20260511_fpga1_board1\\trng\\row_run01.bin",
@@ -188,6 +272,18 @@
       "source_bytes": 10485760,
       "offset_bytes": 0,
       "read_bytes": 1000000,
+      "mode": "bit-symbols-lsb",
+      "bits_per_symbol": 1,
+      "output": "data\\sp800_90b\\inputs_smoke_20260514\\same_column_run01_bps1_lsb.bin",
+      "output_bytes": 8000000,
+      "output_sha256": "65c313417ee8ebb46db46dae6bc016466ba2b851be69c4389bc802569aec1ead"
+    },
+    {
+      "source": "data\\hardware\\20260511_fpga1_board1\\trng\\same_column_run01.bin",
+      "source_sha256": "c7d7d252a804d8ff652ba76815fa59367abe02bc7eec39bffb00faa45d14e9e5",
+      "source_bytes": 10485760,
+      "offset_bytes": 0,
+      "read_bytes": 1000000,
       "mode": "byte-symbols",
       "bits_per_symbol": 8,
       "output": "data\\sp800_90b\\inputs_smoke_20260514\\same_column_run01_bps8.bin",
@@ -205,6 +301,18 @@
       "output": "data\\sp800_90b\\inputs_smoke_20260514\\checker_run01_bps1_msb.bin",
       "output_bytes": 8000000,
       "output_sha256": "024dd0d77d345fdf4ca2a197060b937185c12356d0b79db46be99804bac4dde7"
+    },
+    {
+      "source": "data\\hardware\\20260511_fpga1_board1\\trng\\checker_run01.bin",
+      "source_sha256": "9ad7fb0641a2790c8ffaa9aa35cc2c4626cf9b765a0558588d681c36323db3a1",
+      "source_bytes": 10485760,
+      "offset_bytes": 0,
+      "read_bytes": 1000000,
+      "mode": "bit-symbols-lsb",
+      "bits_per_symbol": 1,
+      "output": "data\\sp800_90b\\inputs_smoke_20260514\\checker_run01_bps1_lsb.bin",
+      "output_bytes": 8000000,
+      "output_sha256": "adca57ee74a3a639a8627c0835c4f21a89020bc025241c24a01d6bb05bfac2a6"
     },
     {
       "source": "data\\hardware\\20260511_fpga1_board1\\trng\\checker_run01.bin",
@@ -236,6 +344,18 @@
       "source_bytes": 10485760,
       "offset_bytes": 0,
       "read_bytes": 1000000,
+      "mode": "bit-symbols-lsb",
+      "bits_per_symbol": 1,
+      "output": "data\\sp800_90b\\inputs_smoke_20260514\\far_run01_bps1_lsb.bin",
+      "output_bytes": 8000000,
+      "output_sha256": "55602de0f8421944ef403dfe1a07647d7675edb9cc16e6ec72476a65fa08c552"
+    },
+    {
+      "source": "data\\hardware\\20260511_fpga1_board1\\trng\\far_run01.bin",
+      "source_sha256": "863885f73eedfdf58444d4705ceed0260f9baa3d883410d82ba5f4ae95161732",
+      "source_bytes": 10485760,
+      "offset_bytes": 0,
+      "read_bytes": 1000000,
       "mode": "byte-symbols",
       "bits_per_symbol": 8,
       "output": "data\\sp800_90b\\inputs_smoke_20260514\\far_run01_bps8.bin",
@@ -253,6 +373,18 @@
       "output": "data\\sp800_90b\\inputs_smoke_20260514\\cross_region_run02_bps1_msb.bin",
       "output_bytes": 8000000,
       "output_sha256": "6159ab08332a92c734a7bdeec115d8b230469378179a82eb109264638ccadc80"
+    },
+    {
+      "source": "data\\hardware\\20260511_fpga1_board1\\trng\\cross_region_run02.bin",
+      "source_sha256": "f21cf761ef2074b8ba0e6e5b3c811fe320cfd26fcf1f8ec76be4aa4315890215",
+      "source_bytes": 10485760,
+      "offset_bytes": 0,
+      "read_bytes": 1000000,
+      "mode": "bit-symbols-lsb",
+      "bits_per_symbol": 1,
+      "output": "data\\sp800_90b\\inputs_smoke_20260514\\cross_region_run02_bps1_lsb.bin",
+      "output_bytes": 8000000,
+      "output_sha256": "13345dbd7e3a7403365c8bdef00f5308cc719e6c3007357716d33665540e9b96"
     },
     {
       "source": "data\\hardware\\20260511_fpga1_board1\\trng\\cross_region_run02.bin",

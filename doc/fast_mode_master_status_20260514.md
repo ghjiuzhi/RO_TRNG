@@ -1,26 +1,38 @@
-# Fast Mode Master Status 2026-05-14
+# Fast Mode 总状态 - 2026-05-14
 
-更新时间：2026-05-14 约 12:10，主控线程离线汇总。  
-硬件链路：当前只保留 `hw_server` 常驻，未发现正在运行的 Vivado 编程、串口采集或 fast-mode 队列。为避免抢占 COM3/JTAG，后续硬件任务仍然只允许单队列串行执行。
+更新时间：2026-05-14 约 12:55。
 
-## 当前阶段判断
+## 当前阶段
 
-现在已经从“抢硬件数据”阶段进入“论文证据链整理 + 合规随机性验证准备”阶段。
+项目已经从“能不能采到数据”进入“证据链补强和论文可复现打包”阶段。
 
-已经完成的硬件实验足以支撑一个明确结论：同一个 RO-TRNG 结构在不同 placement 下会出现显著且可重复的原始随机性差异；但是还不足以支撑“近距离 RO 一定发生强锁定/同步”的强机制结论。当前 TDC pair 数据更像是一个重要的反证边界：在 6 个重点 pair、当前 TDC 观测方式和运行条件下，没有检测到强 pair locking。
+当前硬件短队列仍在运行，必须继续保持 COM3/JTAG/Vivado 串行：
 
-## 硬件采集完成情况
+- 队列：`data/experiments/fast_mode/hardware_queue_short_20260514.csv`
+- 状态文档：`doc/fast_mode_short_queue_status_20260514.md`
+- 当前运行：`random1_repeat03`
+- 目标大小：20 MiB
+- 当前观察：文件正在增长，说明串口采集链路正常
 
-主 fast-mode 队列完成，状态文件为 `doc/fast_mode_hardware_status_20260513.md`。
+不要并行启动第二个 Vivado/program/capture 队列，否则会抢 COM3、JTAG 或 `hw_server`。
 
-已完成：
+## 已完成硬件证据
 
-- RO_FREQ：`random1/random3` 多次重复采样，包含 2MiB repeat 与 5MiB 扩展样本。
-- TDC baseline：`tdc_near_run03_2mib`、`tdc_far_run02_2mib`。
-- TRNG baseline：原始 `fpga1` 工程 10MiB 与 5MiB 重复采样。
-- Pair-specific TDC：6/6 完成，状态文件为 `doc/fast_mode_tdc_pair_status_20260514.md`。
+主 fast-mode 硬件队列已经完成，详见：
 
-Pair-specific TDC 已完成列表：
+- `doc/fast_mode_hardware_status_20260513.md`
+- `doc/fast_mode_tdc_pair_status_20260514.md`
+- `data/experiments/tdc_pair_dynamics/tdc_pair_dynamics_20260514.md`
+
+已经完成的数据类型：
+
+- TRNG placement matrix：`compact`、`checker`、`sparse`、`far`、`same_column`、`cross_region`、`random1/2/3`、`row` 等。
+- 原始 `fpga1` baseline：10 MiB formal 和 5 MiB repeat。
+- RO_FREQ：`random1/random3` 多次 repeat。
+- TDC near/far baseline。
+- Pair-specific TDC：6 个重点 pair，全部完成。
+
+6 个 pair-specific TDC：
 
 - `random1_ro4_ro5`
 - `random1_ro0_ro1`
@@ -29,81 +41,91 @@ Pair-specific TDC 已完成列表：
 - `random3_ro3_ro5`
 - `random3_ro0_ro6`
 
-## 已看到的核心结果
-
-TRNG placement 矩阵：
-
-- `random1` 是稳定坏例：10MiB formal `p1 = 0.337315512`，bit min-entropy `0.593605945`；5MiB repeat 仍接近同一水平。
-- `random3` 是稳定好例：10MiB formal `p1 = 0.499968565`，bit min-entropy `0.999909299`；5MiB repeat 仍接近理想。
-- `same_column` 的 p1 接近 0.5，但 runs p-value 为 0、相邻结构异常，说明只看 bias 不够。
-- 原始 `fpga1` baseline 表现良好：10MiB `p1 = 0.500035894`，bit min-entropy `0.999896436`；5MiB repeat `p1 = 0.500216961`，bit min-entropy `0.999374119`。
-
-RO_FREQ：
-
-- `random1` 和 `random3` 都存在较近 data/data beat，因此“近频率 pair 存在”不是充分因果解释。
-- `random1` 的 sample RO pulling 在部分运行中明显更强，提示可能存在 placement-dependent dynamic interaction，而不是简单的静态近距离锁定。
-
-TDC pair dynamics：
-
-- 6 个 pair、96 个窗口，strong-lock windows = 0。
-- 最大绝对 zero/small-lag 相关量级仍很低，当前应表述为“未检测到强 pair locking”，不能写成“证明没有耦合”。
-
-## 论文主张边界
+## 主要结论边界
 
 可以主张：
 
-- Placement 对 RO-TRNG 原始随机性有显著、可重复影响。
-- “compact/checker/random/far”等粗标签不足以解释结果，必须引入物理测量和 placement 细节。
-- TDC/RO_FREQ 能作为机制诊断工具，帮助区分 bias、相邻结构、频率拉拽、相位相关等不同现象。
-- 当前数据支持“placement-dependent dynamic interaction / frequency proximity / sample pulling / weak or transient coupling”的机制假设。
+- 同一块 Zynq-7020、同一 RO-TRNG 结构、同一 UART 采集链路下，placement 会显著改变原始随机性。
+- `random1` 是稳定坏例：10 MiB formal 中 `p1 = 0.337315512`，快速 bit min-entropy 为 `0.593605945`。
+- `random3` 是稳定好例：10 MiB formal 中 `p1 = 0.499968565`，快速 bit min-entropy 为 `0.999909299`。
+- 原始 `fpga1` baseline 表现也较好：10 MiB `p1 = 0.500035894`，快速 bit min-entropy 为 `0.999896436`。
+- TDC/RO_FREQ 可作为机制诊断工具，而不是只做黑盒随机性测试。
 
 不能主张：
 
-- 不能说已经证明近距离 RO 发生强锁定。
-- 不能把 TDC bin 当作未校准的线性时间直接做绝对时延结论。
-- 不能把单板、常温、默认电压结果直接推广到所有 FPGA、所有环境。
-- 不能用 smoke 或 STS 结果替代 NIST SP800-90B 熵评估。
+- 不能说已经证明“近距离 RO 必然强锁定”。
+- 不能把未校准 TDC bin 当作绝对线性时间。
+- 不能把单板、常温、默认电压结果直接推广到所有 FPGA/PVT 条件。
+- 不能把 smoke 90B 或 STS 结果写成完整 SP800-90B 认证。
 
-## 正在并行推进的任务
+## TDC Pair 结果
 
-主控线程：
+当前 pair-specific TDC 是一个重要的负结果：
 
-- 维护本状态文件。
-- 根据子任务输出决定是否追加硬件队列。
-- 保证不会并行启动多个抢 COM3/JTAG 的硬件任务。
+- pair runs：6
+- total windows：96
+- strong-lock windows：0
+- max small-lag abs correlation：约 0.0318
+- mean diff std：约 2040 ps 到 2043 ps
 
-子任务 A：
+论文中应表述为：在当前观测方式和实验条件下，没有检测到强 pair-level phase locking。它不能证明完全没有耦合，也不能证明随机性差异来自单个近邻 pair 的强同步。
 
-- 已完成。输出干净 UTF-8 中文论文结果文档：`doc/paper_results_after_tdc_pairs_utf8_20260514.md`。第一次子任务输出出现编码乱码，主控线程已重写为可读中文版本。
+更稳妥的机制叙事是：placement 改变多 RO 网络的动态相互作用、频率接近程度、采样相位覆盖、局部布线延迟和序列相关结构。
 
-子任务 B：
+## SP800-90B 当前进展
 
-- 已完成并验收。生成论文图表/表格证据包：`data/experiments/paper_artifacts_20260514`。
-- 关键产物：`claims_vs_evidence.csv/md`、`table_placement_trng_repeats.csv/md`、`table_ro_freq_pulling_summary.csv/md`、`table_tdc_pair_dynamics_summary.csv/md`、`fig_tdc_pair_best_lag_abs_r.svg`。
+MinGW 路线已经跑通：
 
-子任务 C：
+- build script：`scripts/build_90b_mingw.ps1`
+- executable：`sim/SP800-90B_EntropyAssessment/cpp/ea_non_iid.exe`
+- input preparation：`scripts/prepare_90b_inputs.py`
+- smoke runner：`scripts/run_90b_smoke.ps1`
+- result parser：`scripts/summarize_90b_results.py`
+- summary：`data/sp800_90b/results_smoke_20260514/summary.md`
+- status：`doc/sp800_90b_blocker_20260514.md`
 
-- 已完成。当前不是数据阻塞，而是工具链阻塞：PowerShell 环境缺少 `g++`、`make/mingw32-make` 以及可验证的链接库环境。
-- blocker 文档：`doc/sp800_90b_blocker_20260514.md`。
-- smoke 输入已存在：`data/sp800_90b/inputs_smoke_20260514`。
+已经完成 11 个布局的 1,000,000-symbol non-IID smoke，包含 MSB-first 和 LSB-first 两种 bit-order 敏感性检查。
+
+关键观察：
+
+- `random1` 在 MSB/LSB 下都是明显低熵离群点：约 0.385/0.384。
+- `random3`、`random2`、`compact`、`checker` 等在 MSB-first smoke 下约 0.86 到 0.87。
+- `sparse`、`row` 较低，说明 placement 差异不仅表现为单比特偏置，也会被 90B non-IID 估计器捕捉。
+
+仍然缺口：
+
+- 这是 smoke，不是完整 formal 90B。
+- 还没有 restart dataset。
+- 最终投稿前建议用更现代的 MSYS2/WSL 工具链复现 headline 结果。
+
+## 正在进行的短队列
+
+短队列目标是补强两个核心对照：
+
+1. `random1_repeat03`：20 MiB TRNG，验证坏例长时间稳定性。
+2. `random3_repeat03`：20 MiB TRNG，验证好例长时间稳定性。
+3. `random1_ro_freq_fixed_run04_5mib`：RO_FREQ repeat。
+4. `random3_ro_freq_fixed_run04_5mib`：RO_FREQ repeat。
+
+队列完成后立即做：
+
+```powershell
+python scripts\summarize_trng_repeats.py
+python scripts\analyze_fast_mode_results.py
+python scripts\make_paper_artifacts_20260514.py
+```
+
+然后将 `random1_repeat03`、`random3_repeat03` 加入 SP800-90B smoke repeat。
 
 ## 下一步优先级
 
-P0：完成论文证据包和中文结果总结。  
-P0：跑通或明确阻塞 SP800-90B，至少形成可复现输入和执行说明。当前已明确阻塞，需要安装 MSYS2/WSL 依赖后继续。  
-P1：如果还有时间上板，追加最有价值的硬件任务不是“更多随机扫”，而是对 `random1` 坏例和 `random3` 好例做更长时长重复，优先 10MiB/20MiB 原始 bitstream 与 RO_FREQ repeat。  
-P1：多板、温度、电压属于冲顶刊的强加分项；若当前硬件条件不足，应作为 limitation 和 future validation 写清楚。
+P0：等短队列完成，不抢硬件。
 
-## 子任务关闭状态
+P0：持续更新 GitHub export，给 GPT/Claude 分析使用，但不上传大体积原始 `.bin`、`.bit`、`.dcp`。
 
-- 图表证据包子任务：已关闭。
-- SP800-90B 工具链子任务：已关闭。
-- 中文论文结果子任务：因输出乱码，已关闭；主控线程已接管并修复。
+P0：把 SP800-90B smoke 结果纳入论文证据表，措辞为“non-IID smoke supports the placement-dependent gap”，不要写成认证。
 
-## 是否需要立即继续硬件实验
+P1：设计 restart capture protocol。现有顺序流不能直接冒充 restart dataset。
 
-当前不建议盲目启动新的硬件长队列。理由：
+P1：如果冲更高水平，后续补多板、温度、电压、运行时间漂移；如果做不到，写成 limitation 和 future validation。
 
-- 已规划 fast-mode 硬件和 6 个 pair TDC 均已完成。
-- 论文当前最大缺口不是更多 COM3 数据，而是 SP800-90B 运行环境、论文叙事、以及如果冲顶刊才需要的多板/PVT。
-- 如果今天继续上板，最有价值的追加队列应很短，只围绕 `random1` 与 `random3` 做更长 repeat 和 restart 数据准备。

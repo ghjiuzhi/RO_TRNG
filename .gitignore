@@ -12,6 +12,10 @@
 *.vdi
 *.zip
 *.pdf
+*.exe
+*.o
+*.obj
+*.a
 
 # Vivado generated directories
 .Xil/
@@ -35,4 +39,3 @@ data/experiments/fast_mode/*stdout.log
 data/experiments/fast_mode/*stderr.log
 data/experiments/fast_mode/logs/
 data/experiments/fast_mode/short_queue_logs/
-

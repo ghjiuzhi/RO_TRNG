@@ -1,0 +1,24 @@
+#ifndef RO_TRNG_COMPAT_MUTEX
+#define RO_TRNG_COMPAT_MUTEX
+
+namespace std {
+
+class mutex {
+public:
+    void lock() {}
+    void unlock() {}
+};
+
+template <class Mutex>
+class unique_lock {
+public:
+    explicit unique_lock(Mutex &m) : mutex_(m), owns_(true) { mutex_.lock(); }
+    ~unique_lock() { if (owns_) mutex_.unlock(); }
+private:
+    Mutex &mutex_;
+    bool owns_;
+};
+
+} // namespace std
+
+#endif
