@@ -77,14 +77,14 @@
 MinGW 路线已经跑通：
 
 - build script：`scripts/build_90b_mingw.ps1`
-- executable：`sim/SP800-90B_EntropyAssessment/cpp/ea_non_iid.exe`
+- executable：`sim/SP800-90B_EntropyAssessment/cpp/ea_non_iid.exe`、`ea_iid.exe`、`ea_restart.exe`
 - input preparation：`scripts/prepare_90b_inputs.py`
 - smoke runner：`scripts/run_90b_smoke.ps1`
 - result parser：`scripts/summarize_90b_results.py`
 - summary：`data/sp800_90b/results_smoke_20260514/summary.md`
 - status：`doc/sp800_90b_blocker_20260514.md`
 
-已经完成 11 个布局的 1,000,000-symbol non-IID smoke，包含 MSB-first 和 LSB-first 两种 bit-order 敏感性检查。
+已经完成 11 个布局的 1,000,000-symbol non-IID smoke，包含 MSB-first 和 LSB-first 两种 bit-order 敏感性检查。另对 `random1/random3/original` 做了 IID smoke 诊断，三个流都未通过 IID 路线的 LRS 检查，因此论文主线应使用 non-IID 估计。
 
 关键观察：
 
@@ -95,7 +95,7 @@ MinGW 路线已经跑通：
 仍然缺口：
 
 - 这是 smoke，不是完整 formal 90B。
-- 还没有 restart dataset。
+- `ea_restart.exe` 已经能编译，但还没有真正的 restart dataset；现有顺序 `.bin` 不能替代 restart 矩阵。
 - 最终投稿前建议用更现代的 MSYS2/WSL 工具链复现 headline 结果。
 
 ## 正在进行的短队列
@@ -128,4 +128,3 @@ P0：把 SP800-90B smoke 结果纳入论文证据表，措辞为“non-IID smoke
 P1：设计 restart capture protocol。现有顺序流不能直接冒充 restart dataset。
 
 P1：如果冲更高水平，后续补多板、温度、电压、运行时间漂移；如果做不到，写成 limitation 和 future validation。
-

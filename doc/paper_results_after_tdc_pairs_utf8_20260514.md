@@ -15,7 +15,7 @@
 | RO_FREQ | random1/random3 多次 repeat | 诊断频率差、beat、sample pulling |
 | TDC near/far | near/far baseline repeat | 诊断相位/bin 分布 |
 | Pair-specific TDC | 6 个重点 pair，每个 2 MiB | 验证强锁定假设是否成立 |
-| SP800-90B smoke | 11 个布局，MSB/LSB bit-symbol non-IID smoke | 作为独立 conservative entropy screening |
+| SP800-90B smoke | 11 个布局，MSB/LSB bit-symbol non-IID smoke；random1/random3/original IID 诊断 | 作为独立 conservative entropy screening |
 
 ## 主要数值结果
 
@@ -53,6 +53,8 @@ SP800-90B non-IID smoke：
 | `sparse_run01` | 0.734432 | 0.742313 |
 
 这个结果很关键：`random1` 在两个 bit order 下都明显偏低，说明 placement 差异不是简单的打包 bit 顺序假象。
+
+IID 诊断结果也支持采用 non-IID 路线：`random1`、`random3` 和原始 `fpga1` baseline 的 MSB-first 1M smoke 均未通过 LRS 检查。因此论文不能主张这些输出满足 IID 假设；应把 non-IID `H_original` 作为更保守的主结果。
 
 ## 机制假设修正
 
@@ -110,4 +112,3 @@ P0：把干净文档、脚本、CSV/MD/SVG 结果同步到 GitHub export，供 G
 P1：设计 restart dataset 采集，不要把顺序流当 restart。
 
 P1：如果冲顶刊，后续必须补多板、温度/电压/运行时间漂移，或者在论文中清楚限定为单板常温标称电压 characterization study。
-

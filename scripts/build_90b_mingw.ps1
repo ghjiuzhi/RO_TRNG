@@ -41,11 +41,22 @@ foreach ($src in $cSources) {
     $objects.Add($out)
 }
 
-$exe = Join-Path $cppDir "ea_non_iid.exe"
-& $gxx -std=c++11 -fopenmp -O2 -ffloat-store @includeArgs `
-    (Join-Path $cppDir "non_iid_main.cpp") `
-    @($objects.ToArray()) `
-    -L"$MingwRoot\lib" -lbz2 -ladvapi32 -o $exe
-if ($LASTEXITCODE -ne 0) { throw "Failed linking ea_non_iid.exe" }
+function Build-EntropyAssessmentExe {
+    param(
+        [string]$MainSource,
+        [string]$OutputName
+    )
+    $exe = Join-Path $cppDir $OutputName
+    & $gxx -std=c++11 -fopenmp -O2 -ffloat-store @includeArgs `
+        (Join-Path $cppDir $MainSource) `
+        @($objects.ToArray()) `
+        -L"$MingwRoot\lib" -lbz2 -ladvapi32 -o $exe
+    if ($LASTEXITCODE -ne 0) { throw "Failed linking $OutputName" }
+    Write-Host "Built $exe"
+}
 
-Write-Host "Built $exe"
+Build-EntropyAssessmentExe -MainSource "non_iid_main.cpp" -OutputName "ea_non_iid.exe"
+Build-EntropyAssessmentExe -MainSource "iid_main.cpp" -OutputName "ea_iid.exe"
+Build-EntropyAssessmentExe -MainSource "restart_main.cpp" -OutputName "ea_restart.exe"
+
+Write-Host "Skipped ea_conditioning.exe: this MinGW environment does not provide MPFR/GMP headers."
