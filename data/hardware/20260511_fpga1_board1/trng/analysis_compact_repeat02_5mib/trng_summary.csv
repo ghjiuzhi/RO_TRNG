@@ -1,0 +1,2 @@
+file,name,bytes,bits,zeros,ones,p1,bit_min_entropy,monobit_z,monobit_p,runs,runs_p,adjacent_equal_ratio,longest_zero_run,longest_one_run,shannon_entropy_byte,min_entropy_byte
+E:\Project\MLDSA\RO_TRNG\data\hardware\20260511_fpga1_board1\trng\compact_repeat02_5mib.bin,compact_repeat02_5mib.bin,5242880,41943040,20969036,20974004,0.5000592231750488,0.999829128157476,0.7670993855330326,0.44302242724680857,20976877,0.09804237866248543,0.49987229108505943,27,30,7.999966299474234,7.973476557480234

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="420" viewBox="0 0 920 420">
+<rect width="100%" height="100%" fill="white"/>
+<text x="460.0" y="26" text-anchor="middle" font-family="Arial" font-size="18">Closest data/data RO_FREQ beat deltas</text>
+<line x1="80" y1="324.0" x2="890" y2="324.0" stroke="#333"/>
+<line x1="80" y1="46" x2="80" y2="324" stroke="#333"/>
+<line x1="80" y1="324.0" x2="890" y2="324.0" stroke="#999" stroke-dasharray="4 4"/>
+<rect x="80.0" y="281.9" width="97.8" height="42.1" fill="#26667f"/>
+<text x="128.9" y="358" transform="rotate(45 128.9,358)" text-anchor="start" font-family="Arial" font-size="11">data4/data5</text>
+<text x="128.9" y="277.9" text-anchor="middle" font-family="Arial" font-size="10">0.466</text>
+<rect x="181.8" y="263.2" width="97.8" height="60.8" fill="#26667f"/>
+<text x="230.6" y="358" transform="rotate(45 230.6,358)" text-anchor="start" font-family="Arial" font-size="11">data3/data7</text>
+<text x="230.6" y="259.2" text-anchor="middle" font-family="Arial" font-size="10">0.673</text>
+<rect x="283.5" y="235.6" width="97.8" height="88.4" fill="#26667f"/>
+<text x="332.4" y="358" transform="rotate(45 332.4,358)" text-anchor="start" font-family="Arial" font-size="11">data0/data1</text>
+<text x="332.4" y="231.6" text-anchor="middle" font-family="Arial" font-size="10">0.979</text>
+<rect x="385.2" y="145.2" width="97.8" height="178.8" fill="#26667f"/>
+<text x="434.1" y="358" transform="rotate(45 434.1,358)" text-anchor="start" font-family="Arial" font-size="11">data2/data4</text>
+<text x="434.1" y="141.2" text-anchor="middle" font-family="Arial" font-size="10">1.98</text>
+<rect x="487.0" y="113.8" width="97.8" height="210.2" fill="#26667f"/>
+<text x="535.9" y="358" transform="rotate(45 535.9,358)" text-anchor="start" font-family="Arial" font-size="11">data3/data5</text>
+<text x="535.9" y="109.8" text-anchor="middle" font-family="Arial" font-size="10">2.33</text>
+<rect x="588.8" y="103.1" width="97.8" height="220.9" fill="#26667f"/>
+<text x="637.6" y="358" transform="rotate(45 637.6,358)" text-anchor="start" font-family="Arial" font-size="11">data2/data5</text>
+<text x="637.6" y="99.1" text-anchor="middle" font-family="Arial" font-size="10">2.45</text>
+<rect x="690.5" y="53.0" width="97.8" height="271.0" fill="#26667f"/>
+<text x="739.4" y="358" transform="rotate(45 739.4,358)" text-anchor="start" font-family="Arial" font-size="11">data5/data7</text>
+<text x="739.4" y="49.0" text-anchor="middle" font-family="Arial" font-size="10">3</text>
+<rect x="792.2" y="46.0" width="97.8" height="278.0" fill="#26667f"/>
+<text x="841.1" y="358" transform="rotate(45 841.1,358)" text-anchor="start" font-family="Arial" font-size="11">data0/data6</text>
+<text x="841.1" y="42.0" text-anchor="middle" font-family="Arial" font-size="10">3.08</text>
+</svg>

@@ -1,0 +1,2 @@
+file,name,bytes,bits,zeros,ones,p1,bit_min_entropy,monobit_z,monobit_p,runs,runs_p,adjacent_equal_ratio,longest_zero_run,longest_one_run,shannon_entropy_byte,min_entropy_byte
+E:\Project\MLDSA\RO_TRNG\data\hardware\20260511_fpga1_board1\trng\same_column_repeat02_5mib.bin,same_column_repeat02_5mib.bin,5242880,41943040,20978401,20964639,0.4998359441757202,0.9995267125930755,-2.1249641191033803,0.033589606983758194,20718508,0.0,0.5060322882183144,28,27,7.999118282981344,7.866729325372264

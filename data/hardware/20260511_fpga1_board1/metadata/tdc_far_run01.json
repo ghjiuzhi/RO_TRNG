@@ -1,0 +1,19 @@
+﻿{
+    "capture_id":  "tdc_far_run01",
+    "kind":  "tdc",
+    "output_file":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\tdc\\tdc_far_run01.bin",
+    "bitstream":  "data\\vivado_runs\\fpga1_tdc_matrix\\tdc_ro_far_x24y25\\RO_TDC_sysclk_top.bit",
+    "uart_port":  "COM3",
+    "baud":  115200,
+    "uart_format":  "8N1, no parity, no flow control",
+    "bytes_requested":  2097152,
+    "bytes_captured":  2097152,
+    "sha256":  "21048C6E2B450076540BAD06FB7C9C4EEE6EFE38073969076E6FA8DAEBC01AAC",
+    "start_time":  "2026-05-11 21:16:03",
+    "end_time":  "2026-05-11 21:20:14",
+    "duration_seconds":  250.998,
+    "room_temperature_c":  "",
+    "fpga_temperature_c":  "",
+    "voltage_condition":  "nominal_board_power",
+    "notes":  ""
+}

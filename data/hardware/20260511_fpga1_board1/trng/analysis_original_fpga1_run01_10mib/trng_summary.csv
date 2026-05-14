@@ -1,0 +1,2 @@
+file,name,bytes,bits,zeros,ones,p1,bit_min_entropy,monobit_z,monobit_p,runs,runs_p,adjacent_equal_ratio,longest_zero_run,longest_one_run,shannon_entropy_byte,min_entropy_byte
+E:\Project\MLDSA\RO_TRNG\data\hardware\20260511_fpga1_board1\trng\original_fpga1_run01_10mib.bin,original_fpga1_run01_10mib.bin,10485760,83886080,41940029,41946051,0.5000358939170837,0.9998964357649321,0.6575000664308464,0.5108594282789733,41944780,0.7039423970583514,0.49997926354383543,26,27,7.999982713073404,7.9849683233164415

@@ -1,0 +1,22 @@
+﻿{
+    "capture_id":  "tdc_pair_random1_ro2_ro4_run01_2mib",
+    "kind":  "tdc",
+    "output_file":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\tdc_pairs\\tdc_pair_random1_ro2_ro4_run01_2mib.bin",
+    "bitstream":  "data\\vivado_runs\\fpga1_tdc_pairs\\random1_ro2_ro4\\RO_TDC_pair_sysclk_top.bit",
+    "bitstream_resolved":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\vivado_runs\\fpga1_tdc_pairs\\random1_ro2_ro4\\RO_TDC_pair_sysclk_top.bit",
+    "bitstream_sha256":  "E19AB564D35C4B4496E7DEF82DBAB17CA11AA436B8C35D39F229494BAB3C76E3",
+    "uart_port":  "COM3",
+    "baud":  115200,
+    "uart_format":  "8N1, no parity, no flow control",
+    "bytes_requested":  2097152,
+    "bytes_captured":  2097152,
+    "sha256":  "60050B9158B8BE69EF51C093BCBED2F91DFC010A6B54C4B2A7A475D8C0ED577F",
+    "start_time":  "2026-05-14 03:13:20",
+    "end_time":  "2026-05-14 03:28:33",
+    "duration_seconds":  912.224,
+    "throughput_bytes_per_second":  2298.944,
+    "room_temperature_c":  "",
+    "fpga_temperature_c":  "",
+    "voltage_condition":  "nominal_board_power",
+    "notes":  ""
+}

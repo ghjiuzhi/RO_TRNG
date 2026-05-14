@@ -1,0 +1,19 @@
+﻿{
+    "capture_id":  "compact_smoke01",
+    "kind":  "trng",
+    "output_file":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\trng\\compact_smoke01.bin",
+    "bitstream":  "data\\vivado_runs\\fpga1_ro_trng_sweep\\ro_compact_x44y43\\seed_1\\RO_TRNG_top.bit",
+    "uart_port":  "COM3",
+    "baud":  115200,
+    "uart_format":  "8N1, no parity, no flow control",
+    "bytes_requested":  1048576,
+    "bytes_captured":  1048576,
+    "sha256":  "3F0FB3903C7E5FC7387E15D2588C07681CB5661F6DC73C90B0EFFBBDCC38852A",
+    "start_time":  "2026-05-11 21:25:09",
+    "end_time":  "2026-05-11 21:28:09",
+    "duration_seconds":  179.966,
+    "room_temperature_c":  "",
+    "fpga_temperature_c":  "",
+    "voltage_condition":  "nominal_board_power",
+    "notes":  ""
+}

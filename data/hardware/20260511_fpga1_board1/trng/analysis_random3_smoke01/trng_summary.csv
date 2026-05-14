@@ -1,0 +1,2 @@
+file,name,bytes,bits,zeros,ones,p1,bit_min_entropy,monobit_z,monobit_p,runs,runs_p,adjacent_equal_ratio,longest_zero_run,longest_one_run,shannon_entropy_byte,min_entropy_byte
+E:\Project\MLDSA\RO_TRNG\data\hardware\20260511_fpga1_board1\trng\random3_smoke01.bin,random3_smoke01.bin,1048576,8388608,4193731,4194877,0.5000683069229126,0.9998029213436413,0.3956759625194255,0.6923440904727413,4194033,0.8515973966549074,0.5000323653259713,24,24,7.999841999751035,7.933238067613092

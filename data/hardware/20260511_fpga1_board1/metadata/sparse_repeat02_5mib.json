@@ -1,0 +1,22 @@
+﻿{
+    "capture_id":  "sparse_repeat02_5mib",
+    "kind":  "trng",
+    "output_file":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\trng\\sparse_repeat02_5mib.bin",
+    "bitstream":  "data\\vivado_runs\\fpga1_ro_trng_matrix\\sparse_pitch6_x36y35\\seed_1\\RO_TRNG_top.bit",
+    "bitstream_resolved":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\vivado_runs\\fpga1_ro_trng_matrix\\sparse_pitch6_x36y35\\seed_1\\RO_TRNG_top.bit",
+    "bitstream_sha256":  "04D27957B7E31285E84EB81CB605602EA6BE8FCC709719A267EC244ECF5FCDC8",
+    "uart_port":  "COM3",
+    "baud":  115200,
+    "uart_format":  "8N1, no parity, no flow control",
+    "bytes_requested":  5242880,
+    "bytes_captured":  5242880,
+    "sha256":  "DC9AC7B1EC34F7A64EC8530BAC3C59F5D3D3BEA81ECD7D796E21834FF4BE41B5",
+    "start_time":  "2026-05-13 13:56:32",
+    "end_time":  "2026-05-13 14:04:08",
+    "duration_seconds":  455.394,
+    "throughput_bytes_per_second":  11512.844,
+    "room_temperature_c":  "",
+    "fpga_temperature_c":  "",
+    "voltage_condition":  "nominal_board_power",
+    "notes":  ""
+}

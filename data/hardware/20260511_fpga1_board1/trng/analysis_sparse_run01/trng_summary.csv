@@ -1,0 +1,2 @@
+file,name,bytes,bits,zeros,ones,p1,bit_min_entropy,monobit_z,monobit_p,runs,runs_p,adjacent_equal_ratio,longest_zero_run,longest_one_run,shannon_entropy_byte,min_entropy_byte
+E:\Project\MLDSA\RO_TRNG\data\hardware\20260511_fpga1_board1\trng\sparse_run01.bin,sparse_run01.bin,10485760,83886080,44933591,38952489,0.46434985399246215,0.9006370669923032,-653.0346998222631,0.0,41389700,0.0,0.5065963328671018,36,26,7.97018254132313,7.144060898784212

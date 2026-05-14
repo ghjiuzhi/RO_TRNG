@@ -1,0 +1,22 @@
+﻿{
+    "capture_id":  "tdc_near_run03_2mib",
+    "kind":  "tdc",
+    "output_file":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\tdc\\tdc_near_run03_2mib.bin",
+    "bitstream":  "data\\vivado_runs\\fpga1_tdc_matrix\\tdc_ro_near_x36y35\\RO_TDC_sysclk_top.bit",
+    "bitstream_resolved":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\vivado_runs\\fpga1_tdc_matrix\\tdc_ro_near_x36y35\\RO_TDC_sysclk_top.bit",
+    "bitstream_sha256":  "17EEC2C8C68C4A4DD38B30A2090DCD560D9490D99D01429CA4E9BFBBEABE0014",
+    "uart_port":  "COM3",
+    "baud":  115200,
+    "uart_format":  "8N1, no parity, no flow control",
+    "bytes_requested":  2097152,
+    "bytes_captured":  2097152,
+    "sha256":  "8DB82A80441A0AC1633FEBB1ED41A129E36207E7C380866F0332414B7C7602EC",
+    "start_time":  "2026-05-14 00:50:19",
+    "end_time":  "2026-05-14 00:53:21",
+    "duration_seconds":  182.374,
+    "throughput_bytes_per_second":  11499.183,
+    "room_temperature_c":  "",
+    "fpga_temperature_c":  "",
+    "voltage_condition":  "nominal_board_power",
+    "notes":  ""
+}

@@ -1,0 +1,19 @@
+﻿{
+    "capture_id":  "tdc_near_smoke_direct01",
+    "kind":  "tdc",
+    "output_file":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\tdc\\tdc_near_smoke_direct01.bin",
+    "bitstream":  "data\\vivado_runs\\fpga1_tdc_matrix\\tdc_ro_near_x36y35\\RO_TDC_sysclk_top.bit",
+    "uart_port":  "COM3",
+    "baud":  115200,
+    "uart_format":  "8N1, no parity, no flow control",
+    "bytes_requested":  1024,
+    "bytes_captured":  1024,
+    "sha256":  "E6547430D53B1CFE385404EC8E8024E97CB15B3EE0484FD7E9F29AA7FB45D9D1",
+    "start_time":  "2026-05-11 20:55:09",
+    "end_time":  "2026-05-11 20:55:09",
+    "duration_seconds":  0.365,
+    "room_temperature_c":  "",
+    "fpga_temperature_c":  "",
+    "voltage_condition":  "nominal_board_power",
+    "notes":  ""
+}

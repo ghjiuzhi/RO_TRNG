@@ -1,0 +1,7 @@
+run,windows,packets,phase_r_mean,phase_r_max_abs,best_lag_abs_r_max,best_lag_at_window,best_lag_packets,diff_std_ps_mean,diff_mean_ps_span,diff_mean_ps_slope_per_window,strong_lock_windows,claim_reading
+tdc_pair_random1_ro0_ro1_run01_2mib,16,262142,-0.00246724111,0.0150347121,0.0215993486,11,6,2042.85897,67.3974844,0.382658364,0,no strong pair locking detected
+tdc_pair_random1_ro2_ro4_run01_2mib,16,262138,-0.00223570525,0.0142263606,0.0317827302,6,-6,2042.28698,55.2974382,-0.0716225786,0,no strong pair locking detected
+tdc_pair_random1_ro4_ro5_run01_2mib,16,262143,-0.00120253074,0.0117675597,0.022497278,0,4,2041.50321,43.5712576,-0.275656522,0,no strong pair locking detected
+tdc_pair_random3_ro0_ro6_run01_2mib,16,262143,-0.00145869762,0.0170542668,0.0239274122,10,7,2041.92112,57.0656976,-1.12700647,0,no strong pair locking detected
+tdc_pair_random3_ro3_ro5_run01_2mib,16,262143,-3.51032148e-05,0.0150979741,0.027615762,12,-6,2040.23897,65.5298072,-0.063531239,0,no strong pair locking detected
+tdc_pair_random3_ro3_ro7_run01_2mib,16,262142,-1.30364877e-05,0.014506566,0.0229113492,14,-5,2040.42668,53.1181875,0.848702989,0,no strong pair locking detected

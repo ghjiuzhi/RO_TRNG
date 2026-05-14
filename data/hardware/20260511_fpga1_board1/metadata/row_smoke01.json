@@ -1,0 +1,22 @@
+﻿{
+    "capture_id":  "row_smoke01",
+    "kind":  "trng",
+    "output_file":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\trng\\row_smoke01.bin",
+    "bitstream":  "data\\vivado_runs\\fpga1_ro_trng_matrix\\row_pitch3_x38y43\\seed_1\\RO_TRNG_top.bit",
+    "bitstream_resolved":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\vivado_runs\\fpga1_ro_trng_matrix\\row_pitch3_x38y43\\seed_1\\RO_TRNG_top.bit",
+    "bitstream_sha256":  "A09D0111268B2FCB77841F862A2730265999380B361E789BE3273A1CD7D04637",
+    "uart_port":  "COM3",
+    "baud":  115200,
+    "uart_format":  "8N1, no parity, no flow control",
+    "bytes_requested":  1048576,
+    "bytes_captured":  1048576,
+    "sha256":  "B879BC61FD8D3513A862EA1D30E60AD60693788CD815F4B5F478A67434463ED4",
+    "start_time":  "2026-05-12 00:23:42",
+    "end_time":  "2026-05-12 00:25:14",
+    "duration_seconds":  91.284,
+    "throughput_bytes_per_second":  11486.964,
+    "room_temperature_c":  "",
+    "fpga_temperature_c":  "",
+    "voltage_condition":  "nominal_board_power",
+    "notes":  ""
+}

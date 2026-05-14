@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="420" viewBox="0 0 920 420">
+<rect width="100%" height="100%" fill="white"/>
+<text x="460.0" y="26" text-anchor="middle" font-family="Arial" font-size="18">Adjacent-equal deviation from 0.5</text>
+<line x1="80" y1="324.0" x2="890" y2="324.0" stroke="#333"/>
+<line x1="80" y1="46" x2="80" y2="324" stroke="#333"/>
+<line x1="80" y1="324.0" x2="890" y2="324.0" stroke="#999" stroke-dasharray="4 4"/>
+<rect x="80.0" y="46.0" width="77.4" height="278.0" fill="#5b4b8a"/>
+<text x="118.7" y="358" transform="rotate(45 118.7,358)" text-anchor="start" font-family="Arial" font-size="11">random1</text>
+<text x="118.7" y="42.0" text-anchor="middle" font-family="Arial" font-size="10">0.0567</text>
+<rect x="161.4" y="291.7" width="77.4" height="32.3" fill="#5b4b8a"/>
+<text x="200.1" y="358" transform="rotate(45 200.1,358)" text-anchor="start" font-family="Arial" font-size="11">sparse</text>
+<text x="200.1" y="287.7" text-anchor="middle" font-family="Arial" font-size="10">0.0066</text>
+<rect x="242.8" y="294.7" width="77.4" height="29.3" fill="#5b4b8a"/>
+<text x="281.5" y="358" transform="rotate(45 281.5,358)" text-anchor="start" font-family="Arial" font-size="11">same_column</text>
+<text x="281.5" y="290.7" text-anchor="middle" font-family="Arial" font-size="10">0.00598</text>
+<rect x="324.2" y="302.9" width="77.4" height="21.1" fill="#5b4b8a"/>
+<text x="362.9" y="358" transform="rotate(45 362.9,358)" text-anchor="start" font-family="Arial" font-size="11">row</text>
+<text x="362.9" y="298.9" text-anchor="middle" font-family="Arial" font-size="10">0.0043</text>
+<rect x="405.6" y="318.7" width="77.4" height="5.3" fill="#5b4b8a"/>
+<text x="444.3" y="358" transform="rotate(45 444.3,358)" text-anchor="start" font-family="Arial" font-size="11">random2</text>
+<text x="444.3" y="314.7" text-anchor="middle" font-family="Arial" font-size="10">0.00108</text>
+<rect x="487.0" y="320.4" width="77.4" height="3.6" fill="#5b4b8a"/>
+<text x="525.7" y="358" transform="rotate(45 525.7,358)" text-anchor="start" font-family="Arial" font-size="11">far</text>
+<text x="525.7" y="316.4" text-anchor="middle" font-family="Arial" font-size="10">0.000726</text>
+<rect x="568.4" y="323.6" width="77.4" height="1.0" fill="#5b4b8a"/>
+<text x="607.1" y="358" transform="rotate(45 607.1,358)" text-anchor="start" font-family="Arial" font-size="11">checker</text>
+<text x="607.1" y="319.6" text-anchor="middle" font-family="Arial" font-size="10">7.87e-05</text>
+<rect x="649.8" y="323.6" width="77.4" height="1.0" fill="#5b4b8a"/>
+<text x="688.5" y="358" transform="rotate(45 688.5,358)" text-anchor="start" font-family="Arial" font-size="11">random3</text>
+<text x="688.5" y="319.6" text-anchor="middle" font-family="Arial" font-size="10">7.25e-05</text>
+<rect x="731.2" y="323.7" width="77.4" height="1.0" fill="#5b4b8a"/>
+<text x="769.9" y="358" transform="rotate(45 769.9,358)" text-anchor="start" font-family="Arial" font-size="11">compact</text>
+<text x="769.9" y="319.7" text-anchor="middle" font-family="Arial" font-size="10">6.1e-05</text>
+<rect x="812.6" y="323.9" width="77.4" height="1.0" fill="#5b4b8a"/>
+<text x="851.3" y="358" transform="rotate(45 851.3,358)" text-anchor="start" font-family="Arial" font-size="11">cross_region</text>
+<text x="851.3" y="319.9" text-anchor="middle" font-family="Arial" font-size="10">1.96e-05</text>
+</svg>

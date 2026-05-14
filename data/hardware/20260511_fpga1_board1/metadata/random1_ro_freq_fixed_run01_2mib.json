@@ -1,0 +1,22 @@
+﻿{
+    "capture_id":  "random1_ro_freq_fixed_run01_2mib",
+    "kind":  "raw",
+    "output_file":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\ro_freq\\random1_ro_freq_fixed_run01_2mib.bin",
+    "bitstream":  "data\\vivado_runs\\fpga1_ro_freq_probe_fixed\\random1_seed1_x36y35\\RO_FREQ_trng_probe_top.bit",
+    "bitstream_resolved":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\vivado_runs\\fpga1_ro_freq_probe_fixed\\random1_seed1_x36y35\\RO_FREQ_trng_probe_top.bit",
+    "bitstream_sha256":  "46016C7D36BB2875387F94B0A845C34BFC2D32076EBA1E937860BBAC856B8913",
+    "uart_port":  "COM3",
+    "baud":  115200,
+    "uart_format":  "8N1, no parity, no flow control",
+    "bytes_requested":  2097152,
+    "bytes_captured":  2097152,
+    "sha256":  "2E06E59CF3A38BB3C4B4BD5CFFF2409A9C8A19FD4BF3B25B048EBAF00273E3BB",
+    "start_time":  "2026-05-13 21:52:39",
+    "end_time":  "2026-05-13 22:00:31",
+    "duration_seconds":  471.407,
+    "throughput_bytes_per_second":  4448.708,
+    "room_temperature_c":  "",
+    "fpga_temperature_c":  "",
+    "voltage_condition":  "nominal_board_power",
+    "notes":  ""
+}

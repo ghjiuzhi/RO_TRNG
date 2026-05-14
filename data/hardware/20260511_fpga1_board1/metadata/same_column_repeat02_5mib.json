@@ -1,0 +1,22 @@
+﻿{
+    "capture_id":  "same_column_repeat02_5mib",
+    "kind":  "trng",
+    "output_file":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\trng\\same_column_repeat02_5mib.bin",
+    "bitstream":  "data\\vivado_runs\\fpga1_ro_trng_matrix\\same_column_pitch3_x44y35\\seed_1\\RO_TRNG_top.bit",
+    "bitstream_resolved":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\vivado_runs\\fpga1_ro_trng_matrix\\same_column_pitch3_x44y35\\seed_1\\RO_TRNG_top.bit",
+    "bitstream_sha256":  "A2705D5230E26F539713D8CDD4E29B4D637849CB30EA2E1AB124DD350E13DF62",
+    "uart_port":  "COM3",
+    "baud":  115200,
+    "uart_format":  "8N1, no parity, no flow control",
+    "bytes_requested":  5242880,
+    "bytes_captured":  5242880,
+    "sha256":  "1EA95A632173BEE21F6E731B6F992F30E90E3C30356D6E87EDA0F014948E4787",
+    "start_time":  "2026-05-13 21:03:02",
+    "end_time":  "2026-05-13 21:11:42",
+    "duration_seconds":  520.545,
+    "throughput_bytes_per_second":  10071.905,
+    "room_temperature_c":  "",
+    "fpga_temperature_c":  "",
+    "voltage_condition":  "nominal_board_power",
+    "notes":  ""
+}

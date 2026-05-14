@@ -1,0 +1,11 @@
+name,pattern,x0,y0,pitch,seed,xdc
+compact_x44y43,compact,44,43,2,1,E:/Project/MLDSA/RO_TRNG/data/experiments/xdc_matrix/ro_compact_x44y43.xdc
+checker_pitch3_x44y43,checker,44,43,3,1,E:/Project/MLDSA/RO_TRNG/data/experiments/xdc_matrix/ro_checker_pitch3_x44y43.xdc
+same_column_pitch3_x44y35,same_column,44,35,3,1,E:/Project/MLDSA/RO_TRNG/data/experiments/xdc_matrix/ro_same_column_pitch3_x44y35.xdc
+row_pitch3_x38y43,row,38,43,3,1,E:/Project/MLDSA/RO_TRNG/data/experiments/xdc_matrix/ro_row_pitch3_x38y43.xdc
+sparse_pitch6_x36y35,sparse,36,35,6,1,E:/Project/MLDSA/RO_TRNG/data/experiments/xdc_matrix/ro_sparse_pitch6_x36y35.xdc
+cross_region_x36y25,cross_region,36,25,4,1,E:/Project/MLDSA/RO_TRNG/data/experiments/xdc_matrix/ro_cross_region_x36y25.xdc
+far_x20y25,far,20,25,4,1,E:/Project/MLDSA/RO_TRNG/data/experiments/xdc_matrix/ro_far_x20y25.xdc
+random_seed1_x36y35,random,36,35,8,1,E:/Project/MLDSA/RO_TRNG/data/experiments/xdc_matrix/ro_random_seed1_x36y35.xdc
+random_seed2_x36y35,random,36,35,8,2,E:/Project/MLDSA/RO_TRNG/data/experiments/xdc_matrix/ro_random_seed2_x36y35.xdc
+random_seed3_x36y35,random,36,35,8,3,E:/Project/MLDSA/RO_TRNG/data/experiments/xdc_matrix/ro_random_seed3_x36y35.xdc

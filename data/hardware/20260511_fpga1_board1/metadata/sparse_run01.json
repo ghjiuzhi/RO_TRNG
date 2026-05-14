@@ -1,0 +1,19 @@
+﻿{
+    "capture_id":  "sparse_run01",
+    "kind":  "trng",
+    "output_file":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\trng\\sparse_run01.bin",
+    "bitstream":  "data\\vivado_runs\\fpga1_ro_trng_matrix\\sparse_pitch6_x36y35\\seed_1\\RO_TRNG_top.bit",
+    "uart_port":  "COM3",
+    "baud":  115200,
+    "uart_format":  "8N1, no parity, no flow control",
+    "bytes_requested":  10485760,
+    "bytes_captured":  10485760,
+    "sha256":  "3F7A3B491848262BFF1C3AE8E9A136C2226227B0C1B27DA796227B6F2E2A5791",
+    "start_time":  "2026-05-11 22:27:59",
+    "end_time":  "2026-05-11 23:00:09",
+    "duration_seconds":  1930.272,
+    "room_temperature_c":  "",
+    "fpga_temperature_c":  "",
+    "voltage_condition":  "nominal_board_power",
+    "notes":  ""
+}

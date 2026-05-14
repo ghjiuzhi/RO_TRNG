@@ -1,0 +1,2 @@
+file,name,bytes,bits,zeros,ones,p1,bit_min_entropy,monobit_z,monobit_p,runs,runs_p,adjacent_equal_ratio,longest_zero_run,longest_one_run,shannon_entropy_byte,min_entropy_byte
+E:\Project\MLDSA\RO_TRNG\data\hardware\20260511_fpga1_board1\trng\original_fpga1_program_capture01.bin,original_fpga1_program_capture01.bin,1024,8192,4185,4007,0.4891357421875,0.9689880925622939,-1.9666407351750852,0.04922464376039526,4112,0.6917562988799586,0.4981076791600537,11,13,7.789488694740475,6.678071905112637

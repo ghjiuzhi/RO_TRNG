@@ -1,0 +1,2 @@
+file,name,bytes,bits,zeros,ones,p1,bit_min_entropy,monobit_z,monobit_p,runs,runs_p,adjacent_equal_ratio,longest_zero_run,longest_one_run,shannon_entropy_byte,min_entropy_byte
+E:\Project\MLDSA\RO_TRNG\data\hardware\20260511_fpga1_board1\trng\checker_run01.bin,checker_run01.bin,10485760,83886080,41948976,41937104,0.49992923736572265,0.999795836643692,-1.2962206557069094,0.19489947516831682,41936435,0.14926736753694417,0.5000787436971514,29,26,7.999980199155352,7.972785114840165

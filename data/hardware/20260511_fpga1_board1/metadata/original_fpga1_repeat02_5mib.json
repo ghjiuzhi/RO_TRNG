@@ -1,0 +1,22 @@
+﻿{
+    "capture_id":  "original_fpga1_repeat02_5mib",
+    "kind":  "trng",
+    "output_file":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\trng\\original_fpga1_repeat02_5mib.bin",
+    "bitstream":  "fpga1\\xc7z020clg400\\xc7z020clg400.runs\\impl_1\\RO_TRNG_top.bit",
+    "bitstream_resolved":  "E:\\Project\\MLDSA\\RO_TRNG\\fpga1\\xc7z020clg400\\xc7z020clg400.runs\\impl_1\\RO_TRNG_top.bit",
+    "bitstream_sha256":  "65D66192AF22EB5AF2A0ED09F6A52CC07CE48C568373C9A4B49143F171520985",
+    "uart_port":  "COM3",
+    "baud":  115200,
+    "uart_format":  "8N1, no parity, no flow control",
+    "bytes_requested":  5242880,
+    "bytes_captured":  5242880,
+    "sha256":  "E6244C3F8317BF7AB55E5594EE69425CCB2542F7E172835A46BFD9926173A9F0",
+    "start_time":  "2026-05-14 01:14:16",
+    "end_time":  "2026-05-14 01:22:08",
+    "duration_seconds":  472.004,
+    "throughput_bytes_per_second":  11107.702,
+    "room_temperature_c":  "",
+    "fpga_temperature_c":  "",
+    "voltage_condition":  "nominal_board_power",
+    "notes":  ""
+}

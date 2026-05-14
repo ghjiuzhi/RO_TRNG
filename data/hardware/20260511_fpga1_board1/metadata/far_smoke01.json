@@ -1,0 +1,19 @@
+﻿{
+    "capture_id":  "far_smoke01",
+    "kind":  "trng",
+    "output_file":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\trng\\far_smoke01.bin",
+    "bitstream":  "data\\vivado_runs\\fpga1_ro_trng_matrix\\far_x20y25\\seed_1\\RO_TRNG_top.bit",
+    "uart_port":  "COM3",
+    "baud":  115200,
+    "uart_format":  "8N1, no parity, no flow control",
+    "bytes_requested":  1048576,
+    "bytes_captured":  1048576,
+    "sha256":  "4E00EE3C5C0ECED984120499FD8535A4F4772DA76F7F56A643FA1744E191E0B4",
+    "start_time":  "2026-05-11 22:19:17",
+    "end_time":  "2026-05-11 22:22:50",
+    "duration_seconds":  212.853,
+    "room_temperature_c":  "",
+    "fpga_temperature_c":  "",
+    "voltage_condition":  "nominal_board_power",
+    "notes":  ""
+}

@@ -1,0 +1,38 @@
+# Large raw captures and generated FPGA artifacts
+*.bin
+*.bit
+*.dcp
+*.jou
+*.log
+*.pb
+*.rpx
+*.wdb
+*.wcfg
+*.str
+*.vdi
+*.zip
+*.pdf
+
+# Vivado generated directories
+.Xil/
+*.runs/
+*.cache/
+*.gen/
+*.hw/
+*.ip_user_files/
+*.sim/
+xsim.dir/
+
+# Large derived packet dumps
+*.tdc_packets.csv
+
+# Local Python/build cache
+__pycache__/
+*.pyc
+
+# Local automation logs
+data/experiments/fast_mode/*stdout.log
+data/experiments/fast_mode/*stderr.log
+data/experiments/fast_mode/logs/
+data/experiments/fast_mode/short_queue_logs/
+

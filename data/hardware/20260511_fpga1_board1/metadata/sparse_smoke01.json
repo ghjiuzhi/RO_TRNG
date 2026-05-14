@@ -1,0 +1,19 @@
+﻿{
+    "capture_id":  "sparse_smoke01",
+    "kind":  "trng",
+    "output_file":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\trng\\sparse_smoke01.bin",
+    "bitstream":  "data\\vivado_runs\\fpga1_ro_trng_matrix\\sparse_pitch6_x36y35\\seed_1\\RO_TRNG_top.bit",
+    "uart_port":  "COM3",
+    "baud":  115200,
+    "uart_format":  "8N1, no parity, no flow control",
+    "bytes_requested":  1048576,
+    "bytes_captured":  1048576,
+    "sha256":  "9817D11A03A3A1503E04330109B03D12CEAB972ADC1A78532C7B4B2753CC4C3E",
+    "start_time":  "2026-05-11 22:14:30",
+    "end_time":  "2026-05-11 22:16:02",
+    "duration_seconds":  92.75,
+    "room_temperature_c":  "",
+    "fpga_temperature_c":  "",
+    "voltage_condition":  "nominal_board_power",
+    "notes":  ""
+}

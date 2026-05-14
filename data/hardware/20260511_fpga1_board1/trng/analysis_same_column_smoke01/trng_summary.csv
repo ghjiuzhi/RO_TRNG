@@ -1,0 +1,2 @@
+file,name,bytes,bits,zeros,ones,p1,bit_min_entropy,monobit_z,monobit_p,runs,runs_p,adjacent_equal_ratio,longest_zero_run,longest_one_run,shannon_entropy_byte,min_entropy_byte
+E:\Project\MLDSA\RO_TRNG\data\hardware\20260511_fpga1_board1\trng\same_column_smoke01.bin,same_column_smoke01.bin,1048576,8388608,4192954,4195654,0.5001609325408936,0.9995357215561725,0.9322208541033585,0.3512224002375904,4153812,4.871881561079309e-172,0.5048270827325682,25,24,7.999282292602498,7.878790283590716

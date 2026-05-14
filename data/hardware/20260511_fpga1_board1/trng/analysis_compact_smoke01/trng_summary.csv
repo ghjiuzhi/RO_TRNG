@@ -1,0 +1,2 @@
+file,name,bytes,bits,zeros,ones,p1,bit_min_entropy,monobit_z,monobit_p,runs,runs_p,adjacent_equal_ratio,longest_zero_run,longest_one_run,shannon_entropy_byte,min_entropy_byte
+E:\Project\MLDSA\RO_TRNG\data\hardware\20260511_fpga1_board1\trng\compact_smoke01.bin,compact_smoke01.bin,1048576,8388608,4193251,4195357,0.500125527381897,0.999637849995123,0.7271322662006197,0.46714493440126464,4193621,0.6373178620554314,0.5000814795591211,27,24,7.999782627735104,7.937616508123666

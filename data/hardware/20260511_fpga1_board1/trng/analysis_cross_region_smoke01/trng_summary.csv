@@ -1,0 +1,2 @@
+file,name,bytes,bits,zeros,ones,p1,bit_min_entropy,monobit_z,monobit_p,runs,runs_p,adjacent_equal_ratio,longest_zero_run,longest_one_run,shannon_entropy_byte,min_entropy_byte
+E:\Project\MLDSA\RO_TRNG\data\hardware\20260511_fpga1_board1\trng\cross_region_smoke01.bin,cross_region_smoke01.bin,1048576,8388608,4195571,4193037,0.49984896183013916,0.9995642617725051,-0.874906534925152,0.3816247630660982,4191221,0.03328305269757427,0.500367581888149,22,23,7.999825228020889,7.938291295339377
