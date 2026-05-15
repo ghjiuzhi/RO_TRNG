@@ -117,6 +117,106 @@ Restart 执行更新：
 - reprogram-based restart 在 `random3` 10x1000 pilot 中约 57.57 分钟，在 `random1` 10x1000 pilot 中约 42.33 分钟；按实测均值估算，正式 1000x1000 约需 70-96 小时。因此需要决定：安排约三到四天独占板子的正式 run，或先改 RTL 增加可审计 design-level reset。
 - 详情见 `doc/sp800_90b_restart_execution_status_20260514.md`。
 
+Restart fast-path 新进展：
+
+- 已新增 restart-only auto-stream 顶层：`rtl/restart/RO_TRNG_restart_auto_top.v`
+- 已新增对应 base XDC：`data/experiments/xdc_restart/restart_sysclk_base.xdc`
+- 已新增 in-memory Vivado flow：`scripts/vivado/run_fpga1_ro_trng_restart_auto_inmem.tcl`
+- 已扩展 `scripts/capture_90b_restart_dataset.ps1`，支持 `-RestartMethod auto_stream_once`
+- 这条新路径的目标是：**每个 bitstream 只下载一次，然后板上自动输出完整 row-major restart 矩阵**
+- 当前 `random3` 的小规模 build smoke 已成功产出 bitstream：`data\vivado_runs\restart_auto_random3_smoke\RO_TRNG_restart_auto_top.bit`
+- 已完成真实硬件 auto-stream smoke：`random3_restart_auto_smoke_4x64_20260514.bin`，SHA256 为 `64C9A4405903F888115729018B532EE7B837E0F7AC72F73DB0FC89BFE070F340`
+- 这证明 restart fast-path 已经从 RTL/脚本推进到真实板级链路，不再只是设计草图
+- 详情见 `doc/restart_auto_stream_plan_20260514.md`
+
+2026-05-15 更新：
+
+- auto-stream formal-size 长流已经打通，不再停留在 smoke。
+- `1000 x 1000` byte-symbol 真实硬件采集成功：
+  - 文件：`data\hardware\20260511_fpga1_board1\restart\random3_restart_auto_formal_1000x1000_header_delay60s_20260515.bin`
+  - header：`A55A03E803E801D0`
+  - 大小：`1000000` bytes
+  - SHA256：`7789491D1DFE5E3C21225F6574D3C00D85800258B4CE930C89545CD3BA59E3D6`
+- bit-symbol formal restart 路线也已完成：
+  - `1000 x 125` packed-byte 采集成功，展开为 `1000 x 1000` one-byte-per-bit symbols。
+  - MSB 输入 SHA256：`8C927742F11564F08722BDCC09616A2A15619038E4AC362D0C327C5B81706726`
+  - LSB 输入 SHA256：`25A3C2E95789FF3AB9A7B93EFE544B76C46068FC439B30ECDA6182E8641E07A4`
+- `ea_restart` 已在 Windows/MinGW 下跑通，但 `random3` restart sanity check 未通过：
+  - MSB：`H_I=0.902345`，`X_cutoff=605`，`X_max=685`，失败来源为 `column 7`。
+  - LSB：`H_I=0.828444`，`X_cutoff=632`，`X_max=685`，失败来源为 `column 0`。
+- 行列诊断显示所有 row 都未超阈值，失败由固定 column 偏置触发。这是重要机制证据：连续流 non-IID 高熵估计不能保证 restart 初期固定相位/固定输出位置稳定。
+- 已补 `random1` 同协议 formal bit-symbol restart：
+  - packed 输入 SHA256：`A9A4FFEAD5EA6CA15E74F13B3A068FFC59A156AEF28112F7D4B968E10470C512`
+  - MSB bit-symbol SHA256：`20BA93F6C3330A3DF9167BB590209A3BEB7BD57A420E3EB2B9BCF1236D37DE16`
+  - LSB bit-symbol SHA256：`6961FEA5A07AED881C91DEAB6C0BAB8A27451F84FFCC4DAE7086EF9239444314`
+  - `ea_restart` 通过：MSB `H_I=0.389520`、`X_cutoff=821`、`X_max=680`；LSB `H_I=0.383737`、`X_cutoff=824`、`X_max=680`。
+  - 但列诊断仍显示最坏原始位置为 `byte0 bit0`，`ones=320`，`zeros=680`。
+- 已补 `random3` repeat02 formal bit-symbol restart：
+  - packed 输入 SHA256：`7CE2161474009731EA7AC3C7ACBD7E38443DD55AC6881DAA5D2F2FAAB4D10ED5`
+  - MSB bit-symbol SHA256：`FDE530F346A969CC9BF1469184CDB417879654F16DABCDC698AC17755F1224D5`
+  - LSB bit-symbol SHA256：`78E5F2C380E7383214A26034EDC03245B6EE5EF0796A45202BC0B4922BA76AE4`
+  - `ea_restart` 再次失败：MSB `X_cutoff=605`、`X_max=680`；LSB `X_cutoff=632`、`X_max=680`。
+  - 最坏位置变为 `byte2 bit7`，`byte0 bit0` 仍超 MSB cutoff。机制表述应写成“restart 初期若干固定采样位置的偏置热点”，不要写成单一列绝对不变。
+- 新增诊断脚本与表格：
+  - `scripts/analyze_restart_matrix_columns.py`
+  - `scripts/make_restart_mechanism_table.py`
+  - `data\experiments\paper_artifacts_20260515\table_restart_mechanism_link.csv`
+- 已补 `random3` warmup8 formal bit-symbol restart：
+  - packed 文件：`data/hardware/20260511_fpga1_board1/restart/random3_restart_auto_formal_bits_1000x125_warmup8_header_delay60s_20260515.bin`
+  - header：`A55A03E8007D01D0`
+  - packed 大小：`125000` bytes
+  - packed SHA256：`4ECD7CCE25B950BE4F1B6715BD877B2D7A4CA1286D04B6B397D2BC0FB4357423`
+  - MSB bit-symbol SHA256：`C99D78E132F6CF6C01A9E29D80A7705960B7BA2478B05F02AD292ACA1C13C8E2`
+  - LSB bit-symbol SHA256：`20B43E5E28B65FFAED027F9931A212AC2A703A084E012C00A5A26CEA76532785`
+  - `ea_restart` 仍失败：MSB `H_I=0.902345`、`X_cutoff=605`、`X_max=721`；LSB `H_I=0.828444`、`X_cutoff=632`、`X_max=721`。
+  - 最坏位置为 `byte2 bit2`，`ones=279`，`zeros=721`，`p1=0.279`；MSB 展开后 `column 21`，LSB 展开后 `column 18`。
+  - overall `p1=0.374385`，`positions_over_x_cutoff=893`。
+- warmup8 的初步结论要谨慎：它不支持“简单丢弃最早 8 packed bytes 即可修复”的说法，反而提示 restart 后状态/相位窗口可能随 warmup 改变，并在新的窗口暴露更强偏置。
+- 已补 `random3` warmup10 formal-size bit-symbol restart：
+  - packed 文件：`data/hardware/20260511_fpga1_board1/restart/random3_restart_auto_formal_bits_1000x125_warmup10_header_delay60s_20260515.bin`
+  - header：`A55A03E8007D01D0`
+  - packed 大小：`125000` bytes
+  - packed SHA256：`90810C80B5936DF71B184D37E357E85FE05D33ED83CB0E5D0748906FF9BC6597`
+  - MSB bit-symbol SHA256：`597D930EACFFEACD5E18662DD668379B354B598BAB6C366CE718FED57EC13658`
+  - LSB bit-symbol SHA256：`65D98ED5D6B7F4E0DE0735D19559B7FB3C8A6C8817759452A5A197AB3102519D`
+  - `ea_restart` 仍失败：MSB `H_I=0.902345`、`X_cutoff=605`、`X_max=650`；LSB `H_I=0.828444`、`X_cutoff=632`、`X_max=650`。
+  - 列诊断：overall `p1=0.415017`，`positions_over_x_cutoff=106`；最坏位置为 `byte1 bit4`，`ones=350`，`zeros=650`，`p1=0.350`，`x=650`；MSB 展开后 `column 11`，LSB 展开后 `column 12`。
+- 已补 `random3` warmup12 formal-size bit-symbol restart：
+  - packed 文件：`data/hardware/20260511_fpga1_board1/restart/random3_restart_auto_formal_bits_1000x125_warmup12_header_delay60s_20260515.bin`
+  - header：`A55A03E8007D01D0`
+  - packed 大小：`125000` bytes
+  - packed SHA256：`E5F690CF5545F5EBF7271175472F2B2D36033E750C060F569B196CC08CB3B2C0`
+  - MSB bit-symbol SHA256：`BDB6521AFF45F2FDC9F489CDB4AF2E4019E33241BA6D0EAE72CC20EE1FB6D297`
+  - LSB bit-symbol SHA256：`E32B02B0E8ECA8FB0CF31B6803F3B4E545279640E35D30B2E2BB08FD2F22D299`
+  - `ea_restart` 通过：MSB `H_I=0.902345`、`X_cutoff=605`、`X_max=562`、`H_r=0.867146`、`H_c=0.849807`、`min=0.849807`；LSB `H_I=0.828444`、`X_cutoff=632`、`X_max=562`、`H_r=0.866043`、`H_c=0.836130`、`min=0.828444`。
+  - 列诊断：overall `p1=0.499478`，`positions_over_x_cutoff=0`；最坏位置为 `byte88 bit3`，`ones=562`，`zeros=438`，`p1=0.562`，`x=562`；MSB 展开后 `column 708`，LSB 展开后 `column 707`。
+- 已补 `random3` warmup16 formal-size bit-symbol restart：
+  - packed 文件：`data/hardware/20260511_fpga1_board1/restart/random3_restart_auto_formal_bits_1000x125_warmup16_header_delay60s_20260515.bin`
+  - header：`A55A03E8007D01D0`
+  - packed 大小：`125000` bytes
+  - packed SHA256：`8084E1AB95062564ACE582113520A54163CADA96E12C1A2211DE2C044AC860E7`
+  - MSB bit-symbol SHA256：`16776DFF817D178B05C8479C634469C55B130740F7719412A5D0257DBD384D0B`
+  - LSB bit-symbol SHA256：`EFF66AE869332A04F38FE3F1FB93DCE1D398ACAEC57C6126CFDECBA0AF3DD1B5`
+  - `ea_restart` 通过：MSB `H_I=0.902345`、`X_cutoff=605`、`X_max=549`、`H_r=0.871037`、`H_c=0.868735`、`min=0.868735`；LSB `H_I=0.828444`、`X_cutoff=632`、`X_max=549`、`H_r=0.820090`、`H_c=0.830192`、`min=0.820090`。
+  - 列诊断：overall `p1=0.499126`，`positions_over_x_cutoff=0`；最坏位置为 `byte43 bit7`，`ones=547`，`zeros=453`，`p1=0.547`，`x=547`；MSB 展开后 `column 344`，LSB 展开后 `column 351`。
+- 已补 `random3` warmup11 formal-size bit-symbol restart：
+  - packed 文件：`data/hardware/20260511_fpga1_board1/restart/random3_restart_auto_formal_bits_1000x125_warmup11_header_delay60s_20260515.bin`
+  - header：`A55A03E8007D01D0`
+  - packed 大小：`125000` bytes
+  - packed SHA256：`4418C3D6550684637B56121F96A906F48B128B63139991A3B8C827D2C30A6BA9`
+  - MSB bit-symbol SHA256：`4EBF7244063138838227327180911E4F2F69D4D30299A8D9D5875810ECF7E5A1`
+  - LSB bit-symbol SHA256：`573A87D6E22F0B14485AD3657BB9E0C4A2C9B4FB3AD499065100F9E0AD248E33`
+  - `ea_restart` 通过：MSB `H_I=0.902345`、`X_cutoff=605`、`X_max=583`、`H_r=0.743385`、`H_c=0.756293`、`min=0.743385`；LSB `H_I=0.828444`、`X_cutoff=632`、`X_max=583`、`H_r=0.753865`、`H_c=0.759525`、`min=0.753865`。
+  - 列诊断：overall `p1=0.469088`，`positions_over_x_cutoff=0`；最坏位置为 `byte1 bit3`，`ones=417`，`zeros=583`，`p1=0.417`，`x=583`；MSB 展开后 `column 12`，LSB 展开后 `column 11`。
+- 当前 warmup 扫描结论：warmup0/8/10 失败、warmup11/12/16 通过，说明 restart 初期至少前若干 packed bytes 属于不稳定/偏置窗口，存在可通过 sufficient warmup 消除的相变。阈值目前在本板、本 placement、本 auto-stream restart 协议下收窄为 `10 < WARMUP_BYTES <= 11`。该结论只覆盖本板、本 placement 的 formal-size restart 结果，不应写成最终认证。
+- 论文用汇总表已刷新：`data/experiments/paper_artifacts_20260515/table_restart_mechanism_link.csv` 和 `data/experiments/paper_artifacts_20260515/table_restart_warmup_transition.csv`。
+- 已完成 `random3` warmup boundary repeat02 硬件补采：
+  - 覆盖 `WARMUP_BYTES=10,11,12`，每档 `1000 x 125` packed bytes，展开为 `1000 x 1000` bit symbols。
+  - repeat02 结果复现第一轮边界：warmup10 仍失败，MSB/LSB `X_max=633`；warmup11 通过，MSB/LSB `X_max=588`；warmup12 通过，MSB/LSB `X_max=556`。
+  - 这把论文表述从“单次观察”加强为“两次边界重复观察”：本板、本 placement、本 auto-stream restart 协议下，观察到的通过边界仍为 `10 < WARMUP_BYTES <= 11`。
+  - 新增/刷新产物：`doc/restart_warmup_repeat02_status_20260515.md`、`data/experiments/paper_artifacts_20260515/table_restart_warmup_transition_with_repeats.csv`、`data/experiments/paper_artifacts_20260515/fig_restart_warmup_transition.png`。
+  - 当前没有 Vivado/program/capture/ea_restart 硬件任务在跑，只有常驻 `hw_server`。
+
 ## 短队列收尾
 
 短队列已经全部完成，不再需要重跑。

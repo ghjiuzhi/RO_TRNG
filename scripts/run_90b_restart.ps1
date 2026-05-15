@@ -13,7 +13,7 @@ param(
 
     [string]$MingwRoot = "D:\Toolsapp\MinGW",
 
-    [string]$RepoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path,
+    [string]$RepoRoot = "",
 
     [ValidateSet("non_iid", "iid")]
     [string]$Mode = "non_iid",
@@ -25,6 +25,11 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($RepoRoot -eq "") {
+    $scriptRoot = Split-Path -Parent $PSCommandPath
+    $RepoRoot = (Resolve-Path (Join-Path $scriptRoot "..")).Path
+}
 
 if ($BitsPerSymbol -lt 1 -or $BitsPerSymbol -gt 8) {
     throw "BitsPerSymbol must be between 1 and 8."
@@ -84,9 +89,15 @@ Write-Host "  args: $($args -join ' ')"
 Write-Host "  out:  $stdout"
 
 $startTime = Get-Date
-& $exe @($args.ToArray()) 1> $stdout 2> $stderr
-$exitCode = $LASTEXITCODE
+$process = Start-Process -FilePath $exe -ArgumentList $args.ToArray() -NoNewWindow -Wait -PassThru -RedirectStandardOutput $stdout -RedirectStandardError $stderr
+$exitCode = $process.ExitCode
 $endTime = Get-Date
+$stdoutText = ""
+if (Test-Path $stdout) {
+    $stdoutText = Get-Content -Path $stdout -Raw
+}
+$isRestartSanityFailure = $stdoutText -match "Restart Sanity Check Failed"
+$isValidationPassed = $stdoutText -match "Validation Test Passed"
 
 $inputHash = (Get-FileHash -Path $inputAbs -Algorithm SHA256).Hash
 $meta = [ordered]@{
@@ -104,14 +115,18 @@ $meta = [ordered]@{
     stderr = $stderr
     version_file = $version
     exit_code = $exitCode
+    ea_restart_status = if ($isValidationPassed) { "passed" } elseif ($isRestartSanityFailure) { "failed" } else { "error" }
     start_time = $startTime.ToString("yyyy-MM-dd HH:mm:ss")
     end_time = $endTime.ToString("yyyy-MM-dd HH:mm:ss")
     duration_seconds = [Math]::Round(($endTime - $startTime).TotalSeconds, 3)
 }
 $meta | ConvertTo-Json -Depth 5 | Set-Content -Path $metadata -Encoding UTF8
 
-if ($exitCode -ne 0) {
+if ($exitCode -ne 0 -and -not $isRestartSanityFailure) {
     throw "ea_restart failed with exit code $exitCode. See $stdout and $stderr"
+}
+if ($isRestartSanityFailure) {
+    Write-Warning "ea_restart completed with Restart Sanity Check Failed. This is a statistical result, not a runner error."
 }
 
 Write-Host "ea_restart complete."

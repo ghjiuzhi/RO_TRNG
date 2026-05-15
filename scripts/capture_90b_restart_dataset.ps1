@@ -17,15 +17,19 @@ param(
 
     [int]$WarmupSymbols = 0,
 
+    [int]$HeaderBytes = 0,
+
     [int]$SettleMs = 500,
 
     [int]$ReadTimeoutMs = 1000,
+
+    [int]$ReadBufferBytes = 0,
 
     [int]$IdleTimeoutSec = 30,
 
     [int]$MaxRetriesPerRestart = 2,
 
-    [ValidateSet("program_bitstream")]
+    [ValidateSet("program_bitstream", "auto_stream_once")]
     [string]$RestartMethod = "program_bitstream",
 
     [string]$Run = "",
@@ -83,10 +87,67 @@ function Read-SerialBytes {
     return $buffer
 }
 
+function Open-CaptureSerial {
+    param(
+        [string]$PortName,
+        [int]$BaudRate,
+        [int]$TimeoutMs,
+        [int]$InputBufferBytes = 0
+    )
+
+    $serial = [System.IO.Ports.SerialPort]::new(
+        $PortName,
+        $BaudRate,
+        [System.IO.Ports.Parity]::None,
+        8,
+        [System.IO.Ports.StopBits]::One
+    )
+    if ($InputBufferBytes -gt 0) {
+        try {
+            $serial.ReadBufferSize = $InputBufferBytes
+        } catch {
+            Write-Warning "Could not set serial ReadBufferSize=${InputBufferBytes}: $($_.Exception.Message)"
+        }
+    }
+    $serial.Handshake = [System.IO.Ports.Handshake]::None
+    $serial.ReadTimeout = $TimeoutMs
+    $serial.WriteTimeout = $TimeoutMs
+    $serial.DtrEnable = $false
+    $serial.RtsEnable = $false
+    return $serial
+}
+
+function Get-ExpectedRestartHeaderHex {
+    param(
+        [int]$RestartCountValue,
+        [int]$SymbolsPerRestartValue
+    )
+
+    if ($RestartCountValue -lt 0 -or $RestartCountValue -gt 65535) {
+        return ""
+    }
+    if ($SymbolsPerRestartValue -lt 0 -or $SymbolsPerRestartValue -gt 65535) {
+        return ""
+    }
+
+    $header = [byte[]]@(
+        0xA5,
+        0x5A,
+        (($RestartCountValue -shr 8) -band 0xFF),
+        ($RestartCountValue -band 0xFF),
+        (($SymbolsPerRestartValue -shr 8) -band 0xFF),
+        ($SymbolsPerRestartValue -band 0xFF),
+        0x01,
+        0xD0
+    )
+    return [System.BitConverter]::ToString($header).Replace("-", "")
+}
+
 if ($RestartCount -le 0) { throw "RestartCount must be positive." }
 if ($SymbolsPerRestart -le 0) { throw "SymbolsPerRestart must be positive." }
 if ($BitsPerSymbol -lt 1 -or $BitsPerSymbol -gt 8) { throw "BitsPerSymbol must be between 1 and 8." }
 if ($WarmupSymbols -lt 0) { throw "WarmupSymbols must be non-negative." }
+if ($HeaderBytes -lt 0) { throw "HeaderBytes must be non-negative." }
 
 $scriptDir = Split-Path -Parent $PSCommandPath
 $repoRoot = (Resolve-Path (Join-Path $scriptDir "..")).Path
@@ -117,6 +178,10 @@ $tmpPath = "$outPath.tmp"
 $hashPath = "$outPath.sha256.txt"
 $rowBytesToRead = $WarmupSymbols + $SymbolsPerRestart
 $expectedBytes = [int64]$RestartCount * [int64]$SymbolsPerRestart
+$autoReadBufferBytes = $ReadBufferBytes
+if ($autoReadBufferBytes -le 0) {
+    $autoReadBufferBytes = [int][Math]::Min([int64]::MaxValue, [Math]::Max(4096, $expectedBytes + $HeaderBytes + 65536))
+}
 $bitHash = (Get-FileHash -Path $bitAbs -Algorithm SHA256).Hash
 $scriptHash = (Get-FileHash -Path $PSCommandPath -Algorithm SHA256).Hash
 $programTcl = Join-Path $repoRoot "scripts\vivado\program_bitstream.tcl"
@@ -136,73 +201,126 @@ Write-Host "  UART:                $Port @ $Baud, 8N1"
 Write-Host "  Matrix:              $RestartCount x $SymbolsPerRestart symbols"
 Write-Host "  Bits per symbol:     $BitsPerSymbol"
 Write-Host "  Warmup symbols:      $WarmupSymbols"
+Write-Host "  Header bytes:        $HeaderBytes"
+if ($RestartMethod -eq "auto_stream_once") {
+    Write-Host "  Read buffer bytes:   $autoReadBufferBytes"
+}
 Write-Host "  Output:              $outPath"
 
 $fs = [System.IO.File]::Open($tmpPath, [System.IO.FileMode]::CreateNew, [System.IO.FileAccess]::Write, [System.IO.FileShare]::Read)
+$headerHex = ""
 try {
-    for ($restartIndex = 0; $restartIndex -lt $RestartCount; $restartIndex++) {
-        $rowOk = $false
-        $attempt = 0
-        while (-not $rowOk -and $attempt -le $MaxRetriesPerRestart) {
-            $attemptStart = Get-Date
-            $attempt++
-            try {
-                Write-Progress -Activity "SP800-90B restart capture $Run" -Status "restart $($restartIndex + 1) / $RestartCount, attempt $attempt" -PercentComplete ([Math]::Round((100.0 * $restartIndex) / $RestartCount, 2))
-                Write-Host ("Restart row {0}/{1}, attempt {2}" -f ($restartIndex + 1), $RestartCount, $attempt)
+    if ($RestartMethod -eq "auto_stream_once") {
+        $serial = Open-CaptureSerial -PortName $Port -BaudRate $Baud -TimeoutMs $ReadTimeoutMs -InputBufferBytes $autoReadBufferBytes
+        try {
+            $captureStart = Get-Date
+            $serial.Open()
+            Start-Sleep -Milliseconds 200
+            $serial.DiscardInBuffer()
 
-                & $VivadoBat -mode batch -source $programTcl -tclargs $bitAbs $HwServerUrl | Out-Host
-                if ($LASTEXITCODE -ne 0) {
-                    throw "Vivado programming failed with exit code $LASTEXITCODE"
-                }
+            Write-Host "Programming restart auto-stream bitstream once..."
+            & $VivadoBat -mode batch -source $programTcl -tclargs $bitAbs $HwServerUrl | Out-Host
+            if ($LASTEXITCODE -ne 0) {
+                throw "Vivado programming failed with exit code $LASTEXITCODE"
+            }
 
-                if ($SettleMs -gt 0) {
-                    Start-Sleep -Milliseconds $SettleMs
-                }
+            # The previous bitstream may emit UART bytes while Vivado is starting/programming.
+            # Clear the PC-side buffer after programming so debug-header reads are from the new design.
+            $serial.DiscardInBuffer()
+            Start-Sleep -Milliseconds 100
 
-                $serial = [System.IO.Ports.SerialPort]::new(
-                    $Port,
-                    $Baud,
-                    [System.IO.Ports.Parity]::None,
-                    8,
-                    [System.IO.Ports.StopBits]::One
-                )
-                $serial.Handshake = [System.IO.Ports.Handshake]::None
-                $serial.ReadTimeout = $ReadTimeoutMs
-                $serial.WriteTimeout = $ReadTimeoutMs
-                $serial.DtrEnable = $false
-                $serial.RtsEnable = $false
+            if ($SettleMs -gt 0) {
+                Start-Sleep -Milliseconds $SettleMs
+            }
 
-                try {
-                    $serial.Open()
-                    Start-Sleep -Milliseconds 200
-                    $serial.DiscardInBuffer()
-                    $rowRaw = Read-SerialBytes -Serial $serial -Count $rowBytesToRead -IdleSeconds $IdleTimeoutSec
-                } finally {
-                    if ($serial -ne $null -and $serial.IsOpen) {
-                        $serial.Close()
+            if ($HeaderBytes -gt 0) {
+                $headerBytesRaw = Read-SerialBytes -Serial $serial -Count $HeaderBytes -IdleSeconds $IdleTimeoutSec
+                $headerHex = [System.BitConverter]::ToString($headerBytesRaw).Replace("-", "")
+                Write-Host "  Header: $headerHex"
+                if ($HeaderBytes -eq 8) {
+                    $expectedHeaderHex = Get-ExpectedRestartHeaderHex -RestartCountValue $RestartCount -SymbolsPerRestartValue $SymbolsPerRestart
+                    if ($expectedHeaderHex -ne "" -and $headerHex -ne $expectedHeaderHex) {
+                        throw "Restart debug header mismatch: expected $expectedHeaderHex, got $headerHex. This usually means stale UART bytes, wrong bitstream generics, or HeaderBytes does not match DEBUG_HEADER."
                     }
                 }
+            }
 
-                $fs.Write($rowRaw, $WarmupSymbols, $SymbolsPerRestart)
-                $fs.Flush()
-                $rowOk = $true
-                $attemptEnd = Get-Date
+            $allBytes = Read-SerialBytes -Serial $serial -Count $expectedBytes -IdleSeconds $IdleTimeoutSec
+            $fs.Write($allBytes, 0, $allBytes.Length)
+            $fs.Flush()
+            $captureEnd = Get-Date
+            $totalDuration = ($captureEnd - $captureStart).TotalSeconds
+            for ($restartIndex = 0; $restartIndex -lt $RestartCount; $restartIndex++) {
                 $rowRecords.Add([ordered]@{
                     restart_index = $restartIndex
-                    attempts = $attempt
-                    bytes_read = $rowBytesToRead
+                    attempts = 1
+                    bytes_read = $SymbolsPerRestart
                     bytes_written = $SymbolsPerRestart
-                    start_time = $attemptStart.ToString("yyyy-MM-dd HH:mm:ss")
-                    end_time = $attemptEnd.ToString("yyyy-MM-dd HH:mm:ss")
-                    duration_seconds = [Math]::Round(($attemptEnd - $attemptStart).TotalSeconds, 3)
+                    start_time = $captureStart.ToString("yyyy-MM-dd HH:mm:ss")
+                    end_time = $captureEnd.ToString("yyyy-MM-dd HH:mm:ss")
+                    duration_seconds = [Math]::Round($totalDuration / $RestartCount, 3)
+                    source = "auto_stream_partitioned"
                 }) | Out-Null
-            } catch {
-                $retryTotal++
-                Write-Warning ("Restart row {0} attempt {1} failed: {2}" -f $restartIndex, $attempt, $_.Exception.Message)
-                if ($attempt -gt $MaxRetriesPerRestart) {
-                    throw "Restart row $restartIndex failed after $MaxRetriesPerRestart retries."
+            }
+        } finally {
+            if ($serial -ne $null -and $serial.IsOpen) {
+                $serial.Close()
+            }
+        }
+    }
+    else {
+        for ($restartIndex = 0; $restartIndex -lt $RestartCount; $restartIndex++) {
+            $rowOk = $false
+            $attempt = 0
+            while (-not $rowOk -and $attempt -le $MaxRetriesPerRestart) {
+                $attemptStart = Get-Date
+                $attempt++
+                try {
+                    Write-Progress -Activity "SP800-90B restart capture $Run" -Status "restart $($restartIndex + 1) / $RestartCount, attempt $attempt" -PercentComplete ([Math]::Round((100.0 * $restartIndex) / $RestartCount, 2))
+                    Write-Host ("Restart row {0}/{1}, attempt {2}" -f ($restartIndex + 1), $RestartCount, $attempt)
+
+                    & $VivadoBat -mode batch -source $programTcl -tclargs $bitAbs $HwServerUrl | Out-Host
+                    if ($LASTEXITCODE -ne 0) {
+                        throw "Vivado programming failed with exit code $LASTEXITCODE"
+                    }
+
+                    if ($SettleMs -gt 0) {
+                        Start-Sleep -Milliseconds $SettleMs
+                    }
+
+                    $serial = Open-CaptureSerial -PortName $Port -BaudRate $Baud -TimeoutMs $ReadTimeoutMs
+                    try {
+                        $serial.Open()
+                        Start-Sleep -Milliseconds 200
+                        $serial.DiscardInBuffer()
+                        $rowRaw = Read-SerialBytes -Serial $serial -Count $rowBytesToRead -IdleSeconds $IdleTimeoutSec
+                    } finally {
+                        if ($serial -ne $null -and $serial.IsOpen) {
+                            $serial.Close()
+                        }
+                    }
+
+                    $fs.Write($rowRaw, $WarmupSymbols, $SymbolsPerRestart)
+                    $fs.Flush()
+                    $rowOk = $true
+                    $attemptEnd = Get-Date
+                    $rowRecords.Add([ordered]@{
+                        restart_index = $restartIndex
+                        attempts = $attempt
+                        bytes_read = $rowBytesToRead
+                        bytes_written = $SymbolsPerRestart
+                        start_time = $attemptStart.ToString("yyyy-MM-dd HH:mm:ss")
+                        end_time = $attemptEnd.ToString("yyyy-MM-dd HH:mm:ss")
+                        duration_seconds = [Math]::Round(($attemptEnd - $attemptStart).TotalSeconds, 3)
+                    }) | Out-Null
+                } catch {
+                    $retryTotal++
+                    Write-Warning ("Restart row {0} attempt {1} failed: {2}" -f $restartIndex, $attempt, $_.Exception.Message)
+                    if ($attempt -gt $MaxRetriesPerRestart) {
+                        throw "Restart row $restartIndex failed after $MaxRetriesPerRestart retries."
+                    }
+                    Start-Sleep -Seconds 2
                 }
-                Start-Sleep -Seconds 2
             }
         }
     }
@@ -237,11 +355,14 @@ $metadata = [ordered]@{
     symbols_per_restart = $SymbolsPerRestart
     bits_per_symbol = $BitsPerSymbol
     warmup_symbols_discarded = $WarmupSymbols
+    header_bytes = $HeaderBytes
+    header_hex = $headerHex
     settle_ms = $SettleMs
     uart_port = $Port
     baud = $Baud
     uart_format = "8N1, no parity, no flow control"
     read_timeout_ms = $ReadTimeoutMs
+    read_buffer_bytes = if ($RestartMethod -eq "auto_stream_once") { $autoReadBufferBytes } else { "" }
     idle_timeout_sec = $IdleTimeoutSec
     max_retries_per_restart = $MaxRetriesPerRestart
     retry_total = $retryTotal
@@ -253,6 +374,7 @@ $metadata = [ordered]@{
     capture_script_sha256 = $scriptHash
     row_records = $rowRecords
     notes = if ($isFormal90BRestartSize) { "1000x1000 row-major restart matrix." } else { "Pilot/smoke restart matrix; do not report as formal SP800-90B restart result." }
+    capture_path_semantics = if ($RestartMethod -eq "auto_stream_once") { "Program once, then stream row-major restart matrix over UART." } else { "Reprogram FPGA before each restart row." }
 }
 $metadata | ConvertTo-Json -Depth 8 | Set-Content -Path $metadataPath -Encoding UTF8
 
