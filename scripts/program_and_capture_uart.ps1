@@ -27,6 +27,9 @@ param(
 
     [switch]$RecordXadc,
 
+    [ValidateSet("before_after", "after_only")]
+    [string]$XadcMode = "before_after",
+
     [string]$XadcCsv = "",
 
     [string]$BoardId = "z7020_b01",
@@ -81,6 +84,7 @@ if ($Analyze) {
 }
 if ($RecordXadc) {
     $captureArgs["RecordXadc"] = $true
+    $captureArgs["XadcMode"] = $XadcMode
     $captureArgs["HwServerUrl"] = $HwServerUrl
     $captureArgs["VivadoBat"] = $VivadoBat
 }

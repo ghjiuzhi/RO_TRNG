@@ -1,0 +1,2 @@
+label,input,restart_count,row_bytes,warmup_bytes,overall_p1,overall_abs_bias,overall_min_entropy,row_ones_mean,row_ones_std,worst_byte_index,worst_bit_index,worst_x,worst_p1
+restart_auto_random1_regs_only_sample_ro_compact_locked_warmup4_1000x125_run01_20260525.send_packed,data\experiments\restart_fifo_diag_20260525\restart_auto_random1_regs_only_sample_ro_compact_locked_warmup4_1000x125_run01_20260525.send_packed.bin,1000,125,4,0.499419000,0.000581000,0.998324562,499.419000000,16.521484165,61,6,552,0.552000000

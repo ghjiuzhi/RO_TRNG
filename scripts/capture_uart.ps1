@@ -32,6 +32,9 @@ param(
 
     [switch]$RecordXadc,
 
+    [ValidateSet("before_after", "after_only")]
+    [string]$XadcMode = "before_after",
+
     [string]$XadcCsv = "",
 
     [string]$HwServerUrl = "localhost:3122",
@@ -187,7 +190,21 @@ if (-not (Test-Path $xadcDir)) {
 }
 
 $startTime = Get-Date
-$xadcBefore = Invoke-XadcSnapshot -Phase "before_capture" -CsvPath $xadcCsvPath
+$xadcBefore = [ordered]@{
+    phase = "before_capture"
+    status = "skipped"
+    csv = $xadcCsvPath
+    timestamp = ""
+    temperature_c = ""
+    vccint_v = ""
+    vccaux_v = ""
+    vccbram_v = ""
+    vpvn_v = ""
+    error = ""
+}
+if ($XadcMode -eq "before_after") {
+    $xadcBefore = Invoke-XadcSnapshot -Phase "before_capture" -CsvPath $xadcCsvPath
+}
 $serial = [System.IO.Ports.SerialPort]::new(
     $Port,
     $Baud,

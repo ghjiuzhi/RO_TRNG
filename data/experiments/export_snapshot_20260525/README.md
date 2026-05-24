@@ -4,11 +4,11 @@ Generated from: `E:\Project\MLDSA\RO_TRNG`
 
 Export root: `E:\Project\MLDSA\RO_TRNG_github_export`
 
-Included files: 2092
+Included files: 2141
 
-Included size: 71.9 MiB
+Included size: 73.654 MiB
 
-Skipped files: 632
+Skipped files: 677
 
 This snapshot is intended for GitHub/source review. Raw UART captures, bitstreams, Vivado generated products, binaries, PDFs, and packet-level dumps are intentionally excluded. Reproducibility is preserved through scripts, RTL, XDC, metadata, analysis summaries, and SHA256 manifests.
 
