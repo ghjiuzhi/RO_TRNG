@@ -1,0 +1,23 @@
+H_I: 0.383737
+ALPHA: 5.0251553006530614e-006, X_cutoff: 824
+X_max: 592
+Calculating baseline statistics...
+
+Running non-IID tests...
+
+Running Most Common Value Estimate...
+
+Running Entropic Statistic Estimates (bit strings only)...
+
+Running Tuple Estimates...
+
+Running Predictor Estimates...
+
+H_r: 0.709738
+H_c: 0.699426
+H_I: 0.383737
+
+Validation Test Passed...
+
+min(H_r, H_c, H_I): 0.383737
+

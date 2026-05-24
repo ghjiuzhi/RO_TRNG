@@ -18,7 +18,7 @@ METADATA_DIR = BASE_DIR / "metadata"
 TRNG_DIR = BASE_DIR / "trng"
 
 RUN_RE = re.compile(r"^(?P<placement>.+)_run(?P<idx>\d+)$")
-REPEAT_RE = re.compile(r"^(?P<placement>.+)_repeat(?P<idx>\d+)(?:_5mib)?$")
+REPEAT_RE = re.compile(r"^(?P<placement>.+)_repeat(?P<idx>\d+)(?:_(?P<size>5mib|10mib|20mib))?$")
 
 RUN_COLUMNS = [
     "run",
@@ -168,17 +168,17 @@ def mean_std(values: list[float]) -> tuple[float, float]:
 
 
 def build_placement_rows(run_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    grouped: dict[tuple[str, str], list[dict[str, Any]]] = defaultdict(list)
+    grouped: dict[tuple[str, str, int], list[dict[str, Any]]] = defaultdict(list)
     for row in run_rows:
-        grouped[(str(row["placement"]), str(row["sample_role"]))].append(row)
+        grouped[(str(row["placement"]), str(row["sample_role"]), int(row["bytes"]))].append(row)
 
     out_rows: list[dict[str, Any]] = []
-    for (placement, role), rows in sorted(grouped.items()):
+    for (placement, role, target_bytes), rows in sorted(grouped.items()):
         out: dict[str, Any] = {
             "placement": placement,
             "sample_role": role,
             "formal_or_repeat": role,
-            "target_bytes": 10 * 1024 * 1024 if role == "formal" else 5 * 1024 * 1024,
+            "target_bytes": target_bytes,
             "n": len(rows),
         }
         for key in METRIC_COLUMNS:
@@ -229,7 +229,7 @@ def write_run_markdown(path: Path, rows: list[dict[str, Any]], excluded: list[di
 def write_placement_markdown(path: Path, rows: list[dict[str, Any]], columns: list[str]) -> None:
     with path.open("w", encoding="utf-8") as f:
         f.write("# TRNG Repeats by Placement\n\n")
-        f.write("Aggregates include complete 10MiB formal and 5MiB repeat captures only.\n\n")
+        f.write("Aggregates include complete formal/repeat captures recognized by metadata and analysis summaries.\n\n")
         write_markdown_table(f, rows, columns)
 
 

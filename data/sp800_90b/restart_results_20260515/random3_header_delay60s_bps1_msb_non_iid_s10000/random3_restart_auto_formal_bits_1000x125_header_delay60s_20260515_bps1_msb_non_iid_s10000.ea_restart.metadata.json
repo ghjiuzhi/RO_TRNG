@@ -1,0 +1,19 @@
+﻿{
+    "tool":  "ea_restart",
+    "mode":  "non_iid",
+    "exe":  "E:\\Project\\MLDSA\\RO_TRNG\\sim\\SP800-90B_EntropyAssessment\\cpp\\ea_restart.exe",
+    "input_file":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\restart\\random3_restart_auto_formal_bits_1000x125_header_delay60s_20260515_bps1_msb.bin",
+    "input_sha256":  "8C927742F11564F08722BDCC09616A2A15619038E4AC362D0C327C5B81706726",
+    "input_bytes":  1000000,
+    "bits_per_symbol":  1,
+    "initial_entropy":  0.902345,
+    "simulation_count":  10000,
+    "command":  "E:\\Project\\MLDSA\\RO_TRNG\\sim\\SP800-90B_EntropyAssessment\\cpp\\ea_restart.exe -n -s 10000 E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\restart\\random3_restart_auto_formal_bits_1000x125_header_delay60s_20260515_bps1_msb.bin 1 0.902345",
+    "stdout":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\sp800_90b\\restart_results_20260515\\random3_header_delay60s_bps1_msb_non_iid_s10000\\random3_restart_auto_formal_bits_1000x125_header_delay60s_20260515_bps1_msb_non_iid_s10000.ea_restart.stdout.txt",
+    "stderr":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\sp800_90b\\restart_results_20260515\\random3_header_delay60s_bps1_msb_non_iid_s10000\\random3_restart_auto_formal_bits_1000x125_header_delay60s_20260515_bps1_msb_non_iid_s10000.ea_restart.stderr.txt",
+    "version_file":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\sp800_90b\\restart_results_20260515\\random3_header_delay60s_bps1_msb_non_iid_s10000\\random3_restart_auto_formal_bits_1000x125_header_delay60s_20260515_bps1_msb_non_iid_s10000.ea_restart.version.txt",
+    "exit_code":  -1,
+    "start_time":  "2026-05-15 00:44:11",
+    "end_time":  "2026-05-15 00:44:12",
+    "duration_seconds":  1.029
+}

@@ -1,0 +1,37 @@
+{
+  "analysis": "packed restart byte/bit column bias",
+  "label": "random1_sampler_regs_only_restart_auto_formal_1000x125_warmup4_retest01_20260524",
+  "input_file": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\restart_fifo_diag_20260524\\random1_sampler_regs_only_restart_auto_formal_1000x125_warmup4_retest01_20260524.packed.bin",
+  "input_sha256": "E65394FB07B954C4A6021C1CBEA9602D83400DB35A26EA00DB5A281205793A58",
+  "input_bytes": 125000,
+  "restart_count": 1000,
+  "bytes_per_restart": 125,
+  "expanded_symbols_per_restart": 1000,
+  "total_bits": 1000000,
+  "total_ones": 406735,
+  "overall_p1": 0.406735,
+  "row_ones_mean": 406.735,
+  "row_ones_std": 17.17471324360322,
+  "x_cutoff": 0,
+  "positions_over_x_cutoff": 0,
+  "worst_position": {
+    "byte_index": 0,
+    "bit_index": 2,
+    "ones": 297,
+    "zeros": 703,
+    "p1": "0.297000000",
+    "abs_bias": "0.203000000",
+    "x": 703,
+    "msb_expanded_column": 5,
+    "lsb_expanded_column": 2,
+    "over_x_cutoff": false
+  },
+  "interpretation_hint": "For a packed input byte, MSB expansion maps bit b to column byte*8+(7-b); LSB expansion maps bit b to column byte*8+b.",
+  "created_at": "2026-05-24 23:36:45",
+  "outputs": {
+    "raw_byte_bit_counts_csv": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\restart_fifo_diag_20260524\\random1_sampler_regs_only_restart_auto_formal_1000x125_warmup4_retest01_20260524.column_analysis\\raw_byte_bit_counts.csv",
+    "expanded_column_counts_csv": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\restart_fifo_diag_20260524\\random1_sampler_regs_only_restart_auto_formal_1000x125_warmup4_retest01_20260524.column_analysis\\expanded_column_counts.csv",
+    "top_biased_positions_csv": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\restart_fifo_diag_20260524\\random1_sampler_regs_only_restart_auto_formal_1000x125_warmup4_retest01_20260524.column_analysis\\top_biased_positions.csv",
+    "heatmap_svg": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\restart_fifo_diag_20260524\\random1_sampler_regs_only_restart_auto_formal_1000x125_warmup4_retest01_20260524.column_analysis\\restart_byte_bit_heatmap.svg"
+  }
+}

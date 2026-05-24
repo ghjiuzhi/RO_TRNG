@@ -1,0 +1,37 @@
+{
+  "analysis": "packed restart byte/bit column bias",
+  "label": "compact_formal_bits_warmup12_placement01",
+  "input_file": "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\restart\\compact_restart_auto_formal_bits_1000x125_warmup12_header_delay60s_placement01_20260515.bin",
+  "input_sha256": "7F001FB91081C027765882F04E8F03B32796905680948C87D1B3935072004EF3",
+  "input_bytes": 125000,
+  "restart_count": 1000,
+  "bytes_per_restart": 125,
+  "expanded_symbols_per_restart": 1000,
+  "total_bits": 1000000,
+  "total_ones": 498052,
+  "overall_p1": 0.498052,
+  "row_ones_mean": 498.052,
+  "row_ones_std": 16.010224732963618,
+  "x_cutoff": 0,
+  "positions_over_x_cutoff": 0,
+  "worst_position": {
+    "byte_index": 60,
+    "bit_index": 5,
+    "ones": 451,
+    "zeros": 549,
+    "p1": "0.451000000",
+    "abs_bias": "0.049000000",
+    "x": 549,
+    "msb_expanded_column": 482,
+    "lsb_expanded_column": 485,
+    "over_x_cutoff": false
+  },
+  "interpretation_hint": "For a packed input byte, MSB expansion maps bit b to column byte*8+(7-b); LSB expansion maps bit b to column byte*8+b.",
+  "created_at": "2026-05-22 09:39:35",
+  "outputs": {
+    "raw_byte_bit_counts_csv": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\paper_artifacts_20260515\\restart_column_bias_compact_formal_bits_warmup12_placement01\\raw_byte_bit_counts.csv",
+    "expanded_column_counts_csv": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\paper_artifacts_20260515\\restart_column_bias_compact_formal_bits_warmup12_placement01\\expanded_column_counts.csv",
+    "top_biased_positions_csv": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\paper_artifacts_20260515\\restart_column_bias_compact_formal_bits_warmup12_placement01\\top_biased_positions.csv",
+    "heatmap_svg": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\paper_artifacts_20260515\\restart_column_bias_compact_formal_bits_warmup12_placement01\\restart_byte_bit_heatmap.svg"
+  }
+}

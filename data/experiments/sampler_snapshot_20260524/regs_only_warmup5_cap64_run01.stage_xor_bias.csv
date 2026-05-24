@@ -1,0 +1,9 @@
+label,stage,ones,zeros,p1,abs_bias
+regs_only_warmup5_cap64_run01,0,33,31,0.515625000,0.015625000
+regs_only_warmup5_cap64_run01,1,35,29,0.546875000,0.046875000
+regs_only_warmup5_cap64_run01,2,27,37,0.421875000,0.078125000
+regs_only_warmup5_cap64_run01,3,30,34,0.468750000,0.031250000
+regs_only_warmup5_cap64_run01,4,37,27,0.578125000,0.078125000
+regs_only_warmup5_cap64_run01,5,33,31,0.515625000,0.015625000
+regs_only_warmup5_cap64_run01,6,32,32,0.500000000,0.000000000
+regs_only_warmup5_cap64_run01,7,31,33,0.484375000,0.015625000

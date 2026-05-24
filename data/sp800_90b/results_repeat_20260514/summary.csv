@@ -1,3 +1,5 @@
 dataset,tool,mode,bits_per_symbol,limit_symbols,h_original_bits_per_symbol,iid_chi_square,iid_lrs,status,log
 random1_repeat03,ea_non_iid,bit-symbols-lsb,1,1000000,0.390783,,,ok,data\sp800_90b\results_repeat_20260514\random1_repeat03_bps1_lsb_non_iid_1m.log
+random3_repeat03,ea_non_iid,bit-symbols-lsb,1,1000000,0.894588,,,ok,data\sp800_90b\results_repeat_20260514\random3_repeat03_bps1_lsb_non_iid_1m.log
 random1_repeat03,ea_non_iid,bit-symbols-msb,1,1000000,0.390399,,,ok,data\sp800_90b\results_repeat_20260514\random1_repeat03_bps1_msb_non_iid_1m.log
+random3_repeat03,ea_non_iid,bit-symbols-msb,1,1000000,0.856158,,,ok,data\sp800_90b\results_repeat_20260514\random3_repeat03_bps1_msb_non_iid_1m.log

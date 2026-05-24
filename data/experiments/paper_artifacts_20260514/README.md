@@ -20,6 +20,6 @@ Offline evidence pack generated from existing analysis outputs only.
 
 ## Quick Read
 
-- Six pair-specific TDC dynamic runs are included; max small-lag `|r|` is `0.0317827`.
+- `12` pair-specific TDC dynamic runs are included; max small-lag `|r|` is `0.0317827`.
 - Conservative strong-lock windows across all TDC pair windows: `0`.
 - Claims table entries: `4`.

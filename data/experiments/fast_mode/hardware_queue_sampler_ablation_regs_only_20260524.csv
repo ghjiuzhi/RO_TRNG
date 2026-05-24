@@ -1,0 +1,2 @@
+enabled,priority,run,kind,bitstream,bytes,out_file,metadata_dir,analyze_group,idle_timeout_sec,notes
+1,P0,random1_sampler_regs_only_x45y31_smoke_5mib_20260524,trng,data\vivado_runs\fpga1_sampler_island\regs_only\seed_1\RO_TRNG_top.bit,5MiB,data\hardware\20260511_fpga1_board1\trng\random1_sampler_regs_only_x45y31_smoke_5mib_20260524.bin,data\hardware\20260511_fpga1_board1\metadata,sampler_ablation_regs_only_20260524,30,random1 data placement with sample RO left baseline and only 64 sampling registers constrained local; fast causality smoke

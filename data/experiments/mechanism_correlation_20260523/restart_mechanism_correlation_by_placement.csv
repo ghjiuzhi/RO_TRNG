@@ -1,0 +1,7 @@
+placement,restart_rows,restart_failed_rows,restart_passed_rows,restart_x_max_mean,restart_x_max_std,restart_min_h_mean_passed_only,trng_bit_min_entropy_mean,trng_abs_bias_mean,rofreq_available,rofreq_ro_min_data_data_delta_mhz,rofreq_ro_min_data_data_pair,tdc_available,tdc_pair_count
+checker,4,2,2,624.5,56.5,0.803997,0.999795837,7.07626343e-05,no,,,no,
+compact,4,2,2,638,75,0.829177,0.999849695,5.20944595e-05,no,,,no,
+random1,6,0,6,591.333333,23.6830929,0.384561,0.593605945,0.162684488,yes,0.46619470080861447,data4/data5,yes,6
+random3,22,8,14,603,50.5479071,0.798857143,0.999909299,3.14354897e-05,yes,0.6733958183129403,data3/data7,yes,6
+same_column,4,2,2,752.5,193.5,0.8150295,0.99979876,6.97493553e-05,no,,,no,
+sparse,4,2,2,715,112,0.7103305,0.900637067,0.035650146,no,,,no,

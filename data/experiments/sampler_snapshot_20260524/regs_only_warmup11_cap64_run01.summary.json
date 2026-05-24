@@ -1,0 +1,38 @@
+{
+  "label": "regs_only_warmup11_cap64_run01",
+  "input": "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\sampler_snapshot\\sampler_snapshot_regs_only_warmup11_cap64_run01.bin",
+  "sha256": "EAA90F9D5CAF6A3160B922875D520BF52A2497CE705CE7DD5862F53C7B3E7DFB",
+  "version": 1,
+  "variant_id": 27,
+  "warmup_snapshots": 11,
+  "capture_snapshots": 64,
+  "sample_bytes": 8,
+  "ro_num": 8,
+  "sample_stages": 9,
+  "marker0": 85,
+  "marker1": 170,
+  "frames": 64,
+  "rand_p1": 0.5,
+  "rand_entropy": 1.0,
+  "rand_min_entropy": 1.0,
+  "stage_xor_entropy": 5.71875,
+  "stage_xor_min_entropy": 5.0,
+  "worst_sampled_bit": {
+    "label": "regs_only_warmup11_cap64_run01",
+    "bit_index": 6,
+    "line": 0,
+    "data_ro": 6,
+    "ones": 48,
+    "zeros": 16,
+    "p1": "0.750000000",
+    "abs_bias": "0.250000000"
+  },
+  "worst_stage_xor": {
+    "label": "regs_only_warmup11_cap64_run01",
+    "stage": 1,
+    "ones": 39,
+    "zeros": 25,
+    "p1": "0.609375000",
+    "abs_bias": "0.109375000"
+  }
+}

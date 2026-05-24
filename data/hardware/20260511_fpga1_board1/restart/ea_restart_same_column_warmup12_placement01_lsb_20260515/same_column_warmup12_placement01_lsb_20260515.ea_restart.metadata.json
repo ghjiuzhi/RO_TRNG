@@ -1,0 +1,20 @@
+﻿{
+    "tool":  "ea_restart",
+    "mode":  "non_iid",
+    "exe":  "E:\\Project\\MLDSA\\RO_TRNG\\sim\\SP800-90B_EntropyAssessment\\cpp\\ea_restart.exe",
+    "input_file":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\restart\\same_column_restart_auto_formal_bits_1000x125_warmup12_header_delay60s_placement01_20260515_bps1_lsb.bin",
+    "input_sha256":  "6DFCCDCDA5B85822F01CD6FFEC2E5633D207D89EA3870C3669F81E9790B1C8C8",
+    "input_bytes":  1000000,
+    "bits_per_symbol":  1,
+    "initial_entropy":  0.834502,
+    "simulation_count":  0,
+    "command":  "E:\\Project\\MLDSA\\RO_TRNG\\sim\\SP800-90B_EntropyAssessment\\cpp\\ea_restart.exe -n E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\restart\\same_column_restart_auto_formal_bits_1000x125_warmup12_header_delay60s_placement01_20260515_bps1_lsb.bin 1 0.834502",
+    "stdout":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\restart\\ea_restart_same_column_warmup12_placement01_lsb_20260515\\same_column_warmup12_placement01_lsb_20260515.ea_restart.stdout.txt",
+    "stderr":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\restart\\ea_restart_same_column_warmup12_placement01_lsb_20260515\\same_column_warmup12_placement01_lsb_20260515.ea_restart.stderr.txt",
+    "version_file":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\restart\\ea_restart_same_column_warmup12_placement01_lsb_20260515\\same_column_warmup12_placement01_lsb_20260515.ea_restart.version.txt",
+    "exit_code":  0,
+    "ea_restart_status":  "passed",
+    "start_time":  "2026-05-22 09:10:54",
+    "end_time":  "2026-05-22 09:12:06",
+    "duration_seconds":  72.277
+}

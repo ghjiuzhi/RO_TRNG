@@ -1,0 +1,9 @@
+label,stage,ones,zeros,p1,abs_bias
+restart_byte_snapshot_bits_regs_only_warmup40_cap1024_fixed_run01,0,4073,4119,0.497192383,0.002807617
+restart_byte_snapshot_bits_regs_only_warmup40_cap1024_fixed_run01,1,4066,4126,0.496337891,0.003662109
+restart_byte_snapshot_bits_regs_only_warmup40_cap1024_fixed_run01,2,4080,4112,0.498046875,0.001953125
+restart_byte_snapshot_bits_regs_only_warmup40_cap1024_fixed_run01,3,4086,4106,0.498779297,0.001220703
+restart_byte_snapshot_bits_regs_only_warmup40_cap1024_fixed_run01,4,4114,4078,0.502197266,0.002197266
+restart_byte_snapshot_bits_regs_only_warmup40_cap1024_fixed_run01,5,4188,4004,0.511230469,0.011230469
+restart_byte_snapshot_bits_regs_only_warmup40_cap1024_fixed_run01,6,4129,4063,0.504028320,0.004028320
+restart_byte_snapshot_bits_regs_only_warmup40_cap1024_fixed_run01,7,4129,4063,0.504028320,0.004028320

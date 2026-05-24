@@ -1,0 +1,38 @@
+{
+  "label": "restart_aligned_bits_regs_only_warmup80_cap1024_run01",
+  "input": "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\sampler_snapshot\\restart_aligned_snapshot_bits_regs_only_warmup80_cap1024_run01.bin",
+  "sha256": "2CE6328ABBE039D68714FE81A62628CE8E6C4F13A69D7E938462EDF46327033F",
+  "version": 2,
+  "variant_id": 96,
+  "warmup_snapshots": 80,
+  "capture_snapshots": 1024,
+  "sample_bytes": 8,
+  "ro_num": 8,
+  "sample_stages": 9,
+  "marker0": 85,
+  "marker1": 170,
+  "frames": 1024,
+  "rand_p1": 0.4658203125,
+  "rand_entropy": 0.9966265097830493,
+  "rand_min_entropy": 0.9046029772074434,
+  "stage_xor_entropy": 7.785171775240603,
+  "stage_xor_min_entropy": 6.0,
+  "worst_sampled_bit": {
+    "label": "restart_aligned_bits_regs_only_warmup80_cap1024_run01",
+    "bit_index": 24,
+    "line": 3,
+    "data_ro": 0,
+    "ones": 2,
+    "zeros": 1022,
+    "p1": "0.001953125",
+    "abs_bias": "0.498046875"
+  },
+  "worst_stage_xor": {
+    "label": "restart_aligned_bits_regs_only_warmup80_cap1024_run01",
+    "stage": 4,
+    "ones": 575,
+    "zeros": 449,
+    "p1": "0.561523438",
+    "abs_bias": "0.061523438"
+  }
+}

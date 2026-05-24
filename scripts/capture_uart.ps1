@@ -9,7 +9,7 @@ param(
 
     [string]$Bytes = "10MiB",
 
-    [ValidateSet("raw", "tdc", "trng")]
+    [ValidateSet("raw", "tdc", "trng", "restart")]
     [string]$Kind = "raw",
 
     [string]$Run = "",
@@ -28,7 +28,17 @@ param(
 
     [int]$ReadTimeoutMs = 1000,
 
-    [int]$IdleTimeoutSec = 30
+    [int]$IdleTimeoutSec = 30,
+
+    [switch]$RecordXadc,
+
+    [string]$XadcCsv = "",
+
+    [string]$HwServerUrl = "localhost:3122",
+
+    [string]$VivadoBat = "C:\Programs\Xilinx2023\Vivado\2023.2\bin\vivado.bat"
+    ,
+    [string]$BoardId = "z7020_b01"
 )
 
 Set-StrictMode -Version Latest
@@ -60,6 +70,91 @@ function Get-RepoRoot {
     return (Resolve-Path (Join-Path $scriptDir "..")).Path
 }
 
+function Read-LastXadcCsvRow {
+    param([string]$Path)
+
+    if (-not (Test-Path $Path)) {
+        return $null
+    }
+    try {
+        $rows = @(Import-Csv -Path $Path)
+        if ($rows.Count -eq 0) {
+            return $null
+        }
+        return $rows[-1]
+    } catch {
+        Write-Warning "Could not parse XADC CSV ${Path}: $($_.Exception.Message)"
+        return $null
+    }
+}
+
+function Get-CsvField {
+    param(
+        [object]$Row,
+        [string]$Name
+    )
+
+    if ($null -eq $Row) {
+        return ""
+    }
+    $prop = $Row.PSObject.Properties[$Name]
+    if ($null -eq $prop) {
+        return ""
+    }
+    return [string]$prop.Value
+}
+
+function Invoke-XadcSnapshot {
+    param(
+        [string]$Phase,
+        [string]$CsvPath
+    )
+
+    $result = [ordered]@{
+        phase = $Phase
+        status = "not_requested"
+        csv = $CsvPath
+        timestamp = ""
+        temperature_c = ""
+        vccint_v = ""
+        vccaux_v = ""
+        vccbram_v = ""
+        vpvn_v = ""
+        error = ""
+    }
+
+    if (-not $RecordXadc) {
+        return $result
+    }
+
+    try {
+        Write-Host "Reading XADC snapshot ($Phase)..."
+        & (Join-Path $repoRoot "scripts\read_xadc.ps1") `
+            -OutCsv $CsvPath `
+            -HwServerUrl $HwServerUrl `
+            -VivadoBat $VivadoBat |
+            ForEach-Object { Write-Host $_ }
+        if ($LASTEXITCODE -ne 0) {
+            throw "read_xadc.ps1 exited with $LASTEXITCODE"
+        }
+        $row = Read-LastXadcCsvRow -Path $CsvPath
+        if ($null -ne $row) {
+            $result["timestamp"] = Get-CsvField -Row $row -Name "timestamp"
+            $result["temperature_c"] = Get-CsvField -Row $row -Name "TEMPERATURE"
+            $result["vccint_v"] = Get-CsvField -Row $row -Name "VCCINT"
+            $result["vccaux_v"] = Get-CsvField -Row $row -Name "VCCAUX"
+            $result["vccbram_v"] = Get-CsvField -Row $row -Name "VCCBRAM"
+            $result["vpvn_v"] = Get-CsvField -Row $row -Name "VPVN"
+        }
+        $result["status"] = "ok"
+    } catch {
+        $result["status"] = "failed"
+        $result["error"] = $_.Exception.Message
+        Write-Warning "XADC snapshot failed ($Phase): $($_.Exception.Message)"
+    }
+    return $result
+}
+
 $targetBytes = Convert-SizeToBytes $Bytes
 $repoRoot = Get-RepoRoot
 $outPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($OutFile)
@@ -82,7 +177,17 @@ if (-not (Test-Path $MetadataDir)) {
     New-Item -ItemType Directory -Force $MetadataDir | Out-Null
 }
 
+if ($XadcCsv -eq "") {
+    $XadcCsv = Join-Path $MetadataDir "xadc_readings.csv"
+}
+$xadcCsvPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($XadcCsv)
+$xadcDir = Split-Path -Parent $xadcCsvPath
+if (-not (Test-Path $xadcDir)) {
+    New-Item -ItemType Directory -Force $xadcDir | Out-Null
+}
+
 $startTime = Get-Date
+$xadcBefore = Invoke-XadcSnapshot -Phase "before_capture" -CsvPath $xadcCsvPath
 $serial = [System.IO.Ports.SerialPort]::new(
     $Port,
     $Baud,
@@ -151,6 +256,7 @@ try {
 }
 
 $endTime = Get-Date
+$xadcAfter = Invoke-XadcSnapshot -Phase "after_capture" -CsvPath $xadcCsvPath
 $hash = Get-FileHash -Path $outPath -Algorithm SHA256
 $hashPath = "$outPath.sha256.txt"
 "$($hash.Hash)  $outPath" | Set-Content -Path $hashPath -Encoding ASCII
@@ -182,6 +288,7 @@ if ($Bitstream -ne "") {
 
 $metadata = [ordered]@{
     capture_id = $Run
+    board_id = $BoardId
     kind = $Kind
     output_file = $outPath
     bitstream = $Bitstream
@@ -198,8 +305,11 @@ $metadata = [ordered]@{
     duration_seconds = $durationSeconds
     throughput_bytes_per_second = $throughputBytesPerSec
     room_temperature_c = ""
-    fpga_temperature_c = ""
+    fpga_temperature_c = $xadcAfter.temperature_c
     voltage_condition = "nominal_board_power"
+    xadc_csv = $xadcCsvPath
+    xadc_before = $xadcBefore
+    xadc_after = $xadcAfter
     notes = ""
 }
 $metadata | ConvertTo-Json -Depth 5 | Set-Content -Path $metadataPath -Encoding UTF8
@@ -234,6 +344,6 @@ if ($Analyze) {
         }
         Write-Host "  Analysis: $analysisDir"
     } else {
-        Write-Host "Analyze was requested, but Kind=raw. Skipping analysis."
+        Write-Host "Analyze was requested, but Kind=$Kind. Skipping analysis."
     }
 }

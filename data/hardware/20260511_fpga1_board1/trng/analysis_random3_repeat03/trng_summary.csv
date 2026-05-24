@@ -1,0 +1,2 @@
+file,name,bytes,bits,zeros,ones,p1,bit_min_entropy,monobit_z,monobit_p,runs,runs_p,adjacent_equal_ratio,longest_zero_run,longest_one_run,shannon_entropy_byte,min_entropy_byte
+E:\Project\MLDSA\RO_TRNG\data\hardware\20260511_fpga1_board1\trng\random3_repeat03.bin,random3_repeat03.bin,20971520,167772160,83900329,83871831,0.4999150693416595,0.999754962731373,-2.2001608583857046,0.02779548427475469,83873123,0.04546874852330086,0.500077232718928,29,31,7.99999159322523,7.985055468367896

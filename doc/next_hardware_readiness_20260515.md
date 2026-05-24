@@ -1,0 +1,57 @@
+﻿# Next Hardware Readiness
+
+- Generated: 2026-05-22 08:01:14
+- Checks: 48
+- Failed: 0
+- CSV: `E:\Project\MLDSA\RO_TRNG\data\experiments\fast_mode\next_hardware_readiness_20260515.csv`
+
+| category | name | ok | path | note |
+| --- | --- | --- | --- | --- |
+| file | scripts\run_restart_placement_queue.ps1 | True | `scripts\run_restart_placement_queue.ps1` |  |
+| file | scripts\run_restart_warmup_repeat_queue.ps1 | True | `scripts\run_restart_warmup_repeat_queue.ps1` |  |
+| file | scripts\run_fast_hardware_queue.ps1 | True | `scripts\run_fast_hardware_queue.ps1` |  |
+| file | scripts\capture_90b_restart_dataset.ps1 | True | `scripts\capture_90b_restart_dataset.ps1` |  |
+| file | scripts\capture_uart.ps1 | True | `scripts\capture_uart.ps1` |  |
+| file | scripts\read_xadc.ps1 | True | `scripts\read_xadc.ps1` |  |
+| file | scripts\summarize_restart_results.py | True | `scripts\summarize_restart_results.py` |  |
+| file | scripts\summarize_xadc_metadata.py | True | `scripts\summarize_xadc_metadata.py` |  |
+| file | scripts\convert_restart_bytes_to_bits.py | True | `scripts\convert_restart_bytes_to_bits.py` |  |
+| file | scripts\analyze_restart_matrix_columns.py | True | `scripts\analyze_restart_matrix_columns.py` |  |
+| file | data\experiments\fast_mode\restart_placement_queue_20260515.csv | True | `data\experiments\fast_mode\restart_placement_queue_20260515.csv` |  |
+| file | data\experiments\fast_mode\hardware_queue_placement_repeat_20260515.csv | True | `data\experiments\fast_mode\hardware_queue_placement_repeat_20260515.csv` |  |
+| restart_queue | restart_queue:same_column:warmup0 | True | `data\vivado_runs\restart_auto_same_column_formal_bits_1000x125_warmup0_header_delay60s\RO_TRNG_restart_auto_top.bit` | bitstream |
+| restart_queue | restart_queue:same_column:warmup0:initial_entropy | True | `` | MSB/LSB H_I fields |
+| restart_queue | restart_queue:same_column:warmup12 | True | `data\vivado_runs\restart_auto_same_column_formal_bits_1000x125_warmup12_header_delay60s\RO_TRNG_restart_auto_top.bit` | bitstream |
+| restart_queue | restart_queue:same_column:warmup12:initial_entropy | True | `` | MSB/LSB H_I fields |
+| restart_queue | restart_queue:sparse:warmup0 | True | `data\vivado_runs\restart_auto_sparse_formal_bits_1000x125_warmup0_header_delay60s\RO_TRNG_restart_auto_top.bit` | bitstream |
+| restart_queue | restart_queue:sparse:warmup0:initial_entropy | True | `` | MSB/LSB H_I fields |
+| restart_queue | restart_queue:sparse:warmup12 | True | `data\vivado_runs\restart_auto_sparse_formal_bits_1000x125_warmup12_header_delay60s\RO_TRNG_restart_auto_top.bit` | bitstream |
+| restart_queue | restart_queue:sparse:warmup12:initial_entropy | True | `` | MSB/LSB H_I fields |
+| restart_queue | restart_queue:compact:warmup0 | True | `data\vivado_runs\restart_auto_compact_formal_bits_1000x125_warmup0_header_delay60s\RO_TRNG_restart_auto_top.bit` | bitstream |
+| restart_queue | restart_queue:compact:warmup0:initial_entropy | True | `` | MSB/LSB H_I fields |
+| restart_queue | restart_queue:compact:warmup12 | True | `data\vivado_runs\restart_auto_compact_formal_bits_1000x125_warmup12_header_delay60s\RO_TRNG_restart_auto_top.bit` | bitstream |
+| restart_queue | restart_queue:compact:warmup12:initial_entropy | True | `` | MSB/LSB H_I fields |
+| restart_queue | restart_queue:checker:warmup0 | True | `data\vivado_runs\restart_auto_checker_formal_bits_1000x125_warmup0_header_delay60s\RO_TRNG_restart_auto_top.bit` | bitstream |
+| restart_queue | restart_queue:checker:warmup0:initial_entropy | True | `` | MSB/LSB H_I fields |
+| restart_queue | restart_queue:checker:warmup12 | True | `data\vivado_runs\restart_auto_checker_formal_bits_1000x125_warmup12_header_delay60s\RO_TRNG_restart_auto_top.bit` | bitstream |
+| restart_queue | restart_queue:checker:warmup12:initial_entropy | True | `` | MSB/LSB H_I fields |
+| placement_repeat_queue | placement_repeat:same_column_repeat03_20mib | True | `data\vivado_runs\fpga1_ro_trng_matrix\same_column_pitch3_x44y35\seed_1\RO_TRNG_top.bit` | bitstream |
+| placement_repeat_queue | placement_repeat:sparse_repeat03_20mib | True | `data\vivado_runs\fpga1_ro_trng_matrix\sparse_pitch6_x36y35\seed_1\RO_TRNG_top.bit` | bitstream |
+| placement_repeat_queue | placement_repeat:far_repeat03_20mib | True | `data\vivado_runs\fpga1_ro_trng_matrix\far_x20y25\seed_1\RO_TRNG_top.bit` | bitstream |
+| placement_repeat_queue | placement_repeat:compact_repeat03_20mib | True | `data\vivado_runs\fpga1_ro_trng_matrix\compact_x44y43\seed_1\RO_TRNG_top.bit` | bitstream |
+| placement_repeat_queue | placement_repeat:checker_repeat03_20mib | True | `data\vivado_runs\fpga1_ro_trng_matrix\checker_pitch3_x44y43\seed_1\RO_TRNG_top.bit` | bitstream |
+| placement_repeat_queue | placement_repeat:random2_repeat03_20mib | True | `data\vivado_runs\fpga1_ro_trng_matrix\random_seed2_x36y35\seed_1\RO_TRNG_top.bit` | bitstream |
+| placement_repeat_queue | placement_repeat:row_repeat03_20mib | True | `data\vivado_runs\fpga1_ro_trng_matrix\row_pitch3_x38y43\seed_1\RO_TRNG_top.bit` | bitstream |
+| placement_repeat_queue | placement_repeat:cross_region_repeat03_20mib | True | `data\vivado_runs\fpga1_ro_trng_matrix\cross_region_x36y25\seed_1\RO_TRNG_top.bit` | bitstream |
+| restart_bitstream_status | same_column:warmup0 | True | `data\vivado_runs\restart_auto_same_column_formal_bits_1000x125_warmup0_header_delay60s\RO_TRNG_restart_auto_top.bit` | bit+manifest |
+| restart_bitstream_status | same_column:warmup12 | True | `data\vivado_runs\restart_auto_same_column_formal_bits_1000x125_warmup12_header_delay60s\RO_TRNG_restart_auto_top.bit` | bit+manifest |
+| restart_bitstream_status | sparse:warmup0 | True | `data\vivado_runs\restart_auto_sparse_formal_bits_1000x125_warmup0_header_delay60s\RO_TRNG_restart_auto_top.bit` | bit+manifest |
+| restart_bitstream_status | sparse:warmup12 | True | `data\vivado_runs\restart_auto_sparse_formal_bits_1000x125_warmup12_header_delay60s\RO_TRNG_restart_auto_top.bit` | bit+manifest |
+| restart_bitstream_status | compact:warmup0 | True | `data\vivado_runs\restart_auto_compact_formal_bits_1000x125_warmup0_header_delay60s\RO_TRNG_restart_auto_top.bit` | bit+manifest |
+| restart_bitstream_status | compact:warmup12 | True | `data\vivado_runs\restart_auto_compact_formal_bits_1000x125_warmup12_header_delay60s\RO_TRNG_restart_auto_top.bit` | bit+manifest |
+| restart_bitstream_status | checker:warmup0 | True | `data\vivado_runs\restart_auto_checker_formal_bits_1000x125_warmup0_header_delay60s\RO_TRNG_restart_auto_top.bit` | bit+manifest |
+| restart_bitstream_status | checker:warmup12 | True | `data\vivado_runs\restart_auto_checker_formal_bits_1000x125_warmup12_header_delay60s\RO_TRNG_restart_auto_top.bit` | bit+manifest |
+| tool | ea_restart.exe | True | `E:\Project\MLDSA\RO_TRNG\sim\SP800-90B_EntropyAssessment\cpp\ea_restart.exe` | SP800-90B restart runner |
+| tool | Vivado batch | True | `C:\Programs\Xilinx2023\Vivado\2023.2\bin\vivado.bat` | Vivado path |
+| tool | MinGW g++ | True | `D:\Toolsapp\MinGW\bin\g++.exe` | SP800-90B build toolchain |
+| process | no active Vivado build | True | `` | avoid colliding with hardware programming |

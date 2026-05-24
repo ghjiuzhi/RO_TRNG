@@ -7,7 +7,9 @@
 | dataset | tool | mode | bits/symbol | H_original | IID chi-square | IID LRS | status |
 | --- | --- | --- | ---: | ---: | --- | --- | --- |
 | random1_repeat03 | ea_non_iid | bit-symbols-lsb | 1 | 0.390783 | NA | NA | ok |
+| random3_repeat03 | ea_non_iid | bit-symbols-lsb | 1 | 0.894588 | NA | NA | ok |
 | random1_repeat03 | ea_non_iid | bit-symbols-msb | 1 | 0.390399 | NA | NA | ok |
+| random3_repeat03 | ea_non_iid | bit-symbols-msb | 1 | 0.856158 | NA | NA | ok |
 
 Notes:
 

@@ -1,0 +1,4 @@
+enabled,priority,placement,warmup_bytes,repeat_tag,bitstream,initial_entropy_msb,initial_entropy_lsb,column_x_cutoff,notes
+1,P0,random1_sampler_regs_only,4,sweep01,data\vivado_runs\restart_auto_random1_regs_only_formal_bits_1000x125_warmup4_header_delay60s\RO_TRNG_restart_auto_top.bit,0.9994511186059211,0.9994511186059211,0,regs-only restart warmup sweep; locate transition between warmup0 hotspot and warmup12 low-one bias
+1,P0,random1_sampler_regs_only,8,sweep01,data\vivado_runs\restart_auto_random1_regs_only_formal_bits_1000x125_warmup8_header_delay60s\RO_TRNG_restart_auto_top.bit,0.9994511186059211,0.9994511186059211,0,regs-only restart warmup sweep midpoint
+1,P0,random1_sampler_regs_only,16,sweep01,data\vivado_runs\restart_auto_random1_regs_only_formal_bits_1000x125_warmup16_header_delay60s\RO_TRNG_restart_auto_top.bit,0.9994511186059211,0.9994511186059211,0,regs-only restart warmup sweep; test whether warmup12 low-one bias persists or recovers

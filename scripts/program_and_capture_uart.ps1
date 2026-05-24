@@ -8,7 +8,7 @@ param(
     [Parameter(Mandatory = $true)]
     [string]$OutFile,
 
-    [ValidateSet("raw", "tdc", "trng")]
+    [ValidateSet("raw", "tdc", "trng", "restart")]
     [string]$Kind = "raw",
 
     [string]$Run = "",
@@ -19,9 +19,17 @@ param(
 
     [string]$MetadataDir = "",
 
+    [int]$IdleTimeoutSec = 30,
+
     [string]$HwServerUrl = "localhost:3122",
 
     [string]$VivadoBat = "C:\Programs\Xilinx2023\Vivado\2023.2\bin\vivado.bat",
+
+    [switch]$RecordXadc,
+
+    [string]$XadcCsv = "",
+
+    [string]$BoardId = "z7020_b01",
 
     [switch]$Analyze
 )
@@ -59,6 +67,8 @@ $captureArgs = @{
     Bytes = $Bytes
     OutFile = $OutFile
     Bitstream = $Bitstream
+    BoardId = $BoardId
+    IdleTimeoutSec = $IdleTimeoutSec
 }
 if ($Run -ne "") {
     $captureArgs["Run"] = $Run
@@ -68,6 +78,14 @@ if ($MetadataDir -ne "") {
 }
 if ($Analyze) {
     $captureArgs["Analyze"] = $true
+}
+if ($RecordXadc) {
+    $captureArgs["RecordXadc"] = $true
+    $captureArgs["HwServerUrl"] = $HwServerUrl
+    $captureArgs["VivadoBat"] = $VivadoBat
+}
+if ($XadcCsv -ne "") {
+    $captureArgs["XadcCsv"] = $XadcCsv
 }
 
 & (Join-Path $repoRoot "scripts\capture_uart.ps1") @captureArgs

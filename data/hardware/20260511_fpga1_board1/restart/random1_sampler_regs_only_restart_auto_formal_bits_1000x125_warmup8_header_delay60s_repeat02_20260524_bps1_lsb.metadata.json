@@ -1,0 +1,19 @@
+{
+  "dataset_type": "SP800-90B restart bit-symbol dataset",
+  "conversion": "row-preserving byte-to-bit expansion",
+  "input_file": "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\restart\\random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup8_header_delay60s_repeat02_20260524.bin",
+  "input_sha256": "1F98799F76B7A30D691AA4C30B480A3F3D42EC46ADF83814C4CD04EC4E71B988",
+  "input_bytes": 125000,
+  "output_file": "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\restart\\random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup8_header_delay60s_repeat02_20260524_bps1_lsb.bin",
+  "output_sha256": "3901E15FAD8D904CF330885C73609FE8B5A6CABA3D89D4D6B31CA8FE6F60C3FB",
+  "output_bytes": 1000000,
+  "restart_count": 1000,
+  "input_symbols_per_restart": 125,
+  "output_symbols_per_restart": 1000,
+  "bits_per_symbol": 1,
+  "bit_order": "lsb",
+  "start_time": "2026-05-24 15:34:15",
+  "end_time": "2026-05-24 15:34:15",
+  "duration_seconds": 0.148,
+  "notes": "This preserves restart row boundaries. It is only valid if the input was collected as an actual restart dataset."
+}

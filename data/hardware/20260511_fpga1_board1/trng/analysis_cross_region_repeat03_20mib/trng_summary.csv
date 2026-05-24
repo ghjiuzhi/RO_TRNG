@@ -1,0 +1,2 @@
+file,name,bytes,bits,zeros,ones,p1,bit_min_entropy,monobit_z,monobit_p,runs,runs_p,adjacent_equal_ratio,longest_zero_run,longest_one_run,shannon_entropy_byte,min_entropy_byte
+data\hardware\20260511_fpga1_board1\trng\cross_region_repeat03_20mib.bin,cross_region_repeat03_20mib.bin,20971520,167772160,83879340,83892820,0.5000401735305786,0.9998840883498363,1.0407105190202577,0.2980099197423236,83901667,0.016091107108790945,0.4999070972198671,27,29,7.999992184811918,7.988685374702933

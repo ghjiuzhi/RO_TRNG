@@ -1,0 +1,4 @@
+enabled,priority,placement,warmup_bytes,repeat_tag,bitstream,initial_entropy_msb,initial_entropy_lsb,column_x_cutoff,notes
+1,P0,random1_sampler_regs_only,6,passband01,data\vivado_runs\restart_auto_random1_regs_only_formal_bits_1000x125_warmup6_header_delay60s\RO_TRNG_restart_auto_top.bit,0.9994511186059211,0.9994511186059211,0,regs-only restart passband probe below warmup8
+1,P0,random1_sampler_regs_only,8,repeat02,data\vivado_runs\restart_auto_random1_regs_only_formal_bits_1000x125_warmup8_header_delay60s\RO_TRNG_restart_auto_top.bit,0.9994511186059211,0.9994511186059211,0,regs-only restart warmup8 repeat to verify pass result
+1,P0,random1_sampler_regs_only,10,passband01,data\vivado_runs\restart_auto_random1_regs_only_formal_bits_1000x125_warmup10_header_delay60s\RO_TRNG_restart_auto_top.bit,0.9994511186059211,0.9994511186059211,0,regs-only restart passband probe above warmup8

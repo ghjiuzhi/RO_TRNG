@@ -1,0 +1,70 @@
+{
+  "input": "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\restart\\random3_restart_auto_formal_bits_1000x125_header_delay60s_20260515_bps1_lsb.bin",
+  "sha256": "25A3C2E95789FF3AB9A7B93EFE544B76C46068FC439B30ECDA6182E8641E07A4",
+  "overall_p1": 0.497933,
+  "row_x_max": 545,
+  "row_x_max_index": 12,
+  "row_ones_at_row_x_max": 545,
+  "col_x_max": 685,
+  "col_x_max_index": 0,
+  "col_ones_at_col_x_max": 315,
+  "x_max": 685,
+  "rows_over_605": 0,
+  "cols_over_605": 1,
+  "row_ones_min": 456,
+  "row_ones_max": 545,
+  "col_ones_min": 315,
+  "col_ones_max": 604,
+  "top_cols": [
+    {
+      "index": 0,
+      "ones": 315,
+      "x": 685
+    },
+    {
+      "index": 23,
+      "ones": 604,
+      "x": 604
+    },
+    {
+      "index": 12,
+      "ones": 574,
+      "x": 574
+    },
+    {
+      "index": 108,
+      "ones": 550,
+      "x": 550
+    },
+    {
+      "index": 15,
+      "ones": 548,
+      "x": 548
+    },
+    {
+      "index": 7,
+      "ones": 453,
+      "x": 547
+    },
+    {
+      "index": 14,
+      "ones": 453,
+      "x": 547
+    },
+    {
+      "index": 122,
+      "ones": 454,
+      "x": 546
+    },
+    {
+      "index": 802,
+      "ones": 454,
+      "x": 546
+    },
+    {
+      "index": 59,
+      "ones": 544,
+      "x": 544
+    }
+  ]
+}

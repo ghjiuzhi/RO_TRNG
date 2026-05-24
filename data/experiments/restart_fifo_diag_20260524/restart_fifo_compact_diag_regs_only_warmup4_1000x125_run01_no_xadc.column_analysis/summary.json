@@ -1,0 +1,37 @@
+{
+  "analysis": "packed restart byte/bit column bias",
+  "label": "restart_fifo_compact_diag_regs_only_warmup4_1000x125_run01_no_xadc",
+  "input_file": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\restart_fifo_diag_20260524\\restart_fifo_compact_diag_regs_only_warmup4_1000x125_run01_no_xadc.send_packed.bin",
+  "input_sha256": "018A2D008554AC928D41CED2A0C15C5558BD87522484A93A9476CEFD566E42DC",
+  "input_bytes": 125000,
+  "restart_count": 1000,
+  "bytes_per_restart": 125,
+  "expanded_symbols_per_restart": 1000,
+  "total_bits": 1000000,
+  "total_ones": 498297,
+  "overall_p1": 0.498297,
+  "row_ones_mean": 498.297,
+  "row_ones_std": 15.119086976401716,
+  "x_cutoff": 0,
+  "positions_over_x_cutoff": 0,
+  "worst_position": {
+    "byte_index": 1,
+    "bit_index": 7,
+    "ones": 445,
+    "zeros": 555,
+    "p1": "0.445000000",
+    "abs_bias": "0.055000000",
+    "x": 555,
+    "msb_expanded_column": 8,
+    "lsb_expanded_column": 15,
+    "over_x_cutoff": false
+  },
+  "interpretation_hint": "For a packed input byte, MSB expansion maps bit b to column byte*8+(7-b); LSB expansion maps bit b to column byte*8+b.",
+  "created_at": "2026-05-24 22:58:31",
+  "outputs": {
+    "raw_byte_bit_counts_csv": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\restart_fifo_diag_20260524\\restart_fifo_compact_diag_regs_only_warmup4_1000x125_run01_no_xadc.column_analysis\\raw_byte_bit_counts.csv",
+    "expanded_column_counts_csv": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\restart_fifo_diag_20260524\\restart_fifo_compact_diag_regs_only_warmup4_1000x125_run01_no_xadc.column_analysis\\expanded_column_counts.csv",
+    "top_biased_positions_csv": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\restart_fifo_diag_20260524\\restart_fifo_compact_diag_regs_only_warmup4_1000x125_run01_no_xadc.column_analysis\\top_biased_positions.csv",
+    "heatmap_svg": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\restart_fifo_diag_20260524\\restart_fifo_compact_diag_regs_only_warmup4_1000x125_run01_no_xadc.column_analysis\\restart_byte_bit_heatmap.svg"
+  }
+}

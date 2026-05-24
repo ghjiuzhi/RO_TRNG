@@ -9,7 +9,10 @@ param(
     [int]$ColumnXCutoff = 605,
     [string]$VivadoBat = "C:\Programs\Xilinx2023\Vivado\2023.2\bin\vivado.bat",
     [string]$MingwRoot = "D:\Toolsapp\MinGW",
-    [string]$HwServerUrl = "localhost:3122"
+    [string]$HwServerUrl = "localhost:3122",
+    [switch]$RecordXadc,
+    [string]$XadcCsv = "",
+    [string]$BoardId = "z7020_b01"
 )
 
 Set-StrictMode -Version Latest
@@ -39,29 +42,40 @@ foreach ($warmup in $warmups) {
     $columnDir = "data\experiments\paper_artifacts_20260515\restart_column_bias_${Placement}_formal_bits_warmup${warmup}_${RepeatTag}"
     $eaMsbDir = "data\hardware\20260511_fpga1_board1\restart\ea_restart_${Placement}_warmup${warmup}_${RepeatTag}_msb_20260515"
     $eaLsbDir = "data\hardware\20260511_fpga1_board1\restart\ea_restart_${Placement}_warmup${warmup}_${RepeatTag}_lsb_20260515"
+    $captureArgs = @(
+        "-ExecutionPolicy", "Bypass",
+        "-File", "scripts\capture_90b_restart_dataset.ps1",
+        "-Bitstream", $bit,
+        "-OutFile", $packed,
+        "-Port", $Port,
+        "-Baud", "$Baud",
+        "-RestartCount", "1000",
+        "-SymbolsPerRestart", "125",
+        "-BitsPerSymbol", "8",
+        "-WarmupSymbols", "0",
+        "-HeaderBytes", "8",
+        "-SettleMs", "500",
+        "-ReadTimeoutMs", "1000",
+        "-ReadBufferBytes", "190544",
+        "-IdleTimeoutSec", "90",
+        "-RestartMethod", "auto_stream_once",
+        "-Run", $run,
+        "-MetadataFile", $meta,
+        "-HwServerUrl", $HwServerUrl,
+        "-VivadoBat", $VivadoBat,
+        "-BoardId", $BoardId
+    )
+    if ($RecordXadc) {
+        $captureArgs += "-RecordXadc"
+        if ($XadcCsv -ne "") {
+            $captureArgs += @("-XadcCsv", $XadcCsv)
+        }
+    }
 
     Write-Host "=== warmup=$warmup run=$run ==="
 
     try {
-        powershell -ExecutionPolicy Bypass -File scripts\capture_90b_restart_dataset.ps1 `
-            -Bitstream $bit `
-            -OutFile $packed `
-            -Port $Port `
-            -Baud $Baud `
-            -RestartCount 1000 `
-            -SymbolsPerRestart 125 `
-            -BitsPerSymbol 8 `
-            -WarmupSymbols 0 `
-            -HeaderBytes 8 `
-            -SettleMs 500 `
-            -ReadTimeoutMs 1000 `
-            -ReadBufferBytes 190544 `
-            -IdleTimeoutSec 90 `
-            -RestartMethod auto_stream_once `
-            -Run $run `
-            -MetadataFile $meta `
-            -HwServerUrl $HwServerUrl `
-            -VivadoBat $VivadoBat
+        powershell @captureArgs
 
         if ($LASTEXITCODE -ne 0) {
             throw "capture_90b_restart_dataset.ps1 failed with exit code $LASTEXITCODE"

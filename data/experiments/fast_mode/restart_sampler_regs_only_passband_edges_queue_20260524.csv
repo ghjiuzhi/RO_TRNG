@@ -1,0 +1,3 @@
+enabled,priority,placement,warmup_bytes,repeat_tag,bitstream,initial_entropy_msb,initial_entropy_lsb,column_x_cutoff,notes
+1,P0,random1_sampler_regs_only,5,edge01,data\vivado_runs\restart_auto_random1_regs_only_formal_bits_1000x125_warmup5_header_delay60s\RO_TRNG_restart_auto_top.bit,0.9994511186059211,0.9994511186059211,0,regs-only restart passband lower edge probe between failing warmup4 and passing warmup6
+1,P0,random1_sampler_regs_only,11,edge01,data\vivado_runs\restart_auto_random1_regs_only_formal_bits_1000x125_warmup11_header_delay60s\RO_TRNG_restart_auto_top.bit,0.9994511186059211,0.9994511186059211,0,regs-only restart passband upper edge probe between passing warmup10 and failing warmup12

@@ -1,0 +1,2 @@
+enabled,priority,run,kind,bitstream,bytes,out_file,metadata_dir,analyze_group,idle_timeout_sec,notes
+1,P0,tdc_reset_enable_random1_baseline_ro0_smoke,tdc,data\vivado_runs\fpga1_tdc_reset_enable\tdc_reset_enable_random1_baseline_ro0_smoke\RO_TDC_pair_reset_enable_top.bit,256KiB,data\hardware\20260511_fpga1_board1\tdc_reset_enable\tdc_reset_enable_random1_baseline_ro0_smoke.bin,data\hardware\20260511_fpga1_board1\metadata,tdc_reset_enable_smoke_20260524,30,continuous original packetizer; flags bit0 marks RO enable edge; 10s RO-enable delay

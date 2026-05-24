@@ -5,11 +5,15 @@
 #   1: extra placement XDC
 #   2: output directory
 #   3: top module name, default RO_TDC_sysclk_top
+#   4: synth generic list, e.g. {RO_A_STAGES=9 RO_B_STAGES=2 PAIR_ID=101}
+#   5: base sys_clk XDC glob or file path, default fpga1/xc7z020clg400/lab_xdc/tdc_sysclk_*.xdc
 
 set origin_dir [file normalize [file join [file dirname [info script]] ../..]]
 set part_name xc7z020clg400-2
 set top_name RO_TDC_sysclk_top
 set extra_xdc ""
+set synth_generics ""
+set base_xdc_arg ""
 
 set fpga1_src_dir [file join $origin_dir fpga1 xc7z020clg400 xc7z020clg400.srcs sources_1]
 set fpga1_rtl_dir [file join $fpga1_src_dir imports rtl]
@@ -26,6 +30,12 @@ if {$argc >= 2} {
 }
 if {$argc >= 3} {
     set top_name [lindex $argv 2]
+}
+if {$argc >= 4} {
+    set synth_generics [lindex $argv 3]
+}
+if {$argc >= 5} {
+    set base_xdc_arg [lindex $argv 4]
 }
 set ip_work_dir    [file join $out_dir ip_src]
 set report_dir     [file join $out_dir reports]
@@ -71,8 +81,18 @@ set fpga1_ip_files [require_nonempty "fpga1 imported IP" [list \
     [file join $fpga1_ip_dir clk_wiz_0 clk_wiz_0.xci] \
     [file join $fpga1_ip_dir proc_sys_reset_0 proc_sys_reset_0.xci] \
 ]]
-set xdc_files [require_nonempty "TDC sys_clk XDC" \
-    [glob -nocomplain -types f -directory $xdc_dir tdc_sysclk_*.xdc]]
+if {$base_xdc_arg ne ""} {
+    set base_xdc_arg [file normalize $base_xdc_arg]
+    if {[file exists $base_xdc_arg]} {
+        set xdc_files [list $base_xdc_arg]
+    } else {
+        set xdc_files [glob -nocomplain -types f $base_xdc_arg]
+    }
+    set xdc_files [require_nonempty "base sys_clk XDC" $xdc_files]
+} else {
+    set xdc_files [require_nonempty "TDC sys_clk XDC" \
+        [glob -nocomplain -types f -directory $xdc_dir tdc_sysclk_*.xdc]]
+}
 
 set isolated_ip_files [list]
 foreach xci $fpga1_ip_files {
@@ -124,7 +144,12 @@ if {$extra_xdc ne ""} {
 
 update_compile_order -fileset sources_1
 
-synth_design -top $top_name -part $part_name -flatten_hierarchy rebuilt
+if {$synth_generics ne ""} {
+    puts "Applying synth generics: $synth_generics"
+    synth_design -top $top_name -part $part_name -flatten_hierarchy rebuilt -generic $synth_generics
+} else {
+    synth_design -top $top_name -part $part_name -flatten_hierarchy rebuilt
+}
 write_checkpoint -force [file join $checkpoint_dir ${top_name}_synth.dcp]
 report_utilization -file [file join $report_dir synth_utilization.rpt]
 report_timing_summary -file [file join $report_dir synth_timing_summary.rpt] \

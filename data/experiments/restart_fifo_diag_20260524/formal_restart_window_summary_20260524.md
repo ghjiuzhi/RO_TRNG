@@ -1,0 +1,44 @@
+# Formal Restart Byte-Window Summary - 2026-05-24
+
+| warmup | label | window | bytes | p1 | abs_bias | row std |
+| ---: | --- | --- | ---: | ---: | ---: | ---: |
+| 10 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup10_header_delay60s_passband01_20260524 | 0..32 | 32 | 0.498378906 | 0.001621094 | 8.077052371 |
+| 10 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup10_header_delay60s_passband01_20260524 | 32..64 | 32 | 0.499281250 | 0.000718750 | 8.043266998 |
+| 10 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup10_header_delay60s_passband01_20260524 | 64..96 | 32 | 0.500636719 | 0.000636719 | 7.891668455 |
+| 10 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup10_header_delay60s_passband01_20260524 | 96..125 | 29 | 0.498318966 | 0.001681034 | 7.826231532 |
+| 10 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup10_header_delay60s_passband01_20260524 | 0..125 | 125 | 0.499174000 | 0.000826000 | 16.268673087 |
+| 10 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup10_header_delay60s_repeat02_20260524 | 0..32 | 32 | 0.500070313 | 0.000070313 | 8.000729717 |
+| 10 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup10_header_delay60s_repeat02_20260524 | 32..64 | 32 | 0.499535156 | 0.000464844 | 7.989420442 |
+| 10 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup10_header_delay60s_repeat02_20260524 | 64..96 | 32 | 0.501441406 | 0.001441406 | 7.561801307 |
+| 10 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup10_header_delay60s_repeat02_20260524 | 96..125 | 29 | 0.498922414 | 0.001077586 | 7.584820367 |
+| 10 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup10_header_delay60s_repeat02_20260524 | 0..125 | 125 | 0.500018000 | 0.000018000 | 15.953108663 |
+| 11 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup11_header_delay60s_edge01_20260524 | 0..32 | 32 | 0.555085938 | 0.055085938 | 11.504764057 |
+| 11 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup11_header_delay60s_edge01_20260524 | 32..64 | 32 | 0.560203125 | 0.060203125 | 12.107528897 |
+| 11 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup11_header_delay60s_edge01_20260524 | 64..96 | 32 | 0.561925781 | 0.061925781 | 12.031682800 |
+| 11 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup11_header_delay60s_edge01_20260524 | 96..125 | 29 | 0.559668103 | 0.059668103 | 10.348833316 |
+| 11 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup11_header_delay60s_edge01_20260524 | 0..125 | 125 | 0.559210000 | 0.059210000 | 32.520299814 |
+| 11 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup11_header_delay60s_repeat02_20260524 | 0..32 | 32 | 0.554558594 | 0.054558594 | 11.552744739 |
+| 11 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup11_header_delay60s_repeat02_20260524 | 32..64 | 32 | 0.557726562 | 0.057726562 | 11.936612417 |
+| 11 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup11_header_delay60s_repeat02_20260524 | 64..96 | 32 | 0.562410156 | 0.062410156 | 11.991600018 |
+| 11 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup11_header_delay60s_repeat02_20260524 | 96..125 | 29 | 0.560702586 | 0.060702586 | 11.126999191 |
+| 11 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup11_header_delay60s_repeat02_20260524 | 0..125 | 125 | 0.558805000 | 0.058805000 | 32.888949132 |
+| 4 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup4_header_delay60s_repeat02_20260524 | 0..32 | 32 | 0.405292969 | 0.094707031 | 8.850478801 |
+| 4 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup4_header_delay60s_repeat02_20260524 | 32..64 | 32 | 0.408589844 | 0.091410156 | 8.624859361 |
+| 4 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup4_header_delay60s_repeat02_20260524 | 64..96 | 32 | 0.405812500 | 0.094187500 | 8.749368892 |
+| 4 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup4_header_delay60s_repeat02_20260524 | 96..125 | 29 | 0.408883621 | 0.091116379 | 8.180567156 |
+| 4 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup4_header_delay60s_repeat02_20260524 | 0..125 | 125 | 0.407103000 | 0.092897000 | 17.101356408 |
+| 4 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup4_header_delay60s_sweep01_20260524 | 0..32 | 32 | 0.408867188 | 0.091132812 | 8.819586158 |
+| 4 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup4_header_delay60s_sweep01_20260524 | 32..64 | 32 | 0.406199219 | 0.093800781 | 8.697173736 |
+| 4 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup4_header_delay60s_sweep01_20260524 | 64..96 | 32 | 0.409390625 | 0.090609375 | 8.509617148 |
+| 4 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup4_header_delay60s_sweep01_20260524 | 96..125 | 29 | 0.407366379 | 0.092633621 | 8.540369957 |
+| 4 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup4_header_delay60s_sweep01_20260524 | 0..125 | 125 | 0.407970000 | 0.092030000 | 16.708653447 |
+| 5 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup5_header_delay60s_edge01_20260524 | 0..32 | 32 | 0.497484375 | 0.002515625 | 8.039108408 |
+| 5 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup5_header_delay60s_edge01_20260524 | 32..64 | 32 | 0.497023437 | 0.002976563 | 8.196545370 |
+| 5 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup5_header_delay60s_edge01_20260524 | 64..96 | 32 | 0.498554687 | 0.001445313 | 7.835630160 |
+| 5 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup5_header_delay60s_edge01_20260524 | 96..125 | 29 | 0.498577586 | 0.001422414 | 7.404667447 |
+| 5 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup5_header_delay60s_edge01_20260524 | 0..125 | 125 | 0.497894000 | 0.002106000 | 16.020822825 |
+| 5 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup5_header_delay60s_repeat02_20260524 | 0..32 | 32 | 0.497789062 | 0.002210938 | 8.166862555 |
+| 5 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup5_header_delay60s_repeat02_20260524 | 32..64 | 32 | 0.497847656 | 0.002152344 | 8.141461724 |
+| 5 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup5_header_delay60s_repeat02_20260524 | 64..96 | 32 | 0.499667969 | 0.000332031 | 7.824306679 |
+| 5 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup5_header_delay60s_repeat02_20260524 | 96..125 | 29 | 0.499155172 | 0.000844828 | 7.343812634 |
+| 5 | random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup5_header_delay60s_repeat02_20260524 | 0..125 | 125 | 0.498602000 | 0.001398000 | 15.916456767 |

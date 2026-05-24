@@ -592,7 +592,11 @@ void seed(uint64_t *xoshiro256starstarState){
 
 	if((infp=fopen("/dev/urandom", "rb"))==NULL) {
 		perror("Can't open random source. Reverting to a deterministic seed.");
-		exit(-1);
+		xoshiro256starstarState[0] = 0x9e3779b97f4a7c15ULL;
+		xoshiro256starstarState[1] = 0xbf58476d1ce4e5b9ULL;
+		xoshiro256starstarState[2] = 0x94d049bb133111ebULL;
+		xoshiro256starstarState[3] = 0x2545f4914f6cdd1dULL;
+		return;
 	} 
 
 	if(fread(xoshiro256starstarState, sizeof(uint64_t), 4, infp)!=4) {

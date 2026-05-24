@@ -1,0 +1,2 @@
+file,name,bytes,bits,zeros,ones,p1,bit_min_entropy,monobit_z,monobit_p,runs,runs_p,adjacent_equal_ratio,longest_zero_run,longest_one_run,shannon_entropy_byte,min_entropy_byte
+E:\Project\MLDSA\RO_TRNG\data\hardware\20260511_fpga1_board1\trng\random1_sample_ro_local_x45y39_5mib_20260523.bin,random1_sample_ro_local_x45y39_5mib_20260523.bin,5242880,41943040,23886071,18056969,0.43051168918609617,0.812261865076687,-900.0604996798252,0.0,20757222,0.0,0.5051092745091742,18,18,6.702412427103522,2.983191712313446

@@ -7,6 +7,9 @@ param(
     [string]$Python = "python",
     [string]$StatusMarkdown = "doc\fast_mode_hardware_status_20260513.md",
     [string]$LogDir = "data\experiments\fast_mode\logs",
+    [switch]$RecordXadc,
+    [string]$XadcCsv = "",
+    [string]$BoardId = "z7020_b01",
     [switch]$ContinueOnError
 )
 
@@ -163,8 +166,18 @@ foreach ($row in $rows) {
         "-OutFile", $row.out_file,
         "-MetadataDir", $row.metadata_dir,
         "-HwServerUrl", $HwServerUrl,
-        "-VivadoBat", $VivadoBat
+        "-VivadoBat", $VivadoBat,
+        "-BoardId", $BoardId
     )
+    if ($row.PSObject.Properties.Name -contains "idle_timeout_sec" -and [string]$row.idle_timeout_sec -ne "") {
+        $args += @("-IdleTimeoutSec", $row.idle_timeout_sec)
+    }
+    if ($RecordXadc) {
+        $args += "-RecordXadc"
+        if ($XadcCsv -ne "") {
+            $args += @("-XadcCsv", $XadcCsv)
+        }
+    }
     if ($row.kind -eq "tdc" -or $row.kind -eq "trng") {
         $args += "-Analyze"
     }

@@ -429,6 +429,20 @@ def main() -> int:
     out_dir = (root / args.out_dir).resolve()
     out_dir.mkdir(parents=True, exist_ok=True)
 
+    restart_items = list(args.restart_summary)
+    if not restart_items:
+        auto_root = out_dir
+        if auto_root.exists():
+            for summary_path in sorted(auto_root.glob("restart_column_bias_*/summary.json")):
+                label = summary_path.parent.name
+                placement = ""
+                if label.startswith("restart_column_bias_"):
+                    remainder = label[len("restart_column_bias_") :]
+                    placement = remainder.split("_formal_bits", 1)[0]
+                if not placement:
+                    continue
+                restart_items.append(f"{placement},packed_warmup0,{summary_path.relative_to(root)}")
+
     trng = read_csv_by_key(
         root / "data/experiments/fast_mode/offline_figures_20260513/table_trng_repeat_by_placement.csv",
         "placement",
@@ -442,7 +456,7 @@ def main() -> int:
     )
 
     rows: list[dict[str, str]] = []
-    for item in args.restart_summary:
+    for item in restart_items:
         parts = item.split(",", 2)
         if len(parts) != 3:
             raise SystemExit(f"bad --restart-summary item: {item}")

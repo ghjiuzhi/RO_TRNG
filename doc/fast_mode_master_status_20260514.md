@@ -227,3 +227,22 @@ P0：持续更新 GitHub export，给 GPT/Claude 分析使用，但不上传大�
 P0：把 SP800-90B smoke 结果纳入论文证据表，措辞为“non-IID smoke supports the placement-dependent gap”，不要写成认证。
 P1：设计 restart capture protocol。现有顺序流不能直接冒充 restart dataset。
 P1：如果冲更高水平，后续补多板、温度/电压/运行时间漂移；如果做不到，写成 limitation 和 future validation。
+
+## 2026-05-23 机制假设更新
+
+- 已完成 `random1` sampler-island 20MiB programmed confirmation：
+  - 文件：`data/hardware/20260511_fpga1_board1/trng/random1_sampler_island_local_x45y39_regs_x45y31_program_20mib_20260523.bin`
+  - SHA256：`C42E39A9BC46909105678F20EE918D054C82564FA344FA2F8E1A761D0E0D95E4`
+  - `p1=0.5000507474`
+  - bit min-entropy `0.9998535814`
+  - runs p-value `0.6489840131`
+  - adjacent-equal ratio `0.4999824375`
+  - XADC：`46.0 C -> 46.3 C`，`VCCINT=1.000 V`，`VCCAUX=1.796 V -> 1.794 V`
+- 结论：这把 sampler-island 修复从 5MiB smoke 提升为 20MiB 稳定证据。保持 `random1` data RO placement 不变，仅改变 sampler-side placement，就能把强偏置源修复到近理想连续流。
+- 已新增 TDC 机制实验计划与准备文件：
+  - `doc/tdc_sampler_mechanism_experiment_plan_20260523.md`
+  - `scripts/generate_tdc_sampler_data_xdc.py`
+  - `scripts/build_tdc_sampler_data_bitstreams.ps1`
+  - `data/experiments/fast_mode/hardware_queue_tdc_sampler_data_20260523.csv`
+- 当前 TDC 策略：不再盲目重复 data-data pair TDC；下一步优先 sampler-data TDC，用来验证 sampler-data 相位结构是否跟 TRNG 修复同步变化。
+- 当日状态详见：`doc/fast_mode_status_20260523.md`。

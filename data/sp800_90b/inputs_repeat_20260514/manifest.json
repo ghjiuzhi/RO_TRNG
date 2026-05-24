@@ -1,5 +1,5 @@
 {
-  "created_utc": "2026-05-14T05:11:48.933773+00:00",
+  "created_utc": "2026-05-14T08:17:07.792930+00:00",
   "note": "Prepared for local SP800-90B EntropyAssessment runs; no tests were executed.",
   "rows": [
     {
@@ -37,6 +37,42 @@
       "output": "data\\sp800_90b\\inputs_repeat_20260514\\random1_repeat03_bps8.bin",
       "output_bytes": 1000000,
       "output_sha256": "78c53e7682c9d39189427240230345dc58ada6c7386bb122ec2aaf0c51ca3761"
+    },
+    {
+      "source": "data\\hardware\\20260511_fpga1_board1\\trng\\random3_repeat03.bin",
+      "source_sha256": "25bb10aeb89cf743993498deea9606df2eff30ca40884710c3672ca9850a7db4",
+      "source_bytes": 20971520,
+      "offset_bytes": 0,
+      "read_bytes": 1000000,
+      "mode": "bit-symbols-msb",
+      "bits_per_symbol": 1,
+      "output": "data\\sp800_90b\\inputs_repeat_20260514\\random3_repeat03_bps1_msb.bin",
+      "output_bytes": 8000000,
+      "output_sha256": "f64a3d21bdfd58b047270bc35fa07a7fe03746156f446fb91a71b71dbfe7b73f"
+    },
+    {
+      "source": "data\\hardware\\20260511_fpga1_board1\\trng\\random3_repeat03.bin",
+      "source_sha256": "25bb10aeb89cf743993498deea9606df2eff30ca40884710c3672ca9850a7db4",
+      "source_bytes": 20971520,
+      "offset_bytes": 0,
+      "read_bytes": 1000000,
+      "mode": "bit-symbols-lsb",
+      "bits_per_symbol": 1,
+      "output": "data\\sp800_90b\\inputs_repeat_20260514\\random3_repeat03_bps1_lsb.bin",
+      "output_bytes": 8000000,
+      "output_sha256": "ec23570cfbe06825b126bee0bc94be14db4209bd00a1f1bcc445e3c4c4903ab2"
+    },
+    {
+      "source": "data\\hardware\\20260511_fpga1_board1\\trng\\random3_repeat03.bin",
+      "source_sha256": "25bb10aeb89cf743993498deea9606df2eff30ca40884710c3672ca9850a7db4",
+      "source_bytes": 20971520,
+      "offset_bytes": 0,
+      "read_bytes": 1000000,
+      "mode": "byte-symbols",
+      "bits_per_symbol": 8,
+      "output": "data\\sp800_90b\\inputs_repeat_20260514\\random3_repeat03_bps8.bin",
+      "output_bytes": 1000000,
+      "output_sha256": "c2a1c05447d6d02deed4af827ba0dd43809ea4e981bd30db878825203756a601"
     }
   ]
 }

@@ -1,0 +1,2 @@
+file,name,bytes,bits,zeros,ones,p1,bit_min_entropy,monobit_z,monobit_p,runs,runs_p,adjacent_equal_ratio,longest_zero_run,longest_one_run,shannon_entropy_byte,min_entropy_byte
+data\hardware\20260511_fpga1_board1\trng\sparse_repeat03_20mib.bin,sparse_repeat03_20mib.bin,20971520,167772160,90032257,77739903,0.4633659303188324,0.8979894439420173,-949.0194444599955,0.0,82790431,0.0,0.5065305799635087,30,29,7.968581095975139,7.1220544952496825

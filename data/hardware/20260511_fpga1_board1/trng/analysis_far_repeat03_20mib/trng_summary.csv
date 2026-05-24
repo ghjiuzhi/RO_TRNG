@@ -1,0 +1,2 @@
+file,name,bytes,bits,zeros,ones,p1,bit_min_entropy,monobit_z,monobit_p,runs,runs_p,adjacent_equal_ratio,longest_zero_run,longest_one_run,shannon_entropy_byte,min_entropy_byte
+data\hardware\20260511_fpga1_board1\trng\far_repeat03_20mib.bin,far_repeat03_20mib.bin,20971520,167772160,85283855,82488305,0.49166861176490784,0.9761587784173478,-215.827766427825,0.0,83767631,0.0,0.5007060140413404,29,27,7.998382255294382,7.8060281014787325

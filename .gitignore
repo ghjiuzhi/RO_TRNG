@@ -39,3 +39,10 @@ data/experiments/fast_mode/*stdout.log
 data/experiments/fast_mode/*stderr.log
 data/experiments/fast_mode/logs/
 data/experiments/fast_mode/short_queue_logs/
+
+# Runtime markers
+*.pid
+*_started.txt
+
+# Ad-hoc local figures generated in scripts/
+scripts/*.png

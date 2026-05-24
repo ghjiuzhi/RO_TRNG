@@ -1,0 +1,37 @@
+{
+  "analysis": "packed restart byte/bit column bias",
+  "label": "random1_sampler_regs_only_formal_bits_warmup4_sweep01",
+  "input_file": "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\restart\\random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup4_header_delay60s_sweep01_20260524.bin",
+  "input_sha256": "28DF13CEA8B2125539D74EF51DFBCC1F7299DBD4C48F30F52E070D90DC1250BF",
+  "input_bytes": 125000,
+  "restart_count": 1000,
+  "bytes_per_restart": 125,
+  "expanded_symbols_per_restart": 1000,
+  "total_bits": 1000000,
+  "total_ones": 407970,
+  "overall_p1": 0.40797,
+  "row_ones_mean": 407.97,
+  "row_ones_std": 16.70865344664255,
+  "x_cutoff": 0,
+  "positions_over_x_cutoff": 0,
+  "worst_position": {
+    "byte_index": 1,
+    "bit_index": 6,
+    "ones": 249,
+    "zeros": 751,
+    "p1": "0.249000000",
+    "abs_bias": "0.251000000",
+    "x": 751,
+    "msb_expanded_column": 9,
+    "lsb_expanded_column": 14,
+    "over_x_cutoff": false
+  },
+  "interpretation_hint": "For a packed input byte, MSB expansion maps bit b to column byte*8+(7-b); LSB expansion maps bit b to column byte*8+b.",
+  "created_at": "2026-05-24 14:59:14",
+  "outputs": {
+    "raw_byte_bit_counts_csv": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\paper_artifacts_20260524\\restart_column_bias_random1_sampler_regs_only_formal_bits_warmup4_sweep01\\raw_byte_bit_counts.csv",
+    "expanded_column_counts_csv": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\paper_artifacts_20260524\\restart_column_bias_random1_sampler_regs_only_formal_bits_warmup4_sweep01\\expanded_column_counts.csv",
+    "top_biased_positions_csv": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\paper_artifacts_20260524\\restart_column_bias_random1_sampler_regs_only_formal_bits_warmup4_sweep01\\top_biased_positions.csv",
+    "heatmap_svg": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\paper_artifacts_20260524\\restart_column_bias_random1_sampler_regs_only_formal_bits_warmup4_sweep01\\restart_byte_bit_heatmap.svg"
+  }
+}

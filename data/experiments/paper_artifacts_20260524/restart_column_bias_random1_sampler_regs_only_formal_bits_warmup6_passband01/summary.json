@@ -1,0 +1,37 @@
+{
+  "analysis": "packed restart byte/bit column bias",
+  "label": "random1_sampler_regs_only_formal_bits_warmup6_passband01",
+  "input_file": "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\restart\\random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup6_header_delay60s_passband01_20260524.bin",
+  "input_sha256": "7B584BEFF0E1DB252C332D76C7780DD8E5C680FF89D45550A58D0E4DFE382615",
+  "input_bytes": 125000,
+  "restart_count": 1000,
+  "bytes_per_restart": 125,
+  "expanded_symbols_per_restart": 1000,
+  "total_bits": 1000000,
+  "total_ones": 496280,
+  "overall_p1": 0.49628,
+  "row_ones_mean": 496.28,
+  "row_ones_std": 16.491197652080942,
+  "x_cutoff": 0,
+  "positions_over_x_cutoff": 0,
+  "worst_position": {
+    "byte_index": 24,
+    "bit_index": 4,
+    "ones": 449,
+    "zeros": 551,
+    "p1": "0.449000000",
+    "abs_bias": "0.051000000",
+    "x": 551,
+    "msb_expanded_column": 195,
+    "lsb_expanded_column": 196,
+    "over_x_cutoff": false
+  },
+  "interpretation_hint": "For a packed input byte, MSB expansion maps bit b to column byte*8+(7-b); LSB expansion maps bit b to column byte*8+b.",
+  "created_at": "2026-05-24 15:27:22",
+  "outputs": {
+    "raw_byte_bit_counts_csv": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\paper_artifacts_20260524\\restart_column_bias_random1_sampler_regs_only_formal_bits_warmup6_passband01\\raw_byte_bit_counts.csv",
+    "expanded_column_counts_csv": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\paper_artifacts_20260524\\restart_column_bias_random1_sampler_regs_only_formal_bits_warmup6_passband01\\expanded_column_counts.csv",
+    "top_biased_positions_csv": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\paper_artifacts_20260524\\restart_column_bias_random1_sampler_regs_only_formal_bits_warmup6_passband01\\top_biased_positions.csv",
+    "heatmap_svg": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\paper_artifacts_20260524\\restart_column_bias_random1_sampler_regs_only_formal_bits_warmup6_passband01\\restart_byte_bit_heatmap.svg"
+  }
+}

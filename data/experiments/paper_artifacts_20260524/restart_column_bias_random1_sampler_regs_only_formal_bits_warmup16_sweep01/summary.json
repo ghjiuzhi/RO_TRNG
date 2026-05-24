@@ -1,0 +1,37 @@
+{
+  "analysis": "packed restart byte/bit column bias",
+  "label": "random1_sampler_regs_only_formal_bits_warmup16_sweep01",
+  "input_file": "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\restart\\random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup16_header_delay60s_sweep01_20260524.bin",
+  "input_sha256": "D6487168F7301D42FE4A8E808E184310403FDA123183FD21064E536741E60D78",
+  "input_bytes": 125000,
+  "restart_count": 1000,
+  "bytes_per_restart": 125,
+  "expanded_symbols_per_restart": 1000,
+  "total_bits": 1000000,
+  "total_ones": 466933,
+  "overall_p1": 0.466933,
+  "row_ones_mean": 466.933,
+  "row_ones_std": 15.666221975958338,
+  "x_cutoff": 0,
+  "positions_over_x_cutoff": 0,
+  "worst_position": {
+    "byte_index": 60,
+    "bit_index": 3,
+    "ones": 414,
+    "zeros": 586,
+    "p1": "0.414000000",
+    "abs_bias": "0.086000000",
+    "x": 586,
+    "msb_expanded_column": 484,
+    "lsb_expanded_column": 483,
+    "over_x_cutoff": false
+  },
+  "interpretation_hint": "For a packed input byte, MSB expansion maps bit b to column byte*8+(7-b); LSB expansion maps bit b to column byte*8+b.",
+  "created_at": "2026-05-24 15:13:37",
+  "outputs": {
+    "raw_byte_bit_counts_csv": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\paper_artifacts_20260524\\restart_column_bias_random1_sampler_regs_only_formal_bits_warmup16_sweep01\\raw_byte_bit_counts.csv",
+    "expanded_column_counts_csv": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\paper_artifacts_20260524\\restart_column_bias_random1_sampler_regs_only_formal_bits_warmup16_sweep01\\expanded_column_counts.csv",
+    "top_biased_positions_csv": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\paper_artifacts_20260524\\restart_column_bias_random1_sampler_regs_only_formal_bits_warmup16_sweep01\\top_biased_positions.csv",
+    "heatmap_svg": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\paper_artifacts_20260524\\restart_column_bias_random1_sampler_regs_only_formal_bits_warmup16_sweep01\\restart_byte_bit_heatmap.svg"
+  }
+}

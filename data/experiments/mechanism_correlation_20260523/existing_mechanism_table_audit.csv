@@ -1,0 +1,5 @@
+source,group,required_columns,present_columns,missing_columns,rows,populated_cells,total_cells,coverage
+data/experiments/paper_artifacts_20260515/table_restart_mechanism_link.csv,restart worst columns,6,6,,11,66,66,1
+data/experiments/paper_artifacts_20260515/table_restart_mechanism_link.csv,TRNG entropy,3,3,,11,33,33,1
+data/experiments/paper_artifacts_20260515/table_restart_mechanism_link.csv,RO_FREQ,3,3,,11,33,33,1
+data/experiments/paper_artifacts_20260515/table_restart_mechanism_link.csv,TDC,3,3,,11,33,33,1

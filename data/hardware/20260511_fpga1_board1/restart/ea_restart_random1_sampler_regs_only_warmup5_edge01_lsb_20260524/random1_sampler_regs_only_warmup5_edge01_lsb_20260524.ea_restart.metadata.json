@@ -1,0 +1,20 @@
+﻿{
+    "tool":  "ea_restart",
+    "mode":  "non_iid",
+    "exe":  "E:\\Project\\MLDSA\\RO_TRNG\\sim\\SP800-90B_EntropyAssessment\\cpp\\ea_restart.exe",
+    "input_file":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\restart\\random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup5_header_delay60s_edge01_20260524_bps1_lsb.bin",
+    "input_sha256":  "74C3136E3FB593A9853E2EDF92425292B89A80A331C3913426EBAB9A7462A3DE",
+    "input_bytes":  1000000,
+    "bits_per_symbol":  1,
+    "initial_entropy":  0.999451118605921,
+    "simulation_count":  0,
+    "command":  "E:\\Project\\MLDSA\\RO_TRNG\\sim\\SP800-90B_EntropyAssessment\\cpp\\ea_restart.exe -n E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\restart\\random1_sampler_regs_only_restart_auto_formal_bits_1000x125_warmup5_header_delay60s_edge01_20260524_bps1_lsb.bin 1 0.999451118605921",
+    "stdout":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\restart\\ea_restart_random1_sampler_regs_only_warmup5_edge01_lsb_20260524\\random1_sampler_regs_only_warmup5_edge01_lsb_20260524.ea_restart.stdout.txt",
+    "stderr":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\restart\\ea_restart_random1_sampler_regs_only_warmup5_edge01_lsb_20260524\\random1_sampler_regs_only_warmup5_edge01_lsb_20260524.ea_restart.stderr.txt",
+    "version_file":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\restart\\ea_restart_random1_sampler_regs_only_warmup5_edge01_lsb_20260524\\random1_sampler_regs_only_warmup5_edge01_lsb_20260524.ea_restart.version.txt",
+    "exit_code":  0,
+    "ea_restart_status":  "passed",
+    "start_time":  "2026-05-24 15:55:50",
+    "end_time":  "2026-05-24 15:56:56",
+    "duration_seconds":  66.063
+}

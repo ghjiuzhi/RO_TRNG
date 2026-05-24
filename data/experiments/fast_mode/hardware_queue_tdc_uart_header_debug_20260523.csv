@@ -1,0 +1,2 @@
+enabled,priority,run,kind,bitstream,bytes,out_file,metadata_dir,analyze_group,idle_timeout_sec,notes
+1,P0,tdc_uart_header_debug_repeat8,tdc,data\vivado_runs\fpga1_tdc_uart_header_debug\RO_TDC_uart_header_debug_top.bit,128,data\hardware\20260511_fpga1_board1\tdc_reset_aligned\tdc_uart_header_debug_repeat8.bin,data\hardware\20260511_fpga1_board1\metadata,tdc_uart_header_debug_20260523,120,UART-only debug: eight 16-byte TDCR-style headers, no RO/TDC/CARRY, delayed about 80s after configuration

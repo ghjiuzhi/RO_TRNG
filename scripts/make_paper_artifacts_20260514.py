@@ -240,7 +240,7 @@ def write_readme(
         "",
         "## Quick Read",
         "",
-        f"- Six pair-specific TDC dynamic runs are included; max small-lag `|r|` is `{max_lag:.6g}`.",
+        f"- `{len(tdc_summary)}` pair-specific TDC dynamic runs are included; max small-lag `|r|` is `{max_lag:.6g}`.",
         f"- Conservative strong-lock windows across all TDC pair windows: `{strong_windows}`.",
         f"- Claims table entries: `{len(claims)}`.",
     ]
@@ -296,7 +296,7 @@ def main() -> None:
         "TDC Pair Dynamics Summary",
         tdc_summary,
         tdc_fields,
-        "Six pair-specific TDC dynamic captures summarized from windowed analysis.",
+        f"{len(tdc_summary)} pair-specific TDC dynamic captures summarized from windowed analysis.",
     )
     copy_table(
         args.tdc_dynamics_csv,

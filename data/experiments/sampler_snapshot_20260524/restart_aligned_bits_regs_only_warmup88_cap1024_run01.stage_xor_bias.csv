@@ -1,0 +1,9 @@
+label,stage,ones,zeros,p1,abs_bias
+restart_aligned_bits_regs_only_warmup88_cap1024_run01,0,527,497,0.514648438,0.014648438
+restart_aligned_bits_regs_only_warmup88_cap1024_run01,1,519,505,0.506835938,0.006835938
+restart_aligned_bits_regs_only_warmup88_cap1024_run01,2,508,516,0.496093750,0.003906250
+restart_aligned_bits_regs_only_warmup88_cap1024_run01,3,494,530,0.482421875,0.017578125
+restart_aligned_bits_regs_only_warmup88_cap1024_run01,4,555,469,0.541992188,0.041992188
+restart_aligned_bits_regs_only_warmup88_cap1024_run01,5,511,513,0.499023438,0.000976562
+restart_aligned_bits_regs_only_warmup88_cap1024_run01,6,503,521,0.491210938,0.008789062
+restart_aligned_bits_regs_only_warmup88_cap1024_run01,7,542,482,0.529296875,0.029296875

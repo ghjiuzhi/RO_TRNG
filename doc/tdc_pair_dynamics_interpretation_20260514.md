@@ -4,7 +4,7 @@ This note is based only on completed offline TDC pair data in `data/hardware/202
 
 ## Key Result
 
-- Maximum absolute zero-lag window phase correlation: `0.0170543`.
+- Maximum absolute zero-lag window phase correlation: `0.0265191`.
 - Maximum absolute small-lag window phase correlation: `0.0317827`.
 - Conservative strong-lock windows (`|r| >= 0.5` after small-lag scan): `0`.
 

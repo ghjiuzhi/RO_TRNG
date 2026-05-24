@@ -1,0 +1,22 @@
+﻿{
+    "capture_id":  "random3_repeat03",
+    "kind":  "trng",
+    "output_file":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\trng\\random3_repeat03.bin",
+    "bitstream":  "data\\vivado_runs\\fpga1_ro_trng_matrix\\random_seed3_x36y35\\seed_1\\RO_TRNG_top.bit",
+    "bitstream_resolved":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\vivado_runs\\fpga1_ro_trng_matrix\\random_seed3_x36y35\\seed_1\\RO_TRNG_top.bit",
+    "bitstream_sha256":  "99C40437B792753247654B1AA4D46DCA7069C3A0F93CD07CA97F8486369AA239",
+    "uart_port":  "COM3",
+    "baud":  115200,
+    "uart_format":  "8N1, no parity, no flow control",
+    "bytes_requested":  20971520,
+    "bytes_captured":  20971520,
+    "sha256":  "25BB10AEB89CF743993498DEEA9606DF2EFF30CA40884710C3672CA9850A7DB4",
+    "start_time":  "2026-05-14 13:11:51",
+    "end_time":  "2026-05-14 13:53:35",
+    "duration_seconds":  2503.542,
+    "throughput_bytes_per_second":  8376.74,
+    "room_temperature_c":  "",
+    "fpga_temperature_c":  "",
+    "voltage_condition":  "nominal_board_power",
+    "notes":  ""
+}
