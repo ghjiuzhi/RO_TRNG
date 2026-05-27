@@ -35,7 +35,7 @@ $includeRoots = @(
 $excludeExt = @(
     ".bin", ".bit", ".dcp", ".jou", ".log", ".pb", ".rpx", ".wdb",
     ".wcfg", ".str", ".vdi", ".zip", ".pdf", ".exe", ".o", ".obj",
-    ".a", ".tmp"
+    ".a", ".tmp", ".docx"
 )
 
 $excludeDir = @(
