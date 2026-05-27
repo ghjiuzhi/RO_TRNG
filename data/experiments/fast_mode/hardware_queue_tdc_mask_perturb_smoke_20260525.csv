@@ -1,0 +1,2 @@
+enabled,priority,run,kind,bitstream,bytes,out_file,metadata_dir,analyze_group,idle_timeout_sec,notes
+1,P0,tdc_mask_random1_ro0_ro1_pair_only_smoke,tdc,data\vivado_runs\fpga1_tdc_mask_perturb\tdc_mask_random1_ro0_ro1_pair_only_smoke\RO_TDC_pair_mask_perturb_top.bit,1MiB,data\hardware\20260511_fpga1_board1\tdc_mask_perturb\tdc_mask_random1_ro0_ro1_pair_only_smoke_20260525.bin,data\hardware\20260511_fpga1_board1\metadata,tdc_mask_perturb_20260525,120,"TDC mask perturb smoke; random1 baseline RO0/RO1; mode=pair_only; flags encode mode=0 and ro_enable"

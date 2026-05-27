@@ -47,7 +47,9 @@ $excludeDirPatterns = @(
 )
 
 $excludeNamePatterns = @(
-    "*.tdc_packets.csv"
+    "*.tdc_packets.csv",
+    "*.bits.bin.metadata.json",
+    "*.payload.metadata.json"
 )
 
 function Convert-ToRelativePath([string]$Base, [string]$Path) {

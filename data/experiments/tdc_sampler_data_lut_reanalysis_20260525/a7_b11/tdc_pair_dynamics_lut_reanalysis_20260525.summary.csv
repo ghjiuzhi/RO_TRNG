@@ -1,0 +1,7 @@
+run,windows,packets,phase_r_mean,phase_r_max_abs,best_lag_abs_r_max,best_lag_at_window,best_lag_packets,diff_std_ps_mean,diff_mean_ps_span,diff_mean_ps_slope_per_window,strong_lock_windows,claim_reading
+tdc_sampler_data_random1_baseline_sample_x36y35_ro0_2mib,16,262144,0.000640955512,0.00695143217,0.0210209763,10,-1,1419.93511,50.9552324,-0.491149449,0,no strong pair locking detected after fixed-LUT reanalysis
+tdc_sampler_data_random1_baseline_sample_x36y35_ro4_2mib,16,262143,0.00151656395,0.0151733373,0.0204740687,14,-2,1428.80619,44.0117361,-0.543288632,0,no strong pair locking detected after fixed-LUT reanalysis
+tdc_sampler_data_random1_local_sample_x45y39_ro0_2mib,16,262143,-0.00143358855,0.0150301701,0.0222326552,4,3,1425.79178,28.2624655,-0.43521934,0,no strong pair locking detected after fixed-LUT reanalysis
+tdc_sampler_data_random1_local_sample_x45y39_ro4_2mib,16,262144,-0.00240669346,0.0136165053,0.02056795,5,-8,1430.3628,46.4826557,0.0754022234,0,no strong pair locking detected after fixed-LUT reanalysis
+tdc_sampler_data_random3_sample_x36y35_ro0_2mib,16,262143,0.00314801023,0.0142376042,0.0272195217,1,6,1440.27198,34.7780534,-0.907608652,0,no strong pair locking detected after fixed-LUT reanalysis
+tdc_sampler_data_random3_sample_x36y35_ro3_2mib,16,262143,-0.000725409625,0.0142189558,0.0229971378,6,-1,1434.21446,38.4004041,-0.0998277285,0,no strong pair locking detected after fixed-LUT reanalysis

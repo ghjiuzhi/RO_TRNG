@@ -1,0 +1,24 @@
+{
+  "input_file": "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\restart\\restart_reduced_xor_random1_sampler_island_local_warmup10_data_ro0_1000x125_strict_20260526.bin",
+  "input_sha256": "E97DFE496E149D4180CB7F523B142A94CDD819796FC32558F0BAC3E24620B151",
+  "input_bytes": 125008,
+  "output_file": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\restart_reduced_xor_w5_w10_w11_data_ro0_20260526\\payloads\\restart_reduced_xor_random1_sampler_island_local_warmup10_data_ro0_1000x125_strict_20260526.payload.bin",
+  "restart_count_expected": 1000,
+  "row_bytes_expected": 125,
+  "payload_bytes_expected": 125000,
+  "header": {
+    "header_hex": "A55A03E8007D01D0",
+    "restart_count": 1000,
+    "row_bytes": 125,
+    "version": 1,
+    "state": 208
+  },
+  "mode": "stripped_header_strict",
+  "status": "ok",
+  "diagnostic_only": false,
+  "rows_written": 1000,
+  "created_at": "2026-05-26 10:39:53",
+  "error": "",
+  "output_sha256": "40ADEAC5BC1EB7B0AFCC80965F9878090BBBFB4EF2B650C4CF4B8D5D7476B123",
+  "output_bytes": 125000
+}

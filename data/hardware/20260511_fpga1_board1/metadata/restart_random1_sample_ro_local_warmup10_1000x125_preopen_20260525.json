@@ -1,0 +1,21 @@
+﻿{
+    "capture_id":  "restart_random1_sample_ro_local_warmup10_1000x125_preopen_20260525",
+    "board_id":  "z7020_b01",
+    "capture_method":  "preopen_serial_then_program",
+    "bitstream":  "data\\vivado_runs\\restart_auto_random1_sample_ro_local_formal_bits_1000x125_warmup10_header_delay60s\\RO_TRNG_restart_auto_top.bit",
+    "bitstream_resolved":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\vivado_runs\\restart_auto_random1_sample_ro_local_formal_bits_1000x125_warmup10_header_delay60s\\RO_TRNG_restart_auto_top.bit",
+    "bitstream_sha256":  "3C0273B3E9BB2EB41A1F06BDDFF627C6B7B19F770EA4D0DB227B465120690E87",
+    "output_file":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\restart\\restart_random1_sample_ro_local_warmup10_1000x125_preopen_20260525.bin",
+    "output_sha256":  "86D41527BAC91214FB1EA69E7147D65756FAE632C6CFAA68E94E7BBDF7A290AC",
+    "output_bytes":  125000,
+    "first_16_bytes_hex":  "A55A03E8007D01D03EF8BE7EA1577174",
+    "uart_port":  "COM3",
+    "baud":  115200,
+    "read_timeout_ms":  1000,
+    "idle_timeout_sec":  120,
+    "read_buffer_bytes":  1048576,
+    "start_time":  "2026-05-25 22:57:34",
+    "end_time":  "2026-05-25 22:59:37",
+    "duration_seconds":  122.712,
+    "capture_script":  "E:\\Project\\MLDSA\\RO_TRNG\\scripts\\program_and_capture_uart_preopen.ps1"
+}

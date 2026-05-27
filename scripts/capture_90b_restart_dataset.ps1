@@ -42,6 +42,9 @@ param(
 
     [switch]$RecordXadc,
 
+    [ValidateSet("before_after", "after_only")]
+    [string]$XadcMode = "before_after",
+
     [string]$XadcCsv = "",
 
     [string]$BoardId = "z7020_b01"
@@ -290,7 +293,21 @@ if (Test-Path $tmpPath) { Remove-Item -LiteralPath $tmpPath -Force }
 if (Test-Path $outPath) { Remove-Item -LiteralPath $outPath -Force }
 
 $startTime = Get-Date
-$xadcBefore = Invoke-XadcSnapshot -Phase "before_restart_capture" -CsvPath $xadcCsvPath
+$xadcBefore = [ordered]@{
+    phase = "before_restart_capture"
+    status = if ($RecordXadc -and $XadcMode -eq "after_only") { "skipped_after_only" } else { "not_requested" }
+    csv = $xadcCsvPath
+    timestamp = ""
+    temperature_c = ""
+    vccint_v = ""
+    vccaux_v = ""
+    vccbram_v = ""
+    vpvn_v = ""
+    error = ""
+}
+if ($XadcMode -eq "before_after") {
+    $xadcBefore = Invoke-XadcSnapshot -Phase "before_restart_capture" -CsvPath $xadcCsvPath
+}
 $rowRecords = New-Object System.Collections.Generic.List[object]
 $retryTotal = 0
 
@@ -474,6 +491,7 @@ $metadata = [ordered]@{
     end_time = $endTime.ToString("yyyy-MM-dd HH:mm:ss")
     duration_seconds = [Math]::Round(($endTime - $startTime).TotalSeconds, 3)
     xadc_csv = $xadcCsvPath
+    xadc_mode = if ($RecordXadc) { $XadcMode } else { "not_requested" }
     xadc_before = $xadcBefore
     xadc_after = $xadcAfter
     capture_script = $PSCommandPath

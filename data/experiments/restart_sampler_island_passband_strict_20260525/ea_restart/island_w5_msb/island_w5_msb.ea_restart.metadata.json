@@ -1,0 +1,20 @@
+﻿{
+    "tool":  "ea_restart",
+    "mode":  "non_iid",
+    "exe":  "E:\\Project\\MLDSA\\RO_TRNG\\sim\\SP800-90B_EntropyAssessment\\cpp\\ea_restart.exe",
+    "input_file":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\restart_sampler_island_passband_strict_20260525\\bit_symbols\\restart_random1_sampler_island_local_warmup5_1000x125_strict_20260525.msb.bits.bin",
+    "input_sha256":  "FD9637D16FBFE935A38EB7C0C512EC6F40D7B9697A3356AD078993FB0277B255",
+    "input_bytes":  1000000,
+    "bits_per_symbol":  1,
+    "initial_entropy":  0.902345,
+    "simulation_count":  0,
+    "command":  "E:\\Project\\MLDSA\\RO_TRNG\\sim\\SP800-90B_EntropyAssessment\\cpp\\ea_restart.exe -n E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\restart_sampler_island_passband_strict_20260525\\bit_symbols\\restart_random1_sampler_island_local_warmup5_1000x125_strict_20260525.msb.bits.bin 1 0.902345",
+    "stdout":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\restart_sampler_island_passband_strict_20260525\\ea_restart\\island_w5_msb\\island_w5_msb.ea_restart.stdout.txt",
+    "stderr":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\restart_sampler_island_passband_strict_20260525\\ea_restart\\island_w5_msb\\island_w5_msb.ea_restart.stderr.txt",
+    "version_file":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\restart_sampler_island_passband_strict_20260525\\ea_restart\\island_w5_msb\\island_w5_msb.ea_restart.version.txt",
+    "exit_code":  0,
+    "ea_restart_status":  "passed",
+    "start_time":  "2026-05-26 00:21:35",
+    "end_time":  "2026-05-26 00:22:50",
+    "duration_seconds":  75.244
+}

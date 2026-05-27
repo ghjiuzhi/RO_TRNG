@@ -1,0 +1,2 @@
+label,input,restart_count,row_bytes,warmup_bytes,overall_p1,overall_abs_bias,overall_min_entropy,row_ones_mean,row_ones_std,worst_byte_index,worst_bit_index,worst_x,worst_p1
+island_w10_repeat02.payload,data\experiments\restart_sampler_island_w10_repeat02_20260526\payloads\island_w10_repeat02.payload.bin,1000,125,,0.458774000,0.041226000,0.885696948,458.774000000,16.722766637,4,4,599,0.401000000

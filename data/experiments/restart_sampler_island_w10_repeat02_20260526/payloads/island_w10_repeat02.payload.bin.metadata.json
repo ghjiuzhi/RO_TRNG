@@ -1,0 +1,24 @@
+{
+  "input_file": "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\restart\\restart_random1_sampler_island_local_warmup10_1000x125_strict_repeat02_20260526.bin",
+  "input_sha256": "A1ADD4ABA6C9A111DAEFC84D677B6F6F62C6E90C201512F2FA8FFE0A53D1E199",
+  "input_bytes": 125008,
+  "output_file": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\restart_sampler_island_w10_repeat02_20260526\\payloads\\island_w10_repeat02.payload.bin",
+  "restart_count_expected": 1000,
+  "row_bytes_expected": 125,
+  "payload_bytes_expected": 125000,
+  "header": {
+    "header_hex": "A55A03E8007D01D0",
+    "restart_count": 1000,
+    "row_bytes": 125,
+    "version": 1,
+    "state": 208
+  },
+  "mode": "stripped_header_strict",
+  "status": "ok",
+  "diagnostic_only": false,
+  "rows_written": 1000,
+  "created_at": "2026-05-26 00:42:47",
+  "error": "",
+  "output_sha256": "98CB765D86A7466FEFEE80F95BB1F0CFD3CF6093EEB3A326B277CEEBB26071AD",
+  "output_bytes": 125000
+}

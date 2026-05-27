@@ -1,0 +1,38 @@
+{
+  "label": "sampler_snapshot_random1_sampler_island_warmup5_cap1024_20260526",
+  "input": "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\sampler_snapshot\\sampler_snapshot_random1_sampler_island_warmup5_cap1024_20260526.bin",
+  "sha256": "E78E35BC754AD1D1931332A18457816AA53D908AF623A915324CCE0EC3FD8804",
+  "version": 1,
+  "variant_id": 23,
+  "warmup_snapshots": 5,
+  "capture_snapshots": 1024,
+  "sample_bytes": 8,
+  "ro_num": 8,
+  "sample_stages": 9,
+  "marker0": 85,
+  "marker1": 170,
+  "frames": 1024,
+  "rand_p1": 0.509765625,
+  "rand_entropy": 0.9997248102609695,
+  "rand_min_entropy": 0.9720940034301155,
+  "stage_xor_entropy": 7.773145839089039,
+  "stage_xor_min_entropy": 6.415037499278844,
+  "worst_sampled_bit": {
+    "label": "sampler_snapshot_random1_sampler_island_warmup5_cap1024_20260526",
+    "bit_index": 14,
+    "line": 1,
+    "data_ro": 6,
+    "ones": 581,
+    "zeros": 443,
+    "p1": "0.567382812",
+    "abs_bias": "0.067382812"
+  },
+  "worst_stage_xor": {
+    "label": "sampler_snapshot_random1_sampler_island_warmup5_cap1024_20260526",
+    "stage": 5,
+    "ones": 489,
+    "zeros": 535,
+    "p1": "0.477539062",
+    "abs_bias": "0.022460938"
+  }
+}

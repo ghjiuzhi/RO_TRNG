@@ -1,0 +1,2 @@
+label,input,restart_count,row_bytes,warmup_bytes,overall_p1,overall_abs_bias,overall_min_entropy,row_ones_mean,row_ones_std,worst_byte_index,worst_bit_index,worst_x,worst_p1
+restart_auto_random1_regs_only_sample_ro_compact_locked_warmup4_1000x125_run02_20260525,E:\Project\MLDSA\RO_TRNG\data\hardware\20260511_fpga1_board1\restart\restart_auto_random1_regs_only_sample_ro_compact_locked_warmup4_1000x125_run02_20260525.bin,1000,125,4,0.499754000,0.000246000,0.999290369,499.754000000,16.111222300,109,4,552,0.448000000

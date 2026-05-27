@@ -1,0 +1,2 @@
+label,frames,rand_p1,rand_entropy,sampled_bit_mean_p1,sampled_bit_mean_abs_bias,sampled_bits_p1_gt_0p55,sampled_bits_p1_lt_0p45,stage_xor_mean_p1,stage_xor_gt_0p5,stage_xor_lt_0p5
+w11,1024,0.500976562,0.999997248,0.524139404,0.027099609,13,0,0.499755859,4,4

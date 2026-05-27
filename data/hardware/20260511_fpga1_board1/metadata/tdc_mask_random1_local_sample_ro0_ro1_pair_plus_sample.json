@@ -1,0 +1,21 @@
+﻿{
+    "capture_id":  "tdc_mask_random1_local_sample_ro0_ro1_pair_plus_sample",
+    "board_id":  "z7020_b01",
+    "capture_method":  "preopen_serial_then_program",
+    "bitstream":  "data\\vivado_runs\\fpga1_tdc_mask_perturb\\tdc_mask_random1_local_sample_ro0_ro1_pair_plus_sample\\RO_TDC_pair_mask_perturb_top.bit",
+    "bitstream_resolved":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\vivado_runs\\fpga1_tdc_mask_perturb\\tdc_mask_random1_local_sample_ro0_ro1_pair_plus_sample\\RO_TDC_pair_mask_perturb_top.bit",
+    "bitstream_sha256":  "01292421F004300BEE4F405C690454E391C59E12CAB343E24CAE986F4DDA97BF",
+    "output_file":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\tdc_mask_perturb\\tdc_mask_random1_local_sample_ro0_ro1_pair_plus_sample_20260525.bin",
+    "output_sha256":  "5EDC734FDCC8948BB4EE35FBD6E24485028342F5C5780ADE4EB814D310AE2188",
+    "output_bytes":  8388608,
+    "first_16_bytes_hex":  "10CFA5856C1284032ACFA5866CA2A227",
+    "uart_port":  "COM3",
+    "baud":  115200,
+    "read_timeout_ms":  1000,
+    "idle_timeout_sec":  120,
+    "read_buffer_bytes":  1048576,
+    "start_time":  "2026-05-25 20:18:23",
+    "end_time":  "2026-05-25 20:31:32",
+    "duration_seconds":  789.282,
+    "capture_script":  "E:\\Project\\MLDSA\\RO_TRNG\\scripts\\program_and_capture_uart_preopen.ps1"
+}

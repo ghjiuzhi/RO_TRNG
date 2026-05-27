@@ -17,8 +17,10 @@
 | compact FIFO diag | formal-routed sample RO locked | 4 run01 | `1000 x 125` | `0.376796000` | byte0 bit5 | `0.195` | `805` | low-bias fail restored |
 | compact FIFO diag | formal-routed sample RO locked | 4 repeat03 | `1000 x 125` | `0.376651000` | byte0 bit5 | `0.116` | `884` | low-bias fail reproduced |
 | compact FIFO diag | formal-routed sample RO locked | 5 | `1000 x 125` | `0.373430000` | byte2 bit2 | `0.243` | `757` | original pass window pulled bad |
+| compact FIFO diag | formal-routed sample RO locked | 5 run02 | `1000 x 125` | `0.373541000` | byte1 bit2 | `0.208` | `792` | original pass window pulled bad, reproduced |
 | compact FIFO diag | formal-routed sample RO locked | 11 | `1000 x 125` | `0.464819000` | byte18 bit4 | `0.424` | `576` | weaker but still biased |
 | formal auto | compact-routed sample RO locked | 4 | `1000 x 125` | `0.499419000` | byte61 bit6 | `0.552` | `552` | formal w4 low-bias fail repaired |
+| formal auto | compact-routed sample RO locked | 4 run02 | `1000 x 125` | `0.499754000` | byte109 bit4 | `0.448` | `552` | repair reproduced |
 
 这个结果支持更强的论文表述：
 
@@ -65,6 +67,28 @@ D2A092A698F3185AB1A969C83792A0FF6AA2A684A48074E76EE53C766AC394E7
 
 summary:
 data/experiments/restart_fifo_diag_20260525/restart_fifo_compact_diag_regs_only_sample_ro_formal_locked_warmup5_1000x125_run01_20260525.summary.md
+```
+
+warmup5 formal-routed sample RO locked repeat02：
+
+```text
+capture:
+data/hardware/20260511_fpga1_board1/restart_fifo_diag/restart_fifo_compact_diag_regs_only_sample_ro_formal_locked_warmup5_1000x125_run02_20260525.bin
+
+capture SHA256:
+8A980D32DDADDBA678C4B5A64B715A3C53291605D0F3C94E67772068A9C69DDC
+
+packed body SHA256:
+7E45D2883DD8624A93CF10394AD7D0DA4420A0C67BD76B4290DC2BDF5820115C
+
+bitstream SHA256:
+D2A092A698F3185AB1A969C83792A0FF6AA2A684A48074E76EE53C766AC394E7
+
+XADC:
+after-only ok, TEMPERATURE=46.5 C
+
+summary:
+data/experiments/restart_fifo_diag_20260525/restart_fifo_compact_diag_regs_only_sample_ro_formal_locked_warmup5_1000x125_run02_20260525.summary.md
 ```
 
 warmup11 formal-routed sample RO locked：
@@ -192,6 +216,35 @@ worst p1 = 0.552000000
 worst x = 552
 ```
 
+反向 repeat02 结果：
+
+```text
+capture:
+data/hardware/20260511_fpga1_board1/restart/restart_auto_random1_regs_only_sample_ro_compact_locked_warmup4_1000x125_run02_20260525.bin
+
+capture format:
+125000-byte row-major restart body, with 8-byte formal auto debug header verified before saving body
+
+header:
+A55A03E8007D01D0
+
+capture SHA256:
+9FF880AA0D82E27C7FCAAD0AED6183E2878E2299EB19B276E38EF54799BE6873
+
+bitstream SHA256:
+AE70EE95710E955760D7717E7D5439B6B6D6E5BD0F15DEF09587D1E874734862
+
+XADC:
+after-only ok, TEMPERATURE=46.9 C
+
+overall p1 = 0.499754000
+overall min-H = 0.999290369
+row ones std = 16.111222300
+worst position = byte 109 bit 4
+worst p1 = 0.448000000
+worst x = 552
+```
+
 这说明 formal auto w4 原本的低偏失败可以被 compact-routed sample RO 修复到接近理想。结合前面的单向实验：
 
 ```text
@@ -266,11 +319,30 @@ python scripts\analyze_restart_matrix_columns.py `
 
 > TDC evidence rules out simple pairwise RO locking, while counterfactual restart placement experiments show that sampler-side physical implementation, especially the sample RO and its local routing/neighboring control logic, reshapes the restart startup passband. The sampler path must be treated as part of the physical entropy-source boundary rather than a passive readout circuit.
 
-## 下一步建议
+## Paper-ready Evidence Table
 
-优先级最高的下一步不是盲目扩大量，而是补两个最小反事实：
+| id | direction | top design | sample RO placement | warmup | header bytes | captured bytes | p1 | min-H | worst byte.bit | worst p1 | worst x | XADC | interpretation |
+| --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | --- | ---: | ---: | --- | --- |
+| B0-w4 | baseline | compact FIFO diag | compact routed | 4 | 16 | 125016 | `0.498297000` | `0.995095` | 1.7 | `0.445` | 555 | historical | compact diagnostic itself near ideal |
+| B0-w5 | baseline | compact FIFO diag | compact routed | 5 | 16 | 125016 | `0.498316000` | `0.995680` | 26.1 | `0.549` | 549 | historical | compact diagnostic pass window |
+| F-w4-r03 | forward fail | compact FIFO diag | formal-routed locked | 4 | 16 | 125016 | `0.376651000` | `0.681417` | 0.5 | `0.116` | 884 | no XADC | low-bias fail reproduced |
+| F-w5-r01 | forward fail | compact FIFO diag | formal-routed locked | 5 | 16 | 125016 | `0.373430000` | `0.674479` | 2.2 | `0.243` | 757 | after-only ok | original pass window pulled bad |
+| F-w5-r02 | forward fail | compact FIFO diag | formal-routed locked | 5 | 16 | 125016 | `0.373541000` | `0.674708` | 1.2 | `0.208` | 792 | after-only ok, 46.5 C | warmup5 failure reproduced |
+| F-w11-r01 | forward fail | compact FIFO diag | formal-routed locked | 11 | 16 | 125016 | `0.464819000` | `0.902004` | 18.4 | `0.424` | 576 | after-only ok | bias weakens at longer warmup |
+| R-w4-r01 | reverse repair | formal auto | compact-routed locked | 4 | 8 | 125000 body | `0.499419000` | `0.998325` | 61.6 | `0.552` | 552 | historical | formal w4 failure repaired |
+| R-w4-r02 | reverse repair | formal auto | compact-routed locked | 4 | 8 | 125000 body | `0.499754000` | `0.999290` | 109.4 | `0.448` | 552 | after-only ok, 46.9 C | repair reproduced |
 
-1. `formal auto` 中把 sample RO 锁回 compact-routed LOC/BEL，测试 formal w4 是否被修好。
-2. 对 locked w5 做一次 repeat，确认 warmup5 被拉坏不是单次构建偶然。
+说明：
 
-如果这两个也成立，论文机制会从“强证据”进一步接近“因果闭环”。
+- `formal auto` 的 capture 脚本现在用 `scripts/run_sample_ro_reverse_repair_repeat_20260525.ps1`，先验证 8-byte header，再只保存 `125000`-byte body。
+- `compact FIFO diag` 的 capture 包含 16-byte `FDIC` header，所以完整文件为 `125016` bytes，分析时剥离为 `125000`-byte packed body。
+- `F-w5-r02` 和 `R-w4-r02` 是本轮新增复现，分别确认 forward fail 和 reverse repair 都不是单次偶然。
+
+## 已完成的反事实闭环
+
+原先建议补的两个最小反事实已经完成：
+
+1. `formal auto` 中把 sample RO 锁回 compact-routed LOC/BEL，formal w4 被修到 near ideal，并在 run02 复现。
+2. 对 locked w5 做 repeat，warmup5 再次强低偏失败，说明 pass window 被 formal-routed sample RO 稳定拉坏。
+
+因此论文机制已经从“强证据”进一步接近“因果闭环”。下一步最值得投入的是 TDC reset-aligned / reset-enable startup diffusion，用来解释 sample RO passband 为什么会改变，而不是继续堆同类 restart repeat。

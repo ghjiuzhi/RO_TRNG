@@ -58,6 +58,7 @@ Complete formal/repeat captures only.
 | random1_sampler_island_local_x45y39_regs_x45y31_5mib_20260523 |  |  | 5242880 | not a formal/repeat capture id |
 | random1_sampler_island_local_x45y39_regs_x45y31_program_20mib_20260523 |  |  | 20971520 | not a formal/repeat capture id |
 | random1_sampler_island_local_x45y39_regs_x45y31_program_5mib_20260523 |  |  | 5242880 | not a formal/repeat capture id |
+| random1_sampler_regs_only_restart_auto_formal_1000x125_warmup4_retest01_20260524 |  |  | 125008 | metadata kind is not trng |
 | random1_sampler_regs_only_x45y31_20mib_20260524 |  |  | 20971520 | not a formal/repeat capture id |
 | random1_sampler_regs_only_x45y31_smoke_5mib_20260524 |  |  | 5242880 | not a formal/repeat capture id |
 | random1_smoke01 |  |  | 1048576 | not a formal/repeat capture id |
@@ -69,15 +70,70 @@ Complete formal/repeat captures only.
 | random3_ro_freq_fixed_run04_5mib |  |  | 5242880 | metadata kind is not trng |
 | random3_ro_freq_fixed_smoke01_512k |  |  | 524288 | metadata kind is not trng |
 | random3_smoke01 |  |  | 1048576 | not a formal/repeat capture id |
+| restart_aligned_snapshot_bits_regs_only_warmup32_cap1024_run01 |  |  | 16400 | metadata kind is not trng |
+| restart_aligned_snapshot_bits_regs_only_warmup40_cap1024_run01 |  |  | 16400 | metadata kind is not trng |
+| restart_aligned_snapshot_bits_regs_only_warmup80_cap1024_run01 |  |  | 16400 | metadata kind is not trng |
+| restart_aligned_snapshot_bits_regs_only_warmup88_cap1024_run01 |  |  | 16400 | metadata kind is not trng |
+| restart_aligned_snapshot_regs_only_warmup10_cap1024_run01 |  |  | 16400 | metadata kind is not trng |
+| restart_aligned_snapshot_regs_only_warmup11_cap1024_run01 |  |  | 16400 | metadata kind is not trng |
+| restart_aligned_snapshot_regs_only_warmup4_cap1024_run01 |  |  | 16400 | metadata kind is not trng |
+| restart_aligned_snapshot_regs_only_warmup4_cap64_smoke01 |  |  | 1040 | metadata kind is not trng |
+| restart_aligned_snapshot_regs_only_warmup5_cap1024_run01 |  |  | 16400 | metadata kind is not trng |
+| restart_byte_snapshot_bits_regs_only_warmup32_cap1024_fixed_run01 |  |  | 131088 | metadata kind is not trng |
+| restart_byte_snapshot_bits_regs_only_warmup32_cap1024_run01 |  |  | 131088 | metadata kind is not trng |
+| restart_byte_snapshot_bits_regs_only_warmup32_cap64_smoke01 |  |  | 8208 | metadata kind is not trng |
+| restart_byte_snapshot_bits_regs_only_warmup40_cap1024_fixed_run01 |  |  | 131088 | metadata kind is not trng |
+| restart_byte_snapshot_bits_regs_only_warmup40_cap1024_run01 |  |  | 131088 | metadata kind is not trng |
+| restart_byte_snapshot_bits_regs_only_warmup80_cap1024_fixed_run01 |  |  | 131088 | metadata kind is not trng |
+| restart_byte_snapshot_bits_regs_only_warmup80_cap1024_run01 |  |  | 131088 | metadata kind is not trng |
+| restart_byte_snapshot_bits_regs_only_warmup88_cap1024_fixed_run01 |  |  | 131088 | metadata kind is not trng |
+| restart_byte_snapshot_bits_regs_only_warmup88_cap1024_run01 |  |  | 131088 | metadata kind is not trng |
+| restart_byte_snapshot_bits_regs_only_warmup88_cap1024_run02 |  |  | 131088 | metadata kind is not trng |
+| restart_fifo_compact_diag_regs_only_sample_ro_formal_locked_warmup11_1000x125_run01_20260525 |  |  | 125016 | metadata kind is not trng |
+| restart_fifo_compact_diag_regs_only_sample_ro_formal_locked_warmup4_1000x125_oldbit_repeat03_no_xadc_20260525 |  |  | 125016 | metadata kind is not trng |
+| restart_fifo_compact_diag_regs_only_sample_ro_formal_locked_warmup4_1000x125_run01_no_xadc |  |  | 125016 | metadata kind is not trng |
+| restart_fifo_compact_diag_regs_only_sample_ro_formal_locked_warmup5_1000x125_run01_20260525 |  |  | 125016 | metadata kind is not trng |
+| restart_fifo_compact_diag_regs_only_sample_ro_formal_locked_warmup5_1000x125_run02_20260525 |  |  | 125016 | metadata kind is not trng |
+| restart_fifo_compact_diag_regs_only_warmup11_1000x125_run01_no_xadc |  |  | 125016 | metadata kind is not trng |
+| restart_fifo_compact_diag_regs_only_warmup4_1000x125_run01_no_xadc |  |  | 125016 | metadata kind is not trng |
+| restart_fifo_compact_diag_regs_only_warmup5_1000x125_run01_no_xadc |  |  | 125016 | metadata kind is not trng |
+| restart_fifo_diag_regs_only_warmup4_1000x32_run02_no_xadc |  |  | 576016 | metadata kind is not trng |
+| restart_fifo_diag_regs_only_warmup4_smoke_32x16_run01 |  |  | 10256 | metadata kind is not trng |
+| restart_fifo_diag_regs_only_warmup5_1000x32_run01_no_xadc |  |  | 576016 | metadata kind is not trng |
+| restart_fifo_diag_v3fastwarmup_regs_only_warmup4_1000x32_run01_no_xadc |  |  | 576016 | metadata kind is not trng |
 | ro_freq_random1_sample_x36y35_w100_baseline_2mib_20260523 |  |  | 2097152 | metadata kind is not trng |
 | ro_freq_random1_sample_x45y39_2mib_20260523 |  |  | 2097152 | metadata kind is not trng |
 | ro_freq_random1_sample_x45y39_2mib_program_20260523 |  |  | 2097152 | metadata kind is not trng |
 | ro_freq_random1_sample_x45y39_w100_2mib_20260523 |  |  | 2097152 | metadata kind is not trng |
 | row_smoke01 |  |  | 1048576 | not a formal/repeat capture id |
 | same_column_smoke01 |  |  | 1048576 | not a formal/repeat capture id |
+| sampler_snapshot_regs_only_warmup10_cap1024_run01 |  |  | 16400 | metadata kind is not trng |
+| sampler_snapshot_regs_only_warmup10_cap64_run01 |  |  | 1040 | metadata kind is not trng |
+| sampler_snapshot_regs_only_warmup11_cap1024_run01 |  |  | 16400 | metadata kind is not trng |
+| sampler_snapshot_regs_only_warmup11_cap64_run01 |  |  | 1040 | metadata kind is not trng |
+| sampler_snapshot_regs_only_warmup4_cap1024_run01 |  |  | 16400 | metadata kind is not trng |
+| sampler_snapshot_regs_only_warmup4_cap64_smoke01 |  |  | 1040 | metadata kind is not trng |
+| sampler_snapshot_regs_only_warmup5_cap1024_run01 |  |  | 16400 | metadata kind is not trng |
+| sampler_snapshot_regs_only_warmup5_cap64_bram_regress01 |  |  | 1040 | metadata kind is not trng |
+| sampler_snapshot_regs_only_warmup5_cap64_run01 |  |  | 1040 | metadata kind is not trng |
+| sampler_snapshot_regs_only_warmup5_cap64_xpm_regress01 |  |  | 1040 | metadata kind is not trng |
 | sparse_smoke01 |  |  | 1048576 | not a formal/repeat capture id |
+| tdc_code_density_cal_a11_b7_formal_8mib_20260525 |  |  | 8388608 | metadata kind is not trng |
+| tdc_code_density_cal_a7_b11_formal_8mib_20260525 |  |  | 8388608 | metadata kind is not trng |
+| tdc_code_density_cal_a7_b11_smoke_2mib_20260525 |  |  | 2097152 | metadata kind is not trng |
 | tdc_far_run01 |  |  | 2097152 | metadata kind is not trng |
 | tdc_far_run02_2mib |  |  | 2097152 | metadata kind is not trng |
+| tdc_mask_random1_local_sample_ro0_ro1_pair_only |  |  |  | metadata kind is not trng |
+| tdc_mask_random1_local_sample_ro0_ro1_pair_plus_sample |  |  |  | metadata kind is not trng |
+| tdc_mask_random1_ro0_ro1_all_data_on |  |  |  | metadata kind is not trng |
+| tdc_mask_random1_ro0_ro1_pair_only |  |  |  | metadata kind is not trng |
+| tdc_mask_random1_ro0_ro1_pair_only_smoke_20260525 |  |  |  | metadata kind is not trng |
+| tdc_mask_random1_ro0_ro1_pair_plus_sample |  |  |  | metadata kind is not trng |
+| tdc_mask_random3_ro0_ro6_all_data_on |  |  |  | metadata kind is not trng |
+| tdc_mask_random3_ro0_ro6_all_data_on_repeat02 |  |  |  | metadata kind is not trng |
+| tdc_mask_random3_ro0_ro6_neighbors_on |  |  |  | metadata kind is not trng |
+| tdc_mask_random3_ro0_ro6_pair_only |  |  |  | metadata kind is not trng |
+| tdc_mask_random3_ro0_ro6_pair_plus_sample |  |  |  | metadata kind is not trng |
 | tdc_near_run01 |  |  | 2097152 | metadata kind is not trng |
 | tdc_near_run02 |  |  | 2097152 | metadata kind is not trng |
 | tdc_near_run03_2mib |  |  | 2097152 | metadata kind is not trng |
@@ -110,6 +166,20 @@ Complete formal/repeat captures only.
 | tdc_reset_enable_random3_goodref_ro0_repeat02 |  |  | 2097152 | metadata kind is not trng |
 | tdc_reset_enable_random3_goodref_ro3 |  |  | 2097152 | metadata kind is not trng |
 | tdc_reset_enable_random3_goodref_ro3_repeat02 |  |  | 2097152 | metadata kind is not trng |
+| tdc_reset_random1_baseline_ro0_clean32k_warmup0_preopen_20260525 |  |  |  | metadata kind is not trng |
+| tdc_reset_random1_baseline_ro0_clean32k_warmup12_preopen_20260525 |  |  |  | metadata kind is not trng |
+| tdc_reset_random1_baseline_ro0_smoke_warmup0_preopen_20260525 |  |  |  | metadata kind is not trng |
+| tdc_reset_random1_baseline_ro0_warmup0_preopen_20260525 |  |  |  | metadata kind is not trng |
+| tdc_reset_random1_baseline_ro0_warmup12_preopen_20260525 |  |  |  | metadata kind is not trng |
+| tdc_reset_random1_sampler_local_ro0_clean32k_warmup0_preopen_20260525 |  |  |  | metadata kind is not trng |
+| tdc_reset_random1_sampler_local_ro0_clean32k_warmup12_preopen_20260525 |  |  |  | metadata kind is not trng |
+| tdc_reset_random1_sampler_local_ro0_smoke_warmup12_preopen_20260525 |  |  |  | metadata kind is not trng |
+| tdc_reset_random1_sampler_local_ro0_warmup0_preopen_20260525 |  |  |  | metadata kind is not trng |
+| tdc_reset_random1_sampler_local_ro0_warmup12_preopen_20260525 |  |  |  | metadata kind is not trng |
+| tdc_reset_random3_goodref_ro0_clean32k_warmup0_preopen_20260525 |  |  |  | metadata kind is not trng |
+| tdc_reset_random3_goodref_ro0_clean32k_warmup12_preopen_20260525 |  |  |  | metadata kind is not trng |
+| tdc_reset_random3_goodref_ro0_warmup0_preopen_20260525 |  |  |  | metadata kind is not trng |
+| tdc_reset_random3_goodref_ro0_warmup12_preopen_20260525 |  |  |  | metadata kind is not trng |
 | tdc_sampler_data_random1_baseline_sample_x36y35_ro0_2mib |  |  | 2097152 | metadata kind is not trng |
 | tdc_sampler_data_random1_baseline_sample_x36y35_ro4_2mib |  |  | 2097152 | metadata kind is not trng |
 | tdc_sampler_data_random1_local_sample_x45y39_ro0_2mib |  |  | 2097152 | metadata kind is not trng |

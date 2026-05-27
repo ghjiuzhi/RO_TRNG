@@ -46,3 +46,6 @@ data/experiments/fast_mode/short_queue_logs/
 
 # Ad-hoc local figures generated in scripts/
 scripts/*.png
+
+# Office binaries
+*.docx

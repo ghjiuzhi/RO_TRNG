@@ -1,0 +1,4 @@
+warmup,restart_reference,rand_p1,rand_minH,stage_xor_H,sampled_bit_mean_p1,sampled_bit_mean_abs_bias,worst_sampled_bit_abs_bias,sampled_bits_p1_gt_0p55,sampled_bits_p1_lt_0p45,stage_xor_mean_p1,stage_xor_p1_gt_0p5,stage_xor_p1_lt_0p5,interpretation
+5,pass,0.509765625,0.972094,7.773146,0.523620605,0.026367187,0.067382812,9,0,0.498046875,3,5,"pass-side control; sampled bits are individually biased high, but stage/output combination is balanced enough to keep rand near 0.5"
+10,boundary,0.466796875,0.907243,7.806656,0.523178101,0.026046753,0.070312500,12,0,0.510131836,6,2,"near-cutoff boundary; worst sampled-bit bias is similar to w5/w11, but the final rand output shifts low, indicating a window-dependent correlation/XOR-combination effect"
+11,pass,0.500976562,0.997185,7.783961,0.524139404,0.027099609,0.067382812,13,0,0.499755859,4,4,"pass-side control; sampled-bit biases remain, but their combination cancels at rand output"

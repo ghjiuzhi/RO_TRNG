@@ -1,0 +1,7 @@
+label,family,mode,packets,seq_gaps,entropy_diff,early_entropy_diff,transition_entropy_diff,same_diff_transition_ratio,longest_same_diff_bin_run,autocorr_diff_lag,first_later_tvd_diff,delta_entropy_diff_vs_pair_only,delta_transition_entropy_diff_vs_pair_only,delta_same_ratio_vs_pair_only
+tdc_mask_random1_ro0_ro1_pair_only,random1,pair_only,1048575,1,6.68638606,6.50701552,13.3621525,0.0108566491,3,0.000874177172,0.0592529163,0.0,0.0,0.0
+tdc_mask_random1_ro0_ro1_all_data_on,random1,all_data_on,1048575,1,6.74706646,6.52701057,13.4827178,0.0103025633,4,-0.000931812744,0.0742115834,0.06068039999999986,0.1205652999999991,-0.0005540858000000013
+tdc_mask_random1_ro0_ro1_pair_plus_sample,random1,pair_plus_sample,1048575,1,6.64622224,6.45488333,13.2825595,0.0109625072,4,-6.68543375e-05,0.0669065092,-0.04016382000000007,-0.07959300000000091,0.00010585809999999994
+tdc_mask_random3_ro0_ro6_pair_only,random3,pair_only,1048575,1,6.69702927,6.61599905,13.3832032,0.01074793,4,0.000729495819,0.0615000554,0.0,0.0,0.0
+tdc_mask_random3_ro0_ro6_all_data_on,random3,all_data_on,1048575,1,5.98263233,5.8868412,11.9624903,0.0160255738,4,-0.00128411329,0.0447299165,-0.7143969399999994,-1.4207128999999998,0.005277643800000002
+tdc_mask_random1_local_sample_ro0_ro1_pair_plus_sample,random1_local_sample,pair_plus_sample,1048575,1,6.6681954,6.54006585,13.3256984,0.0110597821,4,-0.000176227963,0.0701492402,,,

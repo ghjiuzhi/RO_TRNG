@@ -25,3 +25,34 @@ The present captures do not support a strong locking claim. The paper should sta
 
 - `data/experiments/tdc_pair_dynamics/tdc_pair_dynamics_20260514.csv`
 - `data/experiments/tdc_pair_dynamics/tdc_pair_dynamics_20260514.md`
+
+## Fixed-LUT Reanalysis 2026-05-25
+
+为避免“每个 run 自己做 code-density lookup”带来的 ps 级可比性问题，已用 dedicated calibration 生成的 fixed LUT 对全部 pair-specific TDC 重新分析。
+
+新增脚本：
+
+```text
+scripts/analyze_tdc_pair_dynamics_with_lut_20260525.py
+```
+
+输出：
+
+```text
+data/experiments/tdc_pair_dynamics_lut_reanalysis_20260525/a7_b11/
+data/experiments/tdc_pair_dynamics_lut_reanalysis_20260525/a11_b7/
+```
+
+复算结果：
+
+| LUT | runs | windows | max small-lag `|r|` | strong-lock windows |
+| --- | ---: | ---: | ---: | ---: |
+| a7/b11 fixed LUT | 12 | 192 | 0.0313742149 | 0 |
+| a11/b7 fixed LUT | 12 | 192 | 0.0313610782 | 0 |
+
+解释：
+
+- fixed-LUT 复算后，所有 pair-specific TDC 窗口仍低于 `|r| >= 0.5` 的 conservative strong-lock threshold。
+- 最大 small-lag 相关仍约为 0.031，与原始 pair-specific TDC 的结论一致。
+- 因此，dedicated code-density calibration 与 fixed-LUT sensitivity check 没有推翻 “No strong TDC-level pair locking was detected” 这个结论。
+- 这仍是机制约束证据，而不是证明所有条件下都不存在耦合。论文应写成排除简单 hard-locking 主导解释，而不是声称 RO 之间完全无耦合。

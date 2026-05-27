@@ -1,0 +1,21 @@
+﻿{
+    "capture_id":  "tdc_reset_random3_goodref_ro0_warmup0_preopen_20260525",
+    "board_id":  "z7020_b01",
+    "capture_method":  "preopen_serial_then_program",
+    "bitstream":  "data\\vivado_runs\\fpga1_tdc_reset_aligned\\tdc_reset_random3_goodref_ro0_warmup0\\RO_TDC_reset_aligned_top.bit",
+    "bitstream_resolved":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\vivado_runs\\fpga1_tdc_reset_aligned\\tdc_reset_random3_goodref_ro0_warmup0\\RO_TDC_reset_aligned_top.bit",
+    "bitstream_sha256":  "1EFAE88F3E43A096DA7243B9CA4334D4012267CECD26128D5F34F4BA5249DE23",
+    "output_file":  "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\tdc_reset_aligned\\tdc_reset_random3_goodref_ro0_warmup0_32k._preopen_20260525.bin",
+    "output_sha256":  "37F8B7F97A2FE173F96CA9AB8D0E4B1B6B577CA83DAD35D847047EF3137E0DE1",
+    "output_bytes":  262160,
+    "first_16_bytes_hex":  "A5CF6489ED4014C9A5D064190C3822E1",
+    "uart_port":  "COM3",
+    "baud":  115200,
+    "read_timeout_ms":  1000,
+    "idle_timeout_sec":  45,
+    "read_buffer_bytes":  1048576,
+    "start_time":  "2026-05-25 05:15:56",
+    "end_time":  "2026-05-25 05:17:17",
+    "duration_seconds":  80.728,
+    "capture_script":  "E:\\Project\\MLDSA\\RO_TRNG\\scripts\\program_and_capture_uart_preopen.ps1"
+}

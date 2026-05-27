@@ -1,5 +1,5 @@
 param(
-    [ValidateSet("smoke", "matrix", "all")]
+    [ValidateSet("smoke", "matrix", "clean32k_p0", "clean32k_remaining", "clean32k", "w10_boundary", "all")]
     [string]$Mode = "smoke",
 
     [string]$VivadoBat = "C:\Programs\Xilinx2023\Vivado\2023.2\bin\vivado.bat",
@@ -73,12 +73,54 @@ $matrixRuns = @(
         -PairId 1402 -FamilyId 1 -WarmupPackets 12 -CapturePackets 65536)
 )
 
+$clean32kRuns = @(
+    (New-Run `
+        -Name "tdc_reset_random1_baseline_ro0_clean32k_warmup0" `
+        -Xdc "data\experiments\xdc_tdc_sampler_data\tdc_sampler_data_random1_baseline_sample_x36y35_ro0.xdc" `
+        -PairId 1501 -FamilyId 1 -WarmupPackets 0 -CapturePackets 32768 -SampleDiv 5000 -StartDelayCycles 16000000000),
+    (New-Run `
+        -Name "tdc_reset_random1_baseline_ro0_clean32k_warmup12" `
+        -Xdc "data\experiments\xdc_tdc_sampler_data\tdc_sampler_data_random1_baseline_sample_x36y35_ro0.xdc" `
+        -PairId 1502 -FamilyId 1 -WarmupPackets 12 -CapturePackets 32768 -SampleDiv 5000 -StartDelayCycles 16000000000),
+    (New-Run `
+        -Name "tdc_reset_random3_goodref_ro0_clean32k_warmup0" `
+        -Xdc "data\experiments\xdc_tdc_sampler_data\tdc_sampler_data_random3_sample_x36y35_ro0.xdc" `
+        -PairId 1503 -FamilyId 3 -WarmupPackets 0 -CapturePackets 32768 -SampleDiv 5000 -StartDelayCycles 16000000000),
+    (New-Run `
+        -Name "tdc_reset_random3_goodref_ro0_clean32k_warmup12" `
+        -Xdc "data\experiments\xdc_tdc_sampler_data\tdc_sampler_data_random3_sample_x36y35_ro0.xdc" `
+        -PairId 1504 -FamilyId 3 -WarmupPackets 12 -CapturePackets 32768 -SampleDiv 5000 -StartDelayCycles 16000000000),
+    (New-Run `
+        -Name "tdc_reset_random1_sampler_local_ro0_clean32k_warmup0" `
+        -Xdc "data\experiments\xdc_tdc_sampler_data\tdc_sampler_data_random1_local_sample_x45y39_ro0.xdc" `
+        -PairId 1505 -FamilyId 1 -WarmupPackets 0 -CapturePackets 32768 -SampleDiv 5000 -StartDelayCycles 16000000000),
+    (New-Run `
+        -Name "tdc_reset_random1_sampler_local_ro0_clean32k_warmup12" `
+        -Xdc "data\experiments\xdc_tdc_sampler_data\tdc_sampler_data_random1_local_sample_x45y39_ro0.xdc" `
+        -PairId 1506 -FamilyId 1 -WarmupPackets 12 -CapturePackets 32768 -SampleDiv 5000 -StartDelayCycles 16000000000)
+)
+
+$w10BoundaryRuns = @(
+    (New-Run `
+        -Name "tdc_reset_random1_sampler_local_ro0_clean32k_warmup10" `
+        -Xdc "data\experiments\xdc_tdc_sampler_data\tdc_sampler_data_random1_local_sample_x45y39_ro0.xdc" `
+        -PairId 1510 -FamilyId 1 -WarmupPackets 10 -CapturePackets 32768 -SampleDiv 5000 -StartDelayCycles 16000000000)
+)
+
 if ($Mode -eq "smoke") {
     $runs = $smokeRuns
 } elseif ($Mode -eq "matrix") {
     $runs = $matrixRuns
+} elseif ($Mode -eq "clean32k_p0") {
+    $runs = @($clean32kRuns[0])
+} elseif ($Mode -eq "clean32k_remaining") {
+    $runs = @($clean32kRuns[1..($clean32kRuns.Count - 1)])
+} elseif ($Mode -eq "clean32k") {
+    $runs = $clean32kRuns
+} elseif ($Mode -eq "w10_boundary") {
+    $runs = $w10BoundaryRuns
 } else {
-    $runs = @($smokeRuns + $matrixRuns)
+    $runs = @($smokeRuns + $matrixRuns + $clean32kRuns + $w10BoundaryRuns)
 }
 
 if (-not (Test-Path -LiteralPath $VivadoBat)) {

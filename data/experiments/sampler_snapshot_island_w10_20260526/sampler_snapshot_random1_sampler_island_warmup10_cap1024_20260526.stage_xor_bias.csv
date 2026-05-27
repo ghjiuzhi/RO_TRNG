@@ -1,0 +1,9 @@
+label,stage,ones,zeros,p1,abs_bias
+sampler_snapshot_random1_sampler_island_warmup10_cap1024_20260526,0,506,518,0.494140625,0.005859375
+sampler_snapshot_random1_sampler_island_warmup10_cap1024_20260526,1,524,500,0.511718750,0.011718750
+sampler_snapshot_random1_sampler_island_warmup10_cap1024_20260526,2,527,497,0.514648438,0.014648438
+sampler_snapshot_random1_sampler_island_warmup10_cap1024_20260526,3,525,499,0.512695312,0.012695312
+sampler_snapshot_random1_sampler_island_warmup10_cap1024_20260526,4,527,497,0.514648438,0.014648438
+sampler_snapshot_random1_sampler_island_warmup10_cap1024_20260526,5,543,481,0.530273438,0.030273438
+sampler_snapshot_random1_sampler_island_warmup10_cap1024_20260526,6,516,508,0.503906250,0.003906250
+sampler_snapshot_random1_sampler_island_warmup10_cap1024_20260526,7,511,513,0.499023438,0.000976562

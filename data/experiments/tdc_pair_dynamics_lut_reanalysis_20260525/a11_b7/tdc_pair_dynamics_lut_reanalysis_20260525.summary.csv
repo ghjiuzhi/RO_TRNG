@@ -1,0 +1,13 @@
+run,windows,packets,phase_r_mean,phase_r_max_abs,best_lag_abs_r_max,best_lag_at_window,best_lag_packets,diff_std_ps_mean,diff_mean_ps_span,diff_mean_ps_slope_per_window,strong_lock_windows,claim_reading
+tdc_pair_random1_ro0_ro1_repeat02_2mib,16,262143,-0.000801167818,0.0180058121,0.0236574354,8,-3,620.341147,11.4687365,0.0701540847,0,no strong pair locking detected after fixed-LUT reanalysis
+tdc_pair_random1_ro0_ro1_run01_2mib,16,262141,-0.00192155613,0.0191202239,0.0220964105,13,4,622.023951,20.6107335,0.0803469026,0,no strong pair locking detected after fixed-LUT reanalysis
+tdc_pair_random1_ro2_ro4_repeat02_2mib,16,262143,0.00047430128,0.015261635,0.0296831846,9,-6,495.73364,10.8487021,-0.0283852701,0,no strong pair locking detected after fixed-LUT reanalysis
+tdc_pair_random1_ro2_ro4_run01_2mib,16,262130,-0.00211796792,0.0134739925,0.0313610782,6,-6,495.780325,14.4230035,0.00930566737,0,no strong pair locking detected after fixed-LUT reanalysis
+tdc_pair_random1_ro4_ro5_repeat02_2mib,16,262144,-0.00308101541,0.0295551034,0.0295551034,9,0,489.820154,14.1780899,0.304340024,0,no strong pair locking detected after fixed-LUT reanalysis
+tdc_pair_random1_ro4_ro5_run01_2mib,16,262143,-0.00234032681,0.0164466578,0.0260810274,2,5,489.445869,11.1325971,-0.0624096143,0,no strong pair locking detected after fixed-LUT reanalysis
+tdc_pair_random3_ro0_ro6_repeat02_2mib,16,262143,-0.00474709757,0.0169976699,0.0224031288,11,7,589.570859,15.5171756,0.129871268,0,no strong pair locking detected after fixed-LUT reanalysis
+tdc_pair_random3_ro0_ro6_run01_2mib,16,262142,-0.00157337392,0.0223334827,0.0252497088,10,7,589.814627,18.7693108,-0.303402802,0,no strong pair locking detected after fixed-LUT reanalysis
+tdc_pair_random3_ro3_ro5_repeat02_2mib,16,262144,0.00256070145,0.0197330406,0.0267041267,14,-1,432.192248,9.8977798,-0.0076331102,0,no strong pair locking detected after fixed-LUT reanalysis
+tdc_pair_random3_ro3_ro5_run01_2mib,16,262143,-0.000166441558,0.0158009198,0.0286362018,12,-6,432.552743,14.669347,-0.021112862,0,no strong pair locking detected after fixed-LUT reanalysis
+tdc_pair_random3_ro3_ro7_repeat02_2mib,16,262143,0.000108338976,0.0148717437,0.0226081026,12,2,476.273773,15.6969958,0.301826935,0,no strong pair locking detected after fixed-LUT reanalysis
+tdc_pair_random3_ro3_ro7_run01_2mib,16,262141,0.00017665404,0.0181075942,0.0234010145,7,-8,476.004329,11.1526932,0.10719111,0,no strong pair locking detected after fixed-LUT reanalysis

@@ -4,10 +4,10 @@
 #
 # Usage:
 #   vivado -mode batch -source scripts/vivado/run_fpga1_ro_trng_restart_auto_inmem.tcl \
-#     -tclargs <placement_xdc> <out_dir> ?restart_count? ?row_bytes? ?hold_cycles? ?settle_cycles? ?warmup_bytes? ?start_delay_cycles? ?debug_header? ?top_name?
+#     -tclargs <placement_xdc> <out_dir> ?restart_count? ?row_bytes? ?hold_cycles? ?settle_cycles? ?warmup_bytes? ?start_delay_cycles? ?debug_header? ?top_name? ?reduced_mode? ?reduced_index?
 
 if {$argc < 2} {
-    puts "Usage: vivado -mode batch -source scripts/vivado/run_fpga1_ro_trng_restart_auto_inmem.tcl -tclargs <placement_xdc> <out_dir> ?restart_count? ?row_bytes? ?hold_cycles? ?settle_cycles? ?warmup_bytes? ?start_delay_cycles? ?debug_header? ?top_name?"
+    puts "Usage: vivado -mode batch -source scripts/vivado/run_fpga1_ro_trng_restart_auto_inmem.tcl -tclargs <placement_xdc> <out_dir> ?restart_count? ?row_bytes? ?hold_cycles? ?settle_cycles? ?warmup_bytes? ?start_delay_cycles? ?debug_header? ?top_name? ?reduced_mode? ?reduced_index?"
     exit 1
 }
 
@@ -23,6 +23,8 @@ set settle_cycles 200000
 set warmup_bytes 0
 set start_delay_cycles 0
 set debug_header 0
+set reduced_mode 0
+set reduced_index 0
 
 if {$argc >= 3} {
     set restart_count [lindex $argv 2]
@@ -47,6 +49,12 @@ if {$argc >= 9} {
 }
 if {$argc >= 10} {
     set top_name [lindex $argv 9]
+}
+if {$argc >= 11} {
+    set reduced_mode [lindex $argv 10]
+}
+if {$argc >= 12} {
+    set reduced_index [lindex $argv 11]
 }
 
 set fpga1_src_dir [file join $origin_dir fpga1 xc7z020clg400 xc7z020clg400.srcs sources_1]
@@ -109,6 +117,7 @@ set rtl_files [concat [list \
     [require_file "LUT6_nand2_1" [file join $rtl_dir LUT6_nand2_1.v]] \
     [require_file "LUT6_not1" [file join $rtl_dir LUT6_not1.v]] \
     [require_file "entropy_source" [file join $rtl_dir entropy_source.v]] \
+    [require_file "entropy_source_reduced_probe" [file join $rtl_dir entropy_source_reduced_probe.v]] \
     [require_file "uart_tx" [file join $rtl_dir uart_tx.v]] \
 ] $restart_rtl_files]
 
@@ -172,6 +181,10 @@ set synth_generics [list \
     DEBUG_HEADER=$debug_header \
     WARMUP_BYTES=$warmup_bytes \
 ]
+if {$top_name eq "RO_TRNG_restart_reduced_xor_top"} {
+    lappend synth_generics REDUCED_MODE=$reduced_mode
+    lappend synth_generics REDUCED_INDEX=$reduced_index
+}
 puts "Synth generics: $synth_generics"
 synth_design -top $top_name -part $part_name -flatten_hierarchy rebuilt -generic $synth_generics
 write_checkpoint -force [file join $checkpoint_dir ${top_name}_synth.dcp]
@@ -214,6 +227,8 @@ puts $manifest "settle_cycles=$settle_cycles"
 puts $manifest "warmup_bytes=$warmup_bytes"
 puts $manifest "start_delay_cycles=$start_delay_cycles"
 puts $manifest "debug_header=$debug_header"
+puts $manifest "reduced_mode=$reduced_mode"
+puts $manifest "reduced_index=$reduced_index"
 puts $manifest "vivado_version=[version -short]"
 puts $manifest "note=build-only flow; one programming event, then UART emits a row-major restart dataset"
 close $manifest

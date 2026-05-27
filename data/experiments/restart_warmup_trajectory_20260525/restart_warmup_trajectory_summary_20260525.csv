@@ -1,0 +1,17 @@
+family,warmup,runs,mean_overall_p1,mean_worst_x,max_worst_x,mean_worst_byte,std_worst_byte,early_byte_runs,early_byte_fraction,hotspot_classes
+random1_reverse_repair_sample_ro_compact,4,1,0.499754,552,552,109,0.0,0,0.0,weak:1
+random1_sampler_regs_only,0,2,0.4987855,779,802,1,0.0,2,1.0,severe:2
+random1_sampler_regs_only,4,2,0.40753649999999997,742,751,0.5,0.5,2,1.0,severe:2
+random1_sampler_regs_only,5,2,0.498248,559.5,561,107.5,3.5,0,0.0,weak:2
+random1_sampler_regs_only,6,2,0.4968095,552.5,554,66,42.0,0,0.0,weak:2
+random1_sampler_regs_only,8,2,0.483511,561,564,41.5,41.5,1,0.5,early_position_weak:1;weak:1
+random1_sampler_regs_only,10,2,0.499596,556,565,64.5,50.5,0,0.0,weak:2
+random1_sampler_regs_only,11,2,0.5590075,615.5,618,69,12.0,0,0.0,strong:2
+random1_sampler_regs_only,12,2,0.452978,605,609,4,2.0,2,1.0,strong:2
+random1_sampler_regs_only,16,1,0.466933,586,586,60,0.0,0,0.0,moderate:1
+random3_formal,0,2,0.49785999999999997,682.5,685,1,1.0,2,1.0,severe:2
+random3_formal,8,1,0.374385,721,721,2,0.0,1,1.0,severe:1
+random3_formal,10,3,0.41508333333333336,638,650,2.6666666666666665,2.3570226039551585,3,1.0,severe:1;strong:2
+random3_formal,11,3,0.46867966666666666,588.6666666666666,595,23,31.822423959633664,2,0.6666666666666666,moderate:3
+random3_formal,12,3,0.499444,553.6666666666666,562,80.33333333333333,34.31552936434983,0,0.0,weak:3
+random3_formal,16,1,0.499126,547,547,43,0.0,0,0.0,weak:1

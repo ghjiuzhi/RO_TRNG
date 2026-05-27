@@ -1,0 +1,19 @@
+{
+  "dataset_type": "SP800-90B restart bit-symbol dataset",
+  "conversion": "row-preserving byte-to-bit expansion",
+  "input_file": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\restart_reduced_xor_w10_direction_map_20260526\\payloads\\restart_reduced_xor_random1_sampler_island_local_warmup10_except_data_ro5_1000x125_strict_20260526.payload.bin",
+  "input_sha256": "3C0269833CDF3DAB4D979A1C6061E1ACA239551AF2A5781BA806F727CBA746ED",
+  "input_bytes": 125000,
+  "output_file": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\restart_reduced_xor_w10_direction_map_20260526\\bit_symbols\\restart_reduced_xor_random1_sampler_island_local_warmup10_except_data_ro5_1000x125_strict_20260526.lsb.bits.bin",
+  "output_sha256": "401A015741929E140BCB073E4844216BD2CB3311E4A004C06DC1DC6D66E5C320",
+  "output_bytes": 1000000,
+  "restart_count": 1000,
+  "input_symbols_per_restart": 125,
+  "output_symbols_per_restart": 1000,
+  "bits_per_symbol": 1,
+  "bit_order": "lsb",
+  "start_time": "2026-05-26 17:08:59",
+  "end_time": "2026-05-26 17:08:59",
+  "duration_seconds": 0.16,
+  "notes": "This preserves restart row boundaries. It is only valid if the input was collected as an actual restart dataset."
+}
