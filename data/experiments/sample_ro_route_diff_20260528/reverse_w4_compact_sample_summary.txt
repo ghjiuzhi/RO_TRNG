@@ -1,0 +1,6 @@
+label=reverse_w4_compact_sample
+dcp=E:/Project/MLDSA/RO_TRNG/data/vivado_runs/restart_auto_random1_regs_only_sample_ro_compact_locked_warmup4_1000x125_20260525/checkpoints/RO_TRNG_restart_auto_top_routed.dcp
+sample_cells=9
+sampled_regs=64
+data_cells=16
+entropy_cells=157

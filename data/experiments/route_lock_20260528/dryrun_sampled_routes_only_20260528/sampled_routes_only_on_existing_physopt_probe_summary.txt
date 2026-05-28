@@ -1,0 +1,10 @@
+label=sampled_routes_only_on_existing_physopt
+dcp=E:/Project/MLDSA/RO_TRNG/data/vivado_runs/route_lock_probe_20260528/restart_fifo_compact_diag_scompact_w4_sampled_data_fixed_route_1000x125/checkpoints/RO_TRNG_restart_fifo_compact_diag_top_physopt.dcp
+apply_tcl=E:/Project/MLDSA/RO_TRNG/data/experiments/route_lock_20260528/compact_w4_sampled_data_routes_only_apply_20260528.tcl
+source_status=ok
+cell_lock_applied=0
+cell_lock_failed=0
+route_lock_applied=17
+route_lock_failed=47
+fixed_route_nets=17
+fixed_cells=12

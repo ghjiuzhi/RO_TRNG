@@ -1,0 +1,4 @@
+label=compact_w4_sampled_reg_bel
+source_dcp=E:/Project/MLDSA/RO_TRNG/data/vivado_runs/restart_fifo_compact_diag_random1_regs_only_warmup4_1000x125/checkpoints/RO_TRNG_restart_fifo_compact_diag_top_routed.dcp
+out_file=E:/Project/MLDSA/RO_TRNG/data/experiments/route_lock_20260528/compact_w4_sampled_reg_bel_lock_20260528.xdc
+selected_cells=64

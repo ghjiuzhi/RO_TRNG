@@ -1,0 +1,4 @@
+group,count,p1_min,p1_max,mean_abs_bias,max_abs_bias,min_min_entropy,max_worst_x,max_bias_member,max_bias_member_p1
+data_ro,8,0.191877,0.671833,0.13691925,0.308123,0.3073532,897,data_ro0,0.191877
+line,8,0.486473,0.501004,0.00211225,0.013527,0.961487963,701,line6,0.486473
+except_data_ro,8,0.499674,0.565521,0.029468625,0.065521,0.822347497,620,except_data_ro5,0.565521

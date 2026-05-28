@@ -1,0 +1,6 @@
+label=scompact_w4_sampled_bel_routes_placed
+dcp=E:/Project/MLDSA/RO_TRNG/data/vivado_runs/route_lock_probe_20260528/restart_fifo_compact_diag_scompact_w4_sampled_bel_routes_fixed_1000x125/checkpoints/RO_TRNG_restart_fifo_compact_diag_top_placed.dcp
+sample_cells=9
+sampled_regs=64
+data_cells=16
+entropy_cells=157

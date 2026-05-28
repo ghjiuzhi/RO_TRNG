@@ -4,10 +4,10 @@
 #
 # Usage:
 #   vivado -mode batch -source scripts/vivado/run_fpga1_ro_trng_restart_auto_inmem.tcl \
-#     -tclargs <placement_xdc> <out_dir> ?restart_count? ?row_bytes? ?hold_cycles? ?settle_cycles? ?warmup_bytes? ?start_delay_cycles? ?debug_header? ?top_name? ?reduced_mode? ?reduced_index?
+#     -tclargs <placement_xdc> <out_dir> ?restart_count? ?row_bytes? ?hold_cycles? ?settle_cycles? ?warmup_bytes? ?start_delay_cycles? ?debug_header? ?top_name? ?reduced_mode? ?reduced_index? ?place_directive? ?phys_opt_directive? ?route_directive? ?post_physopt_tcl?
 
 if {$argc < 2} {
-    puts "Usage: vivado -mode batch -source scripts/vivado/run_fpga1_ro_trng_restart_auto_inmem.tcl -tclargs <placement_xdc> <out_dir> ?restart_count? ?row_bytes? ?hold_cycles? ?settle_cycles? ?warmup_bytes? ?start_delay_cycles? ?debug_header? ?top_name? ?reduced_mode? ?reduced_index?"
+    puts "Usage: vivado -mode batch -source scripts/vivado/run_fpga1_ro_trng_restart_auto_inmem.tcl -tclargs <placement_xdc> <out_dir> ?restart_count? ?row_bytes? ?hold_cycles? ?settle_cycles? ?warmup_bytes? ?start_delay_cycles? ?debug_header? ?top_name? ?reduced_mode? ?reduced_index? ?place_directive? ?phys_opt_directive? ?route_directive? ?post_physopt_tcl?"
     exit 1
 }
 
@@ -25,6 +25,10 @@ set start_delay_cycles 0
 set debug_header 0
 set reduced_mode 0
 set reduced_index 0
+set place_directive ""
+set phys_opt_directive ""
+set route_directive ""
+set post_physopt_tcl ""
 
 if {$argc >= 3} {
     set restart_count [lindex $argv 2]
@@ -55,6 +59,18 @@ if {$argc >= 11} {
 }
 if {$argc >= 12} {
     set reduced_index [lindex $argv 11]
+}
+if {$argc >= 13} {
+    set place_directive [lindex $argv 12]
+}
+if {$argc >= 14} {
+    set phys_opt_directive [lindex $argv 13]
+}
+if {$argc >= 15} {
+    set route_directive [lindex $argv 14]
+}
+if {$argc >= 16} {
+    set post_physopt_tcl [file normalize [lindex $argv 15]]
 }
 
 set fpga1_src_dir [file join $origin_dir fpga1 xc7z020clg400 xc7z020clg400.srcs sources_1]
@@ -100,6 +116,9 @@ proc seed_ip_dcp_if_missing {ip_name shared_ip_dir fallback_ip_dir} {
 
 require_file "placement XDC" $placement_xdc
 require_file "base XDC" $base_xdc
+if {$post_physopt_tcl ne ""} {
+    require_file "post-physopt Tcl" $post_physopt_tcl
+}
 
 file mkdir $out_dir
 file mkdir $ip_work_dir
@@ -157,9 +176,8 @@ set ips_to_synth [list]
 foreach ip_name [list clk_wiz_0 proc_sys_reset_0 fifo_generator_0] {
     if {[seed_ip_dcp_if_missing $ip_name $shared_generated_ip_dir $fallback_generated_ip_dir]} {
         puts "Using available IP DCP: [file join $shared_generated_ip_dir $ip_name ${ip_name}.dcp]"
-    } else {
-        lappend ips_to_synth [get_ips $ip_name]
     }
+    lappend ips_to_synth [get_ips $ip_name]
 }
 if {[llength $ips_to_synth] > 0} {
     synth_ip -force $ips_to_synth
@@ -196,16 +214,40 @@ opt_design
 write_checkpoint -force [file join $checkpoint_dir ${top_name}_opt.dcp]
 report_drc -file [file join $report_dir opt_drc.rpt]
 
-place_design
+if {$place_directive ne "" && $place_directive ne "Default"} {
+    place_design -directive $place_directive
+} else {
+    place_design
+}
 write_checkpoint -force [file join $checkpoint_dir ${top_name}_placed.dcp]
 report_utilization -file [file join $report_dir placed_utilization.rpt]
 report_timing_summary -file [file join $report_dir placed_timing_summary.rpt] \
     -max_paths 20 -report_unconstrained
 
-phys_opt_design
+if {$phys_opt_directive ne "" && $phys_opt_directive ne "Default"} {
+    phys_opt_design -directive $phys_opt_directive
+} else {
+    phys_opt_design
+}
 write_checkpoint -force [file join $checkpoint_dir ${top_name}_physopt.dcp]
 
-route_design
+if {$post_physopt_tcl ne ""} {
+    puts "Sourcing post-physopt Tcl: $post_physopt_tcl"
+    source $post_physopt_tcl
+    if {[info exists cell_lock_failed] && $cell_lock_failed > 0} {
+        error "Post-physopt cell lock failed for $cell_lock_failed cells"
+    }
+    if {[info exists route_lock_failed] && $route_lock_failed > 0} {
+        error "Post-physopt route lock failed for $route_lock_failed nets"
+    }
+    write_checkpoint -force [file join $checkpoint_dir ${top_name}_post_physopt.dcp]
+}
+
+if {$route_directive ne "" && $route_directive ne "Default"} {
+    route_design -directive $route_directive
+} else {
+    route_design
+}
 write_checkpoint -force [file join $checkpoint_dir ${top_name}_routed.dcp]
 report_route_status -file [file join $report_dir route_status.rpt]
 report_drc -file [file join $report_dir routed_drc.rpt]
@@ -229,6 +271,10 @@ puts $manifest "start_delay_cycles=$start_delay_cycles"
 puts $manifest "debug_header=$debug_header"
 puts $manifest "reduced_mode=$reduced_mode"
 puts $manifest "reduced_index=$reduced_index"
+puts $manifest "place_directive=$place_directive"
+puts $manifest "phys_opt_directive=$phys_opt_directive"
+puts $manifest "route_directive=$route_directive"
+puts $manifest "post_physopt_tcl=$post_physopt_tcl"
 puts $manifest "vivado_version=[version -short]"
 puts $manifest "note=build-only flow; one programming event, then UART emits a row-major restart dataset"
 close $manifest

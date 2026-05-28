@@ -17,6 +17,7 @@ $ExportRoot = (Resolve-Path $ExportRoot).Path
 $includeRoots = @(
     "README.md",
     "doc",
+    "paper/RO_TRNG_entropy_boundary",
     "rtl",
     "scripts",
     "sim/SP800-90B_EntropyAssessment",
@@ -35,7 +36,8 @@ $includeRoots = @(
 $excludeExt = @(
     ".bin", ".bit", ".dcp", ".jou", ".log", ".pb", ".rpx", ".wdb",
     ".wcfg", ".str", ".vdi", ".zip", ".pdf", ".exe", ".o", ".obj",
-    ".a", ".tmp", ".docx"
+    ".a", ".tmp", ".docx", ".aux", ".bbl", ".blg", ".fdb_latexmk",
+    ".fls", ".png"
 )
 
 $excludeDir = @(
@@ -48,7 +50,9 @@ $excludeDirPatterns = @(
 
 $excludeNamePatterns = @(
     "*.tdc_packets.csv",
+    "*.sha256.txt",
     "*.bits.bin.metadata.json",
+    "*.payload.bin.metadata.json",
     "*.payload.metadata.json"
 )
 

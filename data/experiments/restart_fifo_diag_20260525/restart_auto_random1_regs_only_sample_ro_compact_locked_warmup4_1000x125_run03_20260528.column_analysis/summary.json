@@ -1,0 +1,37 @@
+{
+  "analysis": "packed restart byte/bit column bias",
+  "label": "restart_auto_random1_regs_only_sample_ro_compact_locked_warmup4_1000x125_run03_20260528",
+  "input_file": "E:\\Project\\MLDSA\\RO_TRNG\\data\\hardware\\20260511_fpga1_board1\\restart\\restart_auto_random1_regs_only_sample_ro_compact_locked_warmup4_1000x125_run03_20260528.bin",
+  "input_sha256": "FC279E35A8AB34875DA691AE9BF508BC35B5272665A52784C29CCB6F90937CBE",
+  "input_bytes": 125000,
+  "restart_count": 1000,
+  "bytes_per_restart": 125,
+  "expanded_symbols_per_restart": 1000,
+  "total_bits": 1000000,
+  "total_ones": 499432,
+  "overall_p1": 0.499432,
+  "row_ones_mean": 499.432,
+  "row_ones_std": 16.702256614002792,
+  "x_cutoff": 0,
+  "positions_over_x_cutoff": 0,
+  "worst_position": {
+    "byte_index": 113,
+    "bit_index": 0,
+    "ones": 560,
+    "zeros": 440,
+    "p1": "0.560000000",
+    "abs_bias": "0.060000000",
+    "x": 560,
+    "msb_expanded_column": 911,
+    "lsb_expanded_column": 904,
+    "over_x_cutoff": false
+  },
+  "interpretation_hint": "For a packed input byte, MSB expansion maps bit b to column byte*8+(7-b); LSB expansion maps bit b to column byte*8+b.",
+  "created_at": "2026-05-28 13:26:51",
+  "outputs": {
+    "raw_byte_bit_counts_csv": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\restart_fifo_diag_20260525\\restart_auto_random1_regs_only_sample_ro_compact_locked_warmup4_1000x125_run03_20260528.column_analysis\\raw_byte_bit_counts.csv",
+    "expanded_column_counts_csv": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\restart_fifo_diag_20260525\\restart_auto_random1_regs_only_sample_ro_compact_locked_warmup4_1000x125_run03_20260528.column_analysis\\expanded_column_counts.csv",
+    "top_biased_positions_csv": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\restart_fifo_diag_20260525\\restart_auto_random1_regs_only_sample_ro_compact_locked_warmup4_1000x125_run03_20260528.column_analysis\\top_biased_positions.csv",
+    "heatmap_svg": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\restart_fifo_diag_20260525\\restart_auto_random1_regs_only_sample_ro_compact_locked_warmup4_1000x125_run03_20260528.column_analysis\\restart_byte_bit_heatmap.svg"
+  }
+}

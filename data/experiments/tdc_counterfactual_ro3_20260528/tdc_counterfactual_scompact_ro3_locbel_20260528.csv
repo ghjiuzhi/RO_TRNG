@@ -1,0 +1,12 @@
+label,role,cell,loc,bel
+scompact_ro3_w4,sample_ro,u_ro_a/RO_NAND.u_LUT6_nand2_1/u_LUT6,SLICE_X46Y34,SLICEM.B6LUT
+scompact_ro3_w4,sample_ro,u_ro_a/RO_STAGE_LOOP[0].u_LUT6_not1/u_LUT6,SLICE_X46Y32,SLICEM.A6LUT
+scompact_ro3_w4,sample_ro,u_ro_a/RO_STAGE_LOOP[1].u_LUT6_not1/u_LUT6,SLICE_X47Y33,SLICEL.A6LUT
+scompact_ro3_w4,sample_ro,u_ro_a/RO_STAGE_LOOP[2].u_LUT6_not1/u_LUT6,SLICE_X46Y33,SLICEM.A6LUT
+scompact_ro3_w4,sample_ro,u_ro_a/RO_STAGE_LOOP[3].u_LUT6_not1/u_LUT6,SLICE_X46Y34,SLICEM.A6LUT
+scompact_ro3_w4,sample_ro,u_ro_a/RO_STAGE_LOOP[4].u_LUT6_not1/u_LUT6,SLICE_X46Y35,SLICEM.A6LUT
+scompact_ro3_w4,sample_ro,u_ro_a/RO_STAGE_LOOP[5].u_LUT6_not1/u_LUT6,SLICE_X46Y36,SLICEM.A6LUT
+scompact_ro3_w4,sample_ro,u_ro_a/RO_STAGE_LOOP[6].u_LUT6_not1/u_LUT6,SLICE_X46Y37,SLICEM.A6LUT
+scompact_ro3_w4,sample_ro,u_ro_a/RO_STAGE_LOOP[7].u_LUT6_not1/u_LUT6,SLICE_X49Y45,SLICEL.A6LUT
+scompact_ro3_w4,data_ro0,u_ro_b/RO_AND.u_LUT6_and2_1/u_LUT6,SLICE_X66Y59,SLICEM.C6LUT
+scompact_ro3_w4,data_ro0,u_ro_b/RO_STAGE_LOOP[0].u_LUT6_not1/u_LUT6,SLICE_X66Y59,SLICEM.D6LUT

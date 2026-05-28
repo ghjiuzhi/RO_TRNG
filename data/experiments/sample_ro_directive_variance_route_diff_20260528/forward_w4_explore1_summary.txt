@@ -1,0 +1,6 @@
+label=forward_w4_explore1
+dcp=E:/Project/MLDSA/RO_TRNG/data/vivado_runs/sample_ro_directive_variance_20260528/restart_fifo_compact_diag_formal_sample_warmup4_1000x125_explore1/checkpoints/RO_TRNG_restart_fifo_compact_diag_top_routed.dcp
+sample_cells=9
+sampled_regs=64
+data_cells=16
+entropy_cells=157

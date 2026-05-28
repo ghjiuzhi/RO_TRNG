@@ -1,0 +1,37 @@
+{
+  "analysis": "packed restart byte/bit column bias",
+  "label": "restart_fifo_compact_diag_regs_only_warmup4_1000x125_run03_20260528",
+  "input_file": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\restart_fifo_diag_20260528\\restart_fifo_compact_diag_regs_only_warmup4_1000x125_run03_20260528.send_packed.bin",
+  "input_sha256": "39B4335587125E89BEDDC7B980CC5BDAA422103DD7F278AF420178B5600831AF",
+  "input_bytes": 125000,
+  "restart_count": 1000,
+  "bytes_per_restart": 125,
+  "expanded_symbols_per_restart": 1000,
+  "total_bits": 1000000,
+  "total_ones": 499131,
+  "overall_p1": 0.499131,
+  "row_ones_mean": 499.131,
+  "row_ones_std": 15.342354415147632,
+  "x_cutoff": 0,
+  "positions_over_x_cutoff": 0,
+  "worst_position": {
+    "byte_index": 84,
+    "bit_index": 0,
+    "ones": 556,
+    "zeros": 444,
+    "p1": "0.556000000",
+    "abs_bias": "0.056000000",
+    "x": 556,
+    "msb_expanded_column": 679,
+    "lsb_expanded_column": 672,
+    "over_x_cutoff": false
+  },
+  "interpretation_hint": "For a packed input byte, MSB expansion maps bit b to column byte*8+(7-b); LSB expansion maps bit b to column byte*8+b.",
+  "created_at": "2026-05-28 13:22:17",
+  "outputs": {
+    "raw_byte_bit_counts_csv": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\restart_fifo_diag_20260528\\restart_fifo_compact_diag_regs_only_warmup4_1000x125_run03_20260528.column_analysis\\raw_byte_bit_counts.csv",
+    "expanded_column_counts_csv": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\restart_fifo_diag_20260528\\restart_fifo_compact_diag_regs_only_warmup4_1000x125_run03_20260528.column_analysis\\expanded_column_counts.csv",
+    "top_biased_positions_csv": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\restart_fifo_diag_20260528\\restart_fifo_compact_diag_regs_only_warmup4_1000x125_run03_20260528.column_analysis\\top_biased_positions.csv",
+    "heatmap_svg": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\restart_fifo_diag_20260528\\restart_fifo_compact_diag_regs_only_warmup4_1000x125_run03_20260528.column_analysis\\restart_byte_bit_heatmap.svg"
+  }
+}

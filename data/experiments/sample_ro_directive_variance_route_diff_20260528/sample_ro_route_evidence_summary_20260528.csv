@@ -1,0 +1,3 @@
+label,sample_ro_cells,sampled_data_regs,data_ro_cells,sample_ro_locs,sampled_reg_loc_count,data_ro_loc_count,sample_ro_nets,sampled_data_nets,data_ro_nets,sample_ro_pips,sampled_data_pips,data_ro_pips,sample_ro_delay_arcs,sampled_data_delay_arcs,data_ro_delay_arcs,neighborhood_rows
+compact_w4_explore1,9,64,16,SLICE_X46Y32 SLICE_X46Y33 SLICE_X46Y34 SLICE_X46Y35 SLICE_X46Y36 SLICE_X46Y37 SLICE_X47Y33 SLICE_X49Y45,64,8,36,64,64,9241,282,16472,276,64,384,241
+forward_w4_explore1,9,64,16,SLICE_X46Y32 SLICE_X46Y33 SLICE_X46Y34 SLICE_X46Y35 SLICE_X46Y36 SLICE_X46Y37 SLICE_X47Y33 SLICE_X49Y45,64,8,36,64,64,9239,282,16430,276,64,384,233

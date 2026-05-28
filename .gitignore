@@ -29,6 +29,10 @@ xsim.dir/
 
 # Large derived packet dumps
 *.tdc_packets.csv
+*.sha256.txt
+*.bits.bin.metadata.json
+*.payload.bin.metadata.json
+*.payload.metadata.json
 
 # Local Python/build cache
 __pycache__/

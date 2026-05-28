@@ -1,0 +1,4 @@
+interface:
+  display_name: "IEEE Paper Writer"
+  short_description: "Draft IEEE-style research papers from project evidence."
+  default_prompt: "Use this skill to create an IEEE-style paper workspace in the current project and draft the manuscript from local evidence only."

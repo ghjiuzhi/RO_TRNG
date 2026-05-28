@@ -1,0 +1,3 @@
+mode,n,pearson_p1_run01_run02,mean_abs_delta_p1,max_abs_delta_p1,max_abs_delta_label,same_bias_sign_count,run01_mean_abs_bias,run02_mean_abs_bias
+data_ro,8,0.999678268,0.003198625,0.009610000,data_ro0,8,0.136919250,0.138059875
+except_data_ro,8,0.999013042,0.000893375,0.003226000,except_ro1,8,0.029468625,0.029638750

@@ -1,0 +1,37 @@
+{
+  "analysis": "packed restart byte/bit column bias",
+  "label": "restart_fifo_compact_diag_formal_sample_warmup4_1000x125_explore1_run01_20260528",
+  "input_file": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\sample_ro_directive_variance_20260528\\restart_fifo_compact_diag_formal_sample_warmup4_1000x125_explore1_run01_20260528.send_packed.bin",
+  "input_sha256": "B37351202A54E4E0921C95DE68FFAB2147FB42B3A54DECC3A63728C191B12CCD",
+  "input_bytes": 125000,
+  "restart_count": 1000,
+  "bytes_per_restart": 125,
+  "expanded_symbols_per_restart": 1000,
+  "total_bits": 1000000,
+  "total_ones": 375294,
+  "overall_p1": 0.375294,
+  "row_ones_mean": 375.294,
+  "row_ones_std": 15.459998835705,
+  "x_cutoff": 0,
+  "positions_over_x_cutoff": 0,
+  "worst_position": {
+    "byte_index": 2,
+    "bit_index": 2,
+    "ones": 204,
+    "zeros": 796,
+    "p1": "0.204000000",
+    "abs_bias": "0.296000000",
+    "x": 796,
+    "msb_expanded_column": 21,
+    "lsb_expanded_column": 18,
+    "over_x_cutoff": false
+  },
+  "interpretation_hint": "For a packed input byte, MSB expansion maps bit b to column byte*8+(7-b); LSB expansion maps bit b to column byte*8+b.",
+  "created_at": "2026-05-28 15:21:56",
+  "outputs": {
+    "raw_byte_bit_counts_csv": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\sample_ro_directive_variance_20260528\\restart_fifo_compact_diag_formal_sample_warmup4_1000x125_explore1_run01_20260528.column_analysis\\raw_byte_bit_counts.csv",
+    "expanded_column_counts_csv": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\sample_ro_directive_variance_20260528\\restart_fifo_compact_diag_formal_sample_warmup4_1000x125_explore1_run01_20260528.column_analysis\\expanded_column_counts.csv",
+    "top_biased_positions_csv": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\sample_ro_directive_variance_20260528\\restart_fifo_compact_diag_formal_sample_warmup4_1000x125_explore1_run01_20260528.column_analysis\\top_biased_positions.csv",
+    "heatmap_svg": "E:\\Project\\MLDSA\\RO_TRNG\\data\\experiments\\sample_ro_directive_variance_20260528\\restart_fifo_compact_diag_formal_sample_warmup4_1000x125_explore1_run01_20260528.column_analysis\\restart_byte_bit_heatmap.svg"
+  }
+}
