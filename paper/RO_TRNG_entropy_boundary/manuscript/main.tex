@@ -38,14 +38,14 @@
 
 \begin{document}
 
-\title{A Measurement-Driven Case Study of Sampler-Side Entropy Boundaries in a Zynq-7020 FPGA RO-TRNG}
+\title{A Measurement-Driven Two-Board Case Study of Sampler-Side Entropy Boundaries in Zynq-7020 FPGA RO-TRNGs}
 
 \author{Author Names Withheld for Draft Review}
 
 \maketitle
 
 \begin{abstract}
-FPGA ring-oscillator true random number generators are commonly evaluated from oscillator-array structure and final output statistics. This paper reports a Zynq-7020 \rotrng{} case study showing that this boundary can be insufficient: sampler-side physical implementation can substantially reshape measured restart behavior. Continuous-stream placement measurements expose a large implementation dependence, from a biased placement with $p_1=0.337316$ and bit min-entropy 0.593606 to a near-balanced placement with $p_1=0.499969$ and bit min-entropy 0.999909. Restart measurements then show that continuous-stream balance is not enough: warmup bytes 8 and 10 trigger fixed-position diagnostic flags, while warmup bytes 11, 12, and 16 do not. The central evidence is a bidirectional sampler-side counterfactual: imposing the restart-oriented sample-RO lock changes a compact sampler configuration from near-balanced to biased, while imposing the compact sample-RO lock restores near-balanced restart output behavior in the baseline restart configuration. Pairwise and exact counterfactual \tdc{} diagnostics show no strong-lock windows under the applied screens, and reduced-XOR controls show that final all64 output can hide biased internal sampler-vector directions through warmup-dependent cancellation. These measurements support a diagnostic claim rather than a certification claim: sampler-side physical implementation is not passive readout in this implementation and should be included in the measured entropy-source boundary.
+FPGA ring-oscillator true random number generators are commonly evaluated from oscillator-array structure and final output statistics. This paper reports a two-board Zynq-7020 \rotrng{} case study showing that this boundary can be insufficient: sampler-side physical implementation can substantially reshape measured restart behavior. Continuous-stream placement measurements on the primary board expose a large implementation dependence, from a biased placement with $p_1=0.337316$ and bit min-entropy 0.593606 to a near-balanced placement with $p_1=0.499969$ and bit min-entropy 0.999909. Restart measurements then show that continuous-stream balance is not enough: warmup bytes 8 and 10 trigger fixed-position diagnostic flags, while warmup bytes 11, 12, and 16 do not. The central evidence is a bidirectional sampler-side counterfactual on the primary board, plus a targeted second-board check: imposing the restart-oriented sample-RO lock changes a compact sampler configuration toward biased restart behavior on both boards, with board-specific magnitudes. Pairwise and exact counterfactual \tdc{} diagnostics show small phase correlations under the applied screens, and reduced-XOR controls show that final all64 output can hide biased internal sampler-vector directions through warmup-dependent cancellation. These measurements support a diagnostic claim rather than a certification claim: sampler-side physical implementation is not passive readout in the evaluated implementations and should be included in the measured entropy-source boundary.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -66,16 +66,16 @@ The central question of this paper is:
 When an FPGA \rotrng{} is evaluated from hardware measurements, must the sampler-side physical implementation be included in the measured entropy-source boundary?
 \end{quote}
 
-For the evaluated Zynq-7020 implementation, the answer is yes. The claim is not that all FPGA \rotrng{}s behave identically, nor that the present evidence is a complete \spn{} validation package. The claim is sharper: in this implementation, sampler-side physical implementation is not passive readout, and a measurement boundary that excludes it would miss a major observed source of restart-behavior variation under the evaluated protocol.
+For the evaluated Zynq-7020 implementations, the answer is yes. The claim is not that all FPGA \rotrng{}s behave identically, nor that the present evidence is a complete \spn{} validation package. The claim is sharper: in these measured implementations, sampler-side physical implementation is not passive readout, and a measurement boundary that excludes it would miss a major observed source of restart-behavior variation under the evaluated protocol.
 
 The contributions are as follows.
 
 \begin{enumerate}
   \item A placement-sensitive continuous-stream characterization showing repeatable output-quality differences across implemented FPGA placements.
   \item A restart and warmup analysis showing that near-balanced continuous-stream statistics do not rule out fixed-position startup bias.
-  \item A bidirectional sampler-side counterfactual showing that a sampler-centered physical perturbation can move a near-balanced restart condition into a flagged biased condition and restore near-balanced behavior in the reverse direction.
+  \item A bidirectional primary-board sampler-side counterfactual, with a targeted second-board check, showing that a sampler-centered physical perturbation can move restart behavior toward biased outcomes and restore near-balanced behavior in the reverse direction on the primary board.
   \item A \tdc{}-assisted diagnostic layer that constrains a simple persistent pairwise hard-locking explanation under the measured conditions.
-  \item A reduced-XOR counterfactual analysis showing same-data-RO direction anisotropy, warmup-dependent complement cancellation, and line-direction controls.
+  \item A reduced-XOR counterfactual analysis showing same-data-RO direction anisotropy, warmup-dependent complement cancellation, line-direction controls, and a second-board mechanism check.
 \end{enumerate}
 
 The rest of the paper follows the evidence chain. Section~II summarizes related work and the measurement gap. Section~III describes the implemented system and workflow. Section~IV defines the experimental boundary and analysis rules. Sections~V--IX present continuous-stream placement, restart, sampler-side counterfactual, \tdc{}, and reduced-XOR evidence. Section~X discusses the entropy-source boundary, Section~XI lists limitations and future measurements, and Section~XII concludes.
@@ -90,7 +90,7 @@ These foundations cover RO construction, statistical assessment, standards-orien
 
 \tdc{} instrumentation provides another diagnostic layer. FPGA \tdc{}s have a substantial instrumentation literature \cite{Jian_Song_2006,Wu_2009,Wu_2012,Wang_2017}, but raw bins are not automatically linear timing measurements. In this work, \tdc{} data are used conservatively: they help test mechanism explanations, especially persistent pairwise hard locking, but they are not used as calibrated picosecond-level jitter metrology.
 
-The distinction of this paper is the sampler-side boundary evidence. Existing \rotrng{} analysis can separate oscillator source, sampler, post-processing, and validation boundary for modeling or certification. The measurements here show that, for this implementation, treating the sampler side as passive readout is not a safe measurement abstraction. The missing comparison dimension is not simply whether placement affects output quality, but whether a controlled sampler-side physical perturbation changes restart behavior while the measurement boundary is being diagnosed.
+The distinction of this paper is the sampler-side boundary evidence. Existing \rotrng{} analysis can separate oscillator source, sampler, post-processing, and validation boundary for modeling or certification. The measurements here show that, for the evaluated implementations, treating the sampler side as passive readout is not a safe measurement abstraction. The missing comparison dimension is not simply whether placement affects output quality, but whether a controlled sampler-side physical perturbation changes restart behavior while the measurement boundary is being diagnosed.
 
 \section{Design and Measurement Workflow}
 
@@ -180,7 +180,7 @@ Table~\ref{tab:setup} records the platform and capture configuration that are fi
 \toprule
 Item & Evaluated configuration \\
 \midrule
-Board scope & Evaluated Zynq-7020 lab board, hardware root \texttt{20260511\_fpga1\_board1} \\
+Board scope & Primary Zynq-7020 lab board, hardware root \texttt{20260511\_fpga1\_board1}; targeted second-board checks, hardware root \texttt{20260529\_fpga1\_board2} \\
 FPGA part & \texttt{xc7z020clg400-2} \\
 Tool flow & Vivado 2023.2 in-memory build scripts \\
 System clock & Single-ended board clock through clock wizard; internal UART/control clock 200 MHz \\
@@ -236,7 +236,7 @@ Paper condition & Artifact ID & Bytes & $p_1$ & Abs. bias & Bit min-H & Adjacent
 \end{tabular}
 \end{table*}
 
-Available repeats support placement-level consistency for the current dataset. The summarized measurements report a maximum 10 MiB/repeat bit-min-entropy mean delta of 0.00841786 among paired placement rows. This does not establish cross-board or PVT robustness, but it supports treating the placement differences as measured implementation behavior in the evaluated experiment.
+Available repeats support placement-level consistency for the current dataset. The summarized measurements report a maximum 10 MiB/repeat bit-min-entropy mean delta of 0.00841786 among paired placement rows. The continuous-stream placement matrix itself remains primary-board evidence rather than a cross-board placement ranking, but it supports treating the placement differences as measured implementation behavior in the evaluated experiment.
 
 \section{Restart and Warmup Characterization}
 
@@ -334,7 +334,27 @@ reverse repair & 4  & 3 & 0.499535 & 0.000190 & 0.998325 & 560 & three independe
 \end{tabular}
 \end{table*}
 
-The forward direction shows that a compact diagnostic configuration that is near balanced with \scompact{} becomes biased when \srestart{} is imposed. The reverse direction prevents the result from being read as a one-way artifact of the diagnostic configuration: the baseline restart configuration is restored near balance when \scompact{} is imposed. Table~\ref{tab:samplero} is run-level counterfactual diagnostic evidence rather than a balanced statistical repeatability study, and Table~\ref{tab:counterrepeat} makes the uneven archived repeat coverage explicit. Where same-condition repeats are currently available, the sign of the effect is stable: the three-row forward warmup-4 and warmup-5 groups remain biased, the three-row reverse warmup-4 group remains near balanced, and the three-row compact-baseline warmup-4 group remains near balanced. The compact baseline warmup-5 and warmup-11 points and the forward warmup-11 point still have two runs each, so these summaries should not be read as a complete repeatability study.
+\begin{table}[t]
+\centering
+\caption{Targeted second-board sampler counterfactual check.}
+\label{tab:board2counter}
+\scriptsize
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llrrrl}
+\toprule
+Sample-RO lock & Warmup & $p_1$ & Min-H & Worst $x$ & Reading \\
+\midrule
+\scompact{}  & 4 & 0.493833 & 0.982315 & 571 & compact reference \\
+\srestart{}  & 4 & 0.453148 & 0.870778 & 713 & shifted toward biased restart behavior \\
+\scompact{}  & 5 & 0.517910 & 0.949227 & 572 & compact reference \\
+\srestart{}  & 5 & 0.447170 & 0.855092 & 648 & shifted toward biased restart behavior \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+The forward direction on the primary board shows that a compact diagnostic configuration that is near balanced with \scompact{} becomes biased when \srestart{} is imposed. The reverse direction prevents the result from being read as a one-way artifact of the diagnostic configuration: the baseline restart configuration is restored near balance when \scompact{} is imposed. Table~\ref{tab:samplero} is run-level counterfactual diagnostic evidence rather than a balanced statistical repeatability study, and Table~\ref{tab:counterrepeat} makes the uneven archived repeat coverage explicit. Where same-condition repeats are currently available, the sign of the effect is stable: the three-row forward warmup-4 and warmup-5 groups remain biased, the three-row reverse warmup-4 group remains near balanced, and the three-row compact-baseline warmup-4 group remains near balanced. The compact baseline warmup-5 and warmup-11 points and the forward warmup-11 point still have two runs each, so these summaries should not be read as a complete repeatability study.
+
+The targeted second-board check in Table~\ref{tab:board2counter} reproduces the direction of the sampler-lock effect without reproducing the exact primary-board magnitudes. At warmup 4, changing from \scompact{} to \srestart{} moves $p_1$ from 0.493833 to 0.453148 and raises the worst fixed-position count from 571 to 713; at warmup 5, it moves $p_1$ from 0.517910 to 0.447170 and raises worst $x$ from 572 to 648. This supports the boundary claim across a second physical board while also showing that the signed magnitude and diagnostic margin are board-specific measurements, not universal constants.
 
 The intended constraint change is localized to explicit sample-RO LOC/BEL constraints, with the same data-RO and sampler-register constraint base retained for the locked variants. The implemented perturbation should therefore be interpreted as a sampler-centered physical perturbation with entropy-source-local routed-network residuals, not as a claim that only three LUT delays changed. Because Vivado may still alter surrounding routes, delays, and neighborhood implementation, the result is evidence that sampler-side physical implementation and local routed context reshape restart behavior rather than proof that no other physical element changed. We therefore separate two uses of the counterfactuals: the same-RTL forward comparisons provide the strongest implementation-locality evidence, while the reverse repair rows provide behavior-level bidirectional evidence but are not used as a clean locality proof.
 
@@ -410,7 +430,7 @@ The older broad routed-cell diff between the formal auto and compact warmup-4 bu
 
 The \tdc{} evidence is not used to prove the root cause of the sampler-side counterfactual. It has a narrower role: rejecting an overly simple mechanism explanation in which the observed restart behavior is attributed only to persistent pairwise hard locking between oscillator pairs. Under the selected pair captures, the \tdc{} measurements do not support that explanation as the dominant mechanism. A phase-correlation value here denotes the absolute correlation between packetized \tdc{} phase sequences within an analysis window. A best-lag value is the largest such magnitude found over packet offsets from $-8$ to $+8$. Across 12 pair captures and 16 windows per capture, the summary reports zero strong-lock windows. The maximum reported small-lag or best-lag absolute correlation is about 0.031783.
 
-An additional exact counterfactual \tdc{} check places the \tdc{} sample-RO lane at the same \scompact{} and \srestart{} LOC/BEL assignments used in Table~\ref{tab:samplero}, while holding the measured data-RO lane at data\_ro0. With warmup-4 reset-aligned captures of 32768 packets per variant, the \scompact{} and \srestart{} runs report phase correlations of 0.004300 and 0.011762, respectively; a 16-window lag scan over $-8$ to $+8$ packets gives zero strong-lock windows for both, with maximum best-lag magnitudes about 0.059012 and 0.057888. This result does not explain the counterfactual by itself, but it further constrains a simple pairwise hard-locking explanation for the observed restart bias.
+An additional exact counterfactual \tdc{} check places the \tdc{} sample-RO lane at the same \scompact{} and \srestart{} LOC/BEL assignments used in Table~\ref{tab:samplero}, while holding the measured data-RO lane at data\_ro0. With warmup-4 reset-aligned captures of 32768 packets per variant, the \scompact{} and \srestart{} runs report phase correlations of 0.004300 and 0.011762, respectively; a 16-window lag scan over $-8$ to $+8$ packets gives zero strong-lock windows for both, with maximum best-lag magnitudes about 0.059012 and 0.057888. This result does not explain the counterfactual by itself, but it further constrains a simple pairwise hard-locking explanation for the observed restart bias. A second-board exact \tdc{} repeat gives the same negative-mechanism reading for direct phase correlation: for data\_ro0, \scompact{} and \srestart{} phase correlations are 0.004264 and 0.008195; for data\_ro3, they are 0.000058 and $-0.001232$, with zero packet sequence gaps in all four 32768-packet captures.
 
 \begin{table*}[t]
 \centering
@@ -530,7 +550,7 @@ except\_data\_ro & 7 & except\_ro7 & 0.542602 &  0.042602 & 0.882034 & 598 & 0.5
 
 \begin{table*}[!t]
 \centering
-\caption{Reduced-XOR mechanism controls. The full-direction repeat tests run-to-run stability of the warmup-10 direction map; the line-direction rows test whether warmup-10 bias is a sampler-phase row failure; the data\_ro3 warmup-neighbor rows test whether the strongest high-biased direction is unique to warmup 10.}
+\caption{Reduced-XOR mechanism controls. The full-direction repeat tests run-to-run stability of the warmup-10 direction map; the second-board rows test cross-board mechanism persistence; the line-direction rows test whether warmup-10 bias is a sampler-phase row failure; the data\_ro3 warmup-neighbor rows test whether the strongest high-biased direction is unique to warmup 10.}
 \label{tab:reducedxormechanism}
 \scriptsize
 \begin{tabular}{@{}L{0.20\textwidth}L{0.25\textwidth}L{0.25\textwidth}L{0.22\textwidth}@{}}
@@ -539,6 +559,7 @@ Control & Measured scope & Key values & Mechanism reading \\
 \midrule
 Warmup-10 same-data-RO directions & eight $y_{\mathrm{ro}i}$ rows & $p_1$ range 0.191877--0.671833; max abs bias 0.308123; min min-H 0.307353 & Strong anisotropy along same-data-RO directions \\
 Warmup-10 full direction repeat & eight $y_{\mathrm{ro}i}$ and eight $y_{\mathrm{except}\ i}$ rows in run01/run02 & data\_ro Pearson 0.999678, mean $|\Delta p_1|=0.003199$, same sign 8/8; complements Pearson 0.999013, mean $|\Delta p_1|=0.000893$, same sign 8/8 & Repeat-stable anisotropic direction map at warmup 10 \\
+Second-board full direction maps & warmup-10 and warmup-11 all64, data\_ro0..7, and except\_ro0..7 & W10 all64 $p_1=0.360614$; except\_ro0, except\_ro2, except\_ro6 near balanced at 0.500015, 0.502798, 0.500649; W11 all64 $p_1=0.473738$ & Same cancellation mechanism appears on a second board, but contributor identities and magnitudes are board specific \\
 Warmup-10 sampler-phase line directions & eight $y_{\mathrm{line}k}$ rows & $p_1$ range 0.486473--0.501004; max abs bias 0.013527; min min-H 0.961488 & No evidence of a generic sampler-phase line failure in this run \\
 Line6 targeted repeat & $y_{\mathrm{line}6}$ run01 and repeat02 & $p_1=0.486473$ and 0.487182; worst byte.bit remains 0.3; worst $x=701$ and 714 & Stable fixed-position outlier with weak global bias \\
 data\_ro3 warmup neighbors & $y_{\mathrm{ro}3}$ and except\_ro3 at warmups 5, 10, 11 & data\_ro3 $p_1=0.576638$, 0.671833, 0.544560; except\_ro3 $p_1=0.503005$, 0.553930, 0.501558 & Direction persists; complement cancellation is warmup-dependent \\
@@ -600,23 +621,25 @@ data\_ro3 warmup neighbors & $y_{\mathrm{ro}3}$ and except\_ro3 at warmups 5, 10
 
 The mechanism controls in Table~\ref{tab:reducedxormechanism} sharpen the interpretation. The warmup-10 sampled vector is strongly anisotropic and repeat-stable: across the complete run01/run02 direction map, same-data-RO directions have Pearson correlation 0.999678 in $p_1$, mean absolute run-to-run change 0.003199, and the same bias sign in all eight directions. The complement directions show the same qualitative stability with Pearson correlation 0.999013, mean absolute change 0.000893, and matching bias signs in all eight directions. In contrast, sampler-phase line directions remain close to balance, spanning $p_1=0.486473$ to 0.501004. Thus the dominant marginal reduced-XOR structure in this run is not a generic failure of one sampler phase line. It is concentrated in same-data-RO directions and then reshaped by XOR complements.
 
+The second-board reduced-XOR check reinforces this mechanism without implying identical board behavior. At warmup 10, the second-board all64 output is biased low ($p_1=0.360614$), while removing data\_ro0, data\_ro2, or data\_ro6 nearly balances the stream ($p_1=0.500015$, 0.502798, and 0.500649). At warmup 11, all64 moves closer to balance ($p_1=0.473738$), but individual same-data-RO contributors remain strongly biased; near-balanced removal cases shift to except\_ro3, except\_ro6, and except\_ro1. This is consistent with the same warmup-dependent signed-contributor model observed on the primary board, with board-specific contributor identities and magnitudes.
+
 The data\_ro3 warmup-neighbor control further shows that the strongest high-biased warmup-10 direction is not a one-run anomaly. It remains high-biased at warmups 5, 10, and 11, but the except\_ro3 complement is near balanced at warmups 5 and 11 and moderately high-biased at warmup 10. This supports a warmup-dependent complement-cancellation model: individual same-data-RO directions can be stable biased hardware functions, while final all64 quality depends on how the remaining directions cancel or reinforce them under a specific startup window. The line6 repeat gives a different pattern: weak global bias but a stable worst fixed-position outlier, consistent with fixed-position startup structure rather than a row-direction analogue of the strong data-RO direction bias.
 
 Taken together, these measurements reinforce the sampler-boundary argument. The measured output is shaped by a vector of sampler-side hardware functions and startup-dependent XOR interactions, not only by a single abstract data-RO entropy term.
 
 \section{Entropy-Source Boundary Discussion}
 
-The evidence chain supports a bounded physical boundary claim. Placement experiments show that implementation choices materially affect continuous-stream statistics. Restart experiments show that continuous-stream quality is not sufficient to characterize startup behavior. The sampler-side counterfactuals show that changing sample-RO physical implementation can move measured restart outcomes in both directions. Pairwise and reset-aligned \tdc{} diagnostics constrain one simple mechanism story, and reduced-XOR experiments show that final output quality can reflect same-data-RO direction anisotropy and warmup-dependent complement cancellation.
+The evidence chain supports a bounded physical boundary claim. Placement experiments show that implementation choices materially affect continuous-stream statistics. Restart experiments show that continuous-stream quality is not sufficient to characterize startup behavior. The primary-board sampler-side counterfactuals show that changing sample-RO physical implementation can move measured restart outcomes in both directions, and the targeted second-board counterfactual reproduces the same direction of sampler-lock effect with board-specific magnitude. Pairwise and reset-aligned \tdc{} diagnostics constrain one simple mechanism story, and reduced-XOR experiments show that final output quality can reflect same-data-RO direction anisotropy and warmup-dependent complement cancellation across both measured boards.
 
 Taken together, these results support treating sampler-side physical implementation as part of the measured entropy-source boundary. In this work, that boundary includes the data ROs, sampled-data registers, sample RO, sampler-side routing, and restart/warmup/reset timing that directly determines early-sampling behavior. Post-XOR FIFO buffering, UART transport, host capture, and offline scripts are part of the measurement/readout chain, not the entropy-source boundary. Their routed movement in the current diff is therefore treated as a residual confounder to audit, not as a reason to include the whole bitstream in the entropy source.
 
-The interpretation is narrower than a proof of root cause. The measurements do not show that all sampler-side elements contribute equally, and they do not define a validated placement-aware design rule. They do show that excluding the sampler side from the measured boundary would hide a physical implementation factor that can substantially reshape restart outcomes in the evaluated implementation.
+The interpretation is narrower than a proof of root cause. The measurements do not show that all sampler-side elements contribute equally, and they do not define a validated placement-aware design rule. They do show that excluding the sampler side from the measured boundary would hide a physical implementation factor that can substantially reshape restart outcomes in the evaluated implementations.
 
 For measurement practice, the consequence is direct. An FPGA \rotrng{} evaluation should report not only final output statistics, but also the physical sampler implementation, restart behavior, and diagnostic evidence that separates data-RO behavior from sampler-vector and readout effects. Where possible, counterfactual placements should be used to test whether a claimed entropy-source boundary is stable under small physical changes.
 
 \section{Limitations and Future Measurements}
 
-The first limitation is scope. The evidence is from one evaluated Zynq-7020 setup and associated designs, placements, and tool runs. Multi-board, cross-family, voltage, temperature, aging, and tool-version evidence would be required before making broader implementation rules.
+The first limitation is scope. The evidence now includes a primary Zynq-7020 board and a targeted second same-family board check, but it is still not a broad multi-board validation. Cross-family, larger board-count, voltage, temperature, aging, and tool-version evidence would be required before making broader implementation rules.
 
 The second limitation is standards interpretation. The project contains 8,000,000-symbol entropy-assessment summaries and 1000-row restart diagnostic evidence, but a complete validation package would also require a final component boundary, conditioning and health-test documentation, restart-equivalence argument, environmental evidence, and submission-ready traceability.
 
@@ -624,13 +647,13 @@ The third limitation is \tdc{} interpretation. Pairwise and clean reset-aligned 
 
 The fourth limitation is physical decomposition. The sampler-side counterfactual localizes the intended perturbation to sample-RO physical constraints, and the same-RTL forward audit keeps tracked data-RO cells and sampled-data registers fixed at the LOC/BEL level. It still does not exhaustively separate sample-RO stages, local routes, post-XOR FIFO interaction, reset sequencing, or placement-neighborhood effects. Existing resource, timing, power, route-status, routed-cell, routed-net, PIP, net-delay, and directive-controlled route-variance reports provide traceability for the implemented variants; a route-locked repeat would make the physical attribution stronger.
 
-The highest-priority future measurements are multi-board repeats of the sampler-side counterfactual, controlled PVT subsets, held-out sampler placements, \tdc{} captures around the strongest counterfactuals, and route-locked repeats for the locked-sampler designs. For the reduced-XOR mechanism, full all-direction repeats at warmups 5 and 11 would test whether the observed data\_ro3 warmup-neighbor behavior generalizes to the other directions. With such evidence, the same core result could later be compressed toward a circuits-and-systems contribution, expanded toward a VLSI implementation rule, or reframed around a more complete cryptographic-engineering validation boundary.
+The highest-priority future measurements are additional same-family boards, controlled PVT subsets, held-out sampler placements, \tdc{} captures around the strongest counterfactuals, and route-locked repeats for the locked-sampler designs. For the reduced-XOR mechanism, full all-direction repeats at warmups 5 and 11 on the primary board and additional second-board repeats would test how far the observed contributor-cancellation model generalizes. With such evidence, the same core result could later be compressed toward a circuits-and-systems contribution, expanded toward a VLSI implementation rule, or reframed around a more complete cryptographic-engineering validation boundary.
 
 \section{Conclusion}
 
-This paper presented a measurement-driven diagnosis of sampler-side entropy boundaries in an evaluated Zynq-7020 FPGA \rotrng{}. Continuous-stream measurements show strong placement dependence, restart measurements reveal fixed-position startup bias that continuous-stream balance does not capture, and sampler-side counterfactuals show that a sampler-centered physical perturbation with entropy-source-local routed-network residuals can move restart behavior from near balance to flagged bias and back toward near balance.
+This paper presented a measurement-driven two-board diagnosis of sampler-side entropy boundaries in Zynq-7020 FPGA \rotrng{}s. Continuous-stream measurements show strong placement dependence on the primary board, restart measurements reveal fixed-position startup bias that continuous-stream balance does not capture, and sampler-side counterfactuals show that a sampler-centered physical perturbation with entropy-source-local routed-network residuals can move restart behavior from near balance to flagged bias and back toward near balance on the primary board, with the same sampler-lock direction reproduced in targeted second-board checks.
 
-The supporting diagnostics make the claim more specific. Pairwise and exact counterfactual \tdc{} measurements do not support a simple persistent hard-locking-only explanation under the selected conditions, and reduced-XOR counterfactuals show that final all64 output can hide biased internal sampler-vector directions through warmup-dependent cancellation. The resulting conclusion is a measurement and diagnosis claim: in this implementation, sampler-side physical implementation should be included in the measured entropy-source boundary.
+The supporting diagnostics make the claim more specific. Pairwise and exact counterfactual \tdc{} measurements do not support a simple persistent hard-locking-only explanation under the selected conditions, and reduced-XOR counterfactuals show that final all64 output can hide biased internal sampler-vector directions through warmup-dependent cancellation on both measured boards. The resulting conclusion is a measurement and diagnosis claim: in the evaluated implementations, sampler-side physical implementation should be included in the measured entropy-source boundary.
 
 \bibliographystyle{IEEEtran}
 \bibliography{../refs/references}

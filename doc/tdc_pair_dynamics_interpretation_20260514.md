@@ -4,8 +4,8 @@ This note is based only on completed offline TDC pair data in `data/hardware/202
 
 ## Key Result
 
-- Maximum absolute zero-lag window phase correlation: `0.0505784`.
-- Maximum absolute small-lag window phase correlation: `0.066234`.
+- Maximum absolute zero-lag window phase correlation: `0.063178`.
+- Maximum absolute small-lag window phase correlation: `0.0836128`.
 - Conservative strong-lock windows (`|r| >= 0.5` after small-lag scan): `0`.
 
 The present captures do not support a strong locking claim. The paper should state that the selected RO pairs were monitored with TDC phase readout, but the observed windowed phase correlations remained near zero and the differential phase spread stayed consistent with weakly coupled or effectively independent sampling under this setup.
