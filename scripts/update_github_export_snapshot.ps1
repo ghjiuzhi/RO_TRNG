@@ -38,7 +38,10 @@ $defaultIncludeRoots = @(
 $tvlsiIncludeRoots = @(
     "paper/RO_TRNG_tvlsi_sampler_aperture",
     "scripts/update_github_export_snapshot.ps1",
+    "scripts/build_restart_reduced_xor_20260526.ps1",
     "scripts/build_tvlsi_mechanism_validation_20260531.py",
+    "scripts/run_tvlsi_toolflow_sensitivity_20260531.ps1",
+    "scripts/summarize_tvlsi_toolflow_sensitivity_20260531.py",
     "scripts/summarize_pvt_xadc_manifest_20260530.py",
     "scripts/summarize_second_heldout_warmup_aperture_sweep_20260530.py",
     "scripts/tvlsi_build_sampler_aperture_model_20260530.py",
@@ -47,13 +50,15 @@ $tvlsiIncludeRoots = @(
     "scripts/diagnose_xadc_sysmon_20260530.ps1",
     "scripts/vivado/diagnose_xadc_sysmon_20260530.tcl",
     "data/experiments/tvlsi_mechanism_validation_20260531",
+    "data/experiments/toolflow_sensitivity_matrix_20260531",
     "data/experiments/second_heldout_warmup_aperture_sweep_20260530",
     "data/experiments/tvlsi_sampler_aperture_model_20260530",
     "data/experiments/second_heldout_sampler_route_diff_20260530",
     "data/experiments/xadc_summary/board2_bitstream_xadc_compare_20260531.csv",
     "data/experiments/xadc_summary/pvt_xadc_manifest_validation_20260530.csv",
     "data/experiments/xadc_summary/pvt_xadc_manifest_validation_20260531.csv",
-    "data/hardware/20260529_fpga1_board2/restart_reduced_xor_second_heldout_sampler_20260530/summary"
+    "data/hardware/20260529_fpga1_board2/restart_reduced_xor_second_heldout_sampler_20260530/summary",
+    "data/hardware/20260529_fpga1_board2/restart_toolflow_sensitivity_20260531"
 )
 
 $includeRoots = if ($Profile -eq "Tvlsi") {
@@ -194,6 +199,7 @@ if (-not $DryRun) {
     if ($Profile -eq "Tvlsi") {
         $summary += "- ``paper/RO_TRNG_tvlsi_sampler_aperture/``"
         $summary += "- ``data/experiments/tvlsi_mechanism_validation_20260531/``"
+        $summary += "- ``data/experiments/toolflow_sensitivity_matrix_20260531/``"
         $summary += "- ``data/experiments/second_heldout_warmup_aperture_sweep_20260530/``"
         $summary += "- ``data/experiments/xadc_summary/board2_bitstream_xadc_compare_20260531.csv``"
         $summary += "- ``data/hardware/20260529_fpga1_board2/restart_reduced_xor_second_heldout_sampler_20260530/summary/``"

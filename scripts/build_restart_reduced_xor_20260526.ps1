@@ -9,7 +9,11 @@ param(
     [int]$HoldCycles = 200000,
     [int]$SettleCycles = 200000,
     [string]$StartDelayCycles = "12000000000",
-    [int]$DebugHeader = 1
+    [int]$DebugHeader = 1,
+    [string]$DirectiveTag = "",
+    [string]$PlaceDirective = "",
+    [string]$PhysOptDirective = "",
+    [string]$RouteDirective = ""
 )
 
 Set-StrictMode -Version Latest
@@ -23,6 +27,7 @@ $variantMap = @{
     sampler_island_local = "data\experiments\xdc_sampler_island\random1_sampler_island_local_x45y39_regs_x45y31.xdc"
     sample_ro_local = "data\experiments\xdc_sampler_island\random1_sample_ro_local_x45y39.xdc"
     regs_only = "data\experiments\xdc_sampler_island\random1_sampler_regs_only_x45y31.xdc"
+    heldout_sample_x36y35_regs_x45y31 = "data\experiments\xdc_sampler_island\random1_sampler_island_sample_x36y35_regs_x45y31_heldout_20260530.xdc"
 }
 
 $modeMap = @{
@@ -56,7 +61,8 @@ foreach ($variant in $variants) {
             $modeId = $modeMap[$mode]
 
             foreach ($index in $indexes) {
-                $outDir = "data\vivado_runs\restart_reduced_xor_random1_${variant}_formal_bits_1000x125_warmup${warmup}_${mode}${index}_header_delay60s"
+                $tagSuffix = if ($DirectiveTag -ne "") { "_${DirectiveTag}" } else { "" }
+                $outDir = "data\vivado_runs\restart_reduced_xor_random1_${variant}_formal_bits_1000x125_warmup${warmup}_${mode}${index}${tagSuffix}_header_delay60s"
                 $bit = Join-Path $outDir "$top.bit"
                 if (Test-Path $bit) {
                     Write-Host "SKIP existing $variant warmup=$warmup mode=$mode index=${index}: $bit"
@@ -65,19 +71,27 @@ foreach ($variant in $variants) {
 
                 New-Item -ItemType Directory -Force -Path $outDir | Out-Null
                 Write-Host "BUILD reduced-xor variant=$variant warmup=$warmup mode=$mode index=$index"
-                & $VivadoBat -mode batch -source $flow -tclargs `
-                    $xdc `
-                    $outDir `
-                    $RestartCount `
-                    $RowBytes `
-                    $HoldCycles `
-                    $SettleCycles `
-                    $warmup `
-                    $StartDelayCycles `
-                    $DebugHeader `
-                    $top `
-                    $modeId `
+                $vivadoArgs = @(
+                    "-mode", "batch",
+                    "-source", $flow,
+                    "-tclargs",
+                    $xdc,
+                    $outDir,
+                    $RestartCount,
+                    $RowBytes,
+                    $HoldCycles,
+                    $SettleCycles,
+                    $warmup,
+                    $StartDelayCycles,
+                    $DebugHeader,
+                    $top,
+                    $modeId,
                     $index
+                )
+                if ($PlaceDirective -ne "" -or $PhysOptDirective -ne "" -or $RouteDirective -ne "") {
+                    $vivadoArgs += @($PlaceDirective, $PhysOptDirective, $RouteDirective)
+                }
+                & $VivadoBat @vivadoArgs
                 if ($LASTEXITCODE -ne 0) {
                     throw "Vivado reduced-xor build failed for variant=$variant warmup=$warmup mode=$mode index=$index with exit code $LASTEXITCODE"
                 }

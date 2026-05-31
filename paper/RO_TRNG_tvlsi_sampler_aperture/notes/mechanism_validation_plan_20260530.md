@@ -18,6 +18,7 @@ contributor decomposition
 -> route/aperture proxy linkage
 -> frozen held-out prediction
 -> warmup/aperture transition behavior
+-> minimal toolflow/directive sensitivity matrix
 -> explicit PVT and model boundaries
 ```
 
@@ -35,7 +36,8 @@ the current non-identifiable parameters separate.
 | Route audit | 17/17 second-heldout routed bitstreams audited | `data/experiments/second_heldout_sampler_route_diff_20260530/second_heldout_per_bitstream_route_audit_20260530.csv` |
 | Frozen prediction | Four baselines evaluated | `data/experiments/tvlsi_sampler_aperture_model_20260530/prediction_metrics_summary.csv` |
 | Warmup/aperture sweep | Ten anchor warmup points complete, no expected anchor missing | `data/experiments/second_heldout_warmup_aperture_sweep_20260530/second_heldout_warmup_aperture_sweep.csv` |
-| Mechanism summary | Warmup, route proxy, prediction, and PVT boundaries joined | `data/experiments/tvlsi_mechanism_validation_20260531/mechanism_validation_summary.csv` |
+| Toolflow/directive sensitivity | 12/12 captures and 6/6 original-vs-Explore route-pair diffs complete | `data/experiments/toolflow_sensitivity_matrix_20260531/toolflow_sensitivity_matrix.csv` |
+| Mechanism summary | Warmup, route proxy, prediction, toolflow boundary, and PVT boundaries joined | `data/experiments/tvlsi_mechanism_validation_20260531/mechanism_validation_summary.csv` |
 | PVT logging | Structurally logged but physically invalid on Board2 | `data/experiments/xadc_summary/pvt_xadc_manifest_validation_20260531.csv` |
 
 ## Key Mechanism Observations
@@ -52,6 +54,9 @@ the current non-identifiable parameters separate.
   it should be reported as partial transfer rather than calibrated prediction.
 - Route/PIP/net-delay features are available as implementation proxies, but
   they are not calibrated sampler-aperture delays.
+- The minimal original-vs-Explore toolflow matrix preserves bias under stable
+  extracted routes (`0.000100` to `0.000896` absolute-bias shift magnitude) and
+  shows larger shifts only in route-moving cases.
 - Board2 PVT cannot be used as a covariate in the current setup.
 
 ## Paper Use
@@ -64,8 +69,11 @@ The TVLSI manuscript can safely claim:
   mechanism tests;
 - route and sampler context are measurable implementation variables;
 - warmup/aperture sweep produces a falsifiable mechanism signal;
+- stable-route directive perturbation does not explain away the observed
+  sampler-aperture behavior, while route-moving rows remain implementation
+  boundary cases;
 - the current model has explicit boundaries: weak rank prediction, invalid
-  Board2 PVT, and proxy-only route timing.
+  Board2 PVT, proxy-only route timing, and no full seed sweep.
 
 The manuscript should not claim:
 
@@ -73,18 +81,18 @@ The manuscript should not claim:
 - fitted metastability transfer constants;
 - identified coupling coefficients;
 - formal timing-path-to-aperture derivation;
-- PVT dependence on Board2.
+- PVT dependence on Board2;
+- complete Vivado seed/directive invariance.
 
 ## Next Proof Step
 
-The highest-value next experiment is not another full reduced-XOR map. It is a
-controlled aperture or route-sensitivity perturbation with fixed anchors:
+The highest-value route-sensitivity perturbation has now been run as the
+minimal toolflow/directive matrix. The next proof step should be manuscript
+integration and export, not more immediate hardware expansion:
 
-1. Fix board, context, warmup, and anchor bitstreams.
-2. Change one implementation variable at a time when possible: route seed,
-   placement-preserved reroute, or sampler local route.
-3. Capture `all640`, `data_ro0`, and `data_ro4`.
-4. Re-run route audit and join observed bias shifts to route/PIP/net-delay
-   differences.
-5. Treat improved prediction as evidence, and weak prediction as a model
-   boundary rather than a failure to hide.
+1. Use `toolflow_sensitivity_manuscript_table_20260531.md` as the table source.
+2. Keep the claim bounded to stable-route robustness plus route-moving
+   implementation sensitivity.
+3. Preserve PVT as a limitation until Board2 XADC is physically valid.
+4. Add a larger seed/directive sweep only if reviewers specifically require
+   toolflow breadth beyond the current minimal matrix.

@@ -1,0 +1,17 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
+| Date         : Sun May 31 17:08:58 2026
+| Host         : gxy running 64-bit major release  (build 9200)
+| Command      : report_timing -quiet -from [get_pins -quiet -of_objects {u_entropy_source/sampled_data[9]} -filter {REF_PIN_NAME == O}] -to [get_pins -quiet -of_objects {u_entropy_source/sampled_data[9]} -filter {REF_PIN_NAME == C}] -max_paths 50 -delay_type min_max -file E:/Project/MLDSA/RO_TRNG/data/experiments/toolflow_sensitivity_matrix_20260531/route_extract/heldout_x36y35_data_ro0_original_sample_to_regs_timing.rpt
+| Design       : RO_TRNG_restart_reduced_xor_top
+| Device       : 7z020-clg400
+| Speed File   : -2  PRODUCTION 1.12 2019-11-22
+| Design State : Routed
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+No timing paths found.
+
+

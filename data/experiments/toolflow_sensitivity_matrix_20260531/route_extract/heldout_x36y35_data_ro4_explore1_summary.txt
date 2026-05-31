@@ -1,0 +1,6 @@
+label=heldout_x36y35_data_ro4_explore1
+dcp=E:/Project/MLDSA/RO_TRNG/data/vivado_runs/restart_reduced_xor_random1_heldout_sample_x36y35_regs_x45y31_formal_bits_1000x125_warmup10_data_ro4_explore1_header_delay60s/checkpoints/RO_TRNG_restart_reduced_xor_top_routed.dcp
+sample_cells=9
+sampled_regs=64
+data_cells=16
+entropy_cells=146

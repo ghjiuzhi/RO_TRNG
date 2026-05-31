@@ -23,6 +23,10 @@ PVT_VALIDATION_CANDIDATES = [
 ]
 XADC_COMPARE = ROOT / "data" / "experiments" / "xadc_summary" / "board2_bitstream_xadc_compare_20260531.csv"
 PREDICTION_METRICS = TVLSI_MODEL / "prediction_metrics_summary.csv"
+TOOLFLOW_DIR = ROOT / "data" / "experiments" / "toolflow_sensitivity_matrix_20260531"
+TOOLFLOW_MATRIX = TOOLFLOW_DIR / "toolflow_sensitivity_matrix.csv"
+TOOLFLOW_CAPTURE = TOOLFLOW_DIR / "toolflow_capture_metrics.csv"
+TOOLFLOW_SUMMARY = TOOLFLOW_DIR / "toolflow_sensitivity_summary.md"
 
 
 def read_csv(path: Path) -> list[dict[str, str]]:
@@ -189,6 +193,37 @@ def route_delay_bias_shift_model() -> list[dict[str, Any]]:
     return out
 
 
+def toolflow_sensitivity_boundary() -> list[dict[str, Any]]:
+    rows = read_csv(TOOLFLOW_MATRIX)
+    out: list[dict[str, Any]] = []
+    for row in rows:
+        movement = row.get("movement_class", "")
+        delta_abs = fnum(row.get("delta_abs_bias_explore1_minus_original"))
+        if movement == "no_route_shift":
+            interpretation = "stable extracted route; directive perturbation preserves observed bias"
+        elif movement == "sampler_route_shift":
+            interpretation = "sampler-route movement; larger bias shift remains implementation-context sensitivity"
+        elif movement == "broad_route_shift":
+            interpretation = "broad route movement; use as boundary case, not isolated sampler proof"
+        else:
+            interpretation = "route-pair status is incomplete"
+        out.append({
+            "context_label": row.get("context_label", ""),
+            "anchor": row.get("anchor", ""),
+            "original_p1": row.get("original_p1", ""),
+            "explore1_p1": row.get("explore1_p1", ""),
+            "delta_p1_explore1_minus_original": row.get("delta_p1_explore1_minus_original", ""),
+            "delta_abs_bias_explore1_minus_original": fmt(delta_abs),
+            "movement_class": movement,
+            "sample_ro_route_changed": row.get("sample_ro_route_changed", ""),
+            "sampled_data_route_changed": row.get("sampled_data_route_changed", ""),
+            "data_ro_route_changed": row.get("data_ro_route_changed", ""),
+            "interpretation": interpretation,
+            "source_file": rel(TOOLFLOW_MATRIX),
+        })
+    return out
+
+
 def classify_xadc_compare_row(row: dict[str, str]) -> str:
     temp = fnum(row.get("TEMPERATURE"))
     vccint = fnum(row.get("VCCINT"))
@@ -203,7 +238,11 @@ def classify_xadc_compare_row(row: dict[str, str]) -> str:
     return "valid"
 
 
-def mechanism_validation_summary(aperture_rows: list[dict[str, Any]], route_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+def mechanism_validation_summary(
+    aperture_rows: list[dict[str, Any]],
+    route_rows: list[dict[str, Any]],
+    toolflow_rows: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
     warmup_rows = [row for row in read_csv(WARMUP_DIR / "second_heldout_warmup_aperture_sweep.csv") if row.get("status") == "ok"]
     warmup_points = sorted({row.get("warmup", "") for row in warmup_rows if row.get("kind") in ("all640", "data_ro") and row.get("index") in ("all", "0", "4")}, key=lambda x: int(float(x)))
     pvt_validation = first_existing(PVT_VALIDATION_CANDIDATES)
@@ -216,6 +255,19 @@ def mechanism_validation_summary(aperture_rows: list[dict[str, Any]], route_rows
     best_class = max((fnum(row.get("class_accuracy")) for row in pred_rows), default=math.nan)
     rank_values = [fnum(row.get("rank_correlation_spearman")) for row in pred_rows if not math.isnan(fnum(row.get("rank_correlation_spearman")))]
     max_rank = max(rank_values) if rank_values else math.nan
+    toolflow_capture_rows = read_csv(TOOLFLOW_CAPTURE)
+    toolflow_valid = sum(row.get("status") == "ok" for row in toolflow_capture_rows)
+    toolflow_pairs = sum(row.get("movement_class", "") != "missing_route" for row in toolflow_rows)
+    stable_deltas = [
+        abs(fnum(row.get("delta_abs_bias_explore1_minus_original")))
+        for row in toolflow_rows
+        if row.get("movement_class") == "no_route_shift" and not math.isnan(fnum(row.get("delta_abs_bias_explore1_minus_original")))
+    ]
+    moving_deltas = [
+        abs(fnum(row.get("delta_abs_bias_explore1_minus_original")))
+        for row in toolflow_rows
+        if row.get("movement_class") != "no_route_shift" and not math.isnan(fnum(row.get("delta_abs_bias_explore1_minus_original")))
+    ]
     return [
         {
             "evidence_item": "warmup_aperture_sweep",
@@ -273,6 +325,14 @@ def mechanism_validation_summary(aperture_rows: list[dict[str, Any]], route_rows
             "interpretation": "route/PIP/net-delay features are available but not calibrated to aperture delay",
             "source_file": rel(SECOND_ROUTE),
         },
+        {
+            "evidence_item": "toolflow_directive_sensitivity",
+            "status": "established_boundary",
+            "metric": "valid captures / route pairs / stable-route max shift / route-moving max shift",
+            "value": f"{toolflow_valid}/12; pairs={toolflow_pairs}/6; stable_max={fmt(max(stable_deltas, default=math.nan), 6)}; moving_max={fmt(max(moving_deltas, default=math.nan), 6)}",
+            "interpretation": "minimal original-vs-Explore matrix preserves bias when extracted routes are stable and bounds larger shifts to route-moving cases",
+            "source_file": rel(TOOLFLOW_MATRIX),
+        },
     ]
 
 
@@ -302,6 +362,12 @@ def model_boundary_cases() -> list[dict[str, Any]]:
             "impact": "route net-delay differences support implementation sensitivity but not physical delay calibration",
             "handling": "call it route/aperture proxy; leave jitter/metastability calibration for future targeted sweeps",
         },
+        {
+            "boundary_case": "Minimal directive matrix is not a full seed sweep",
+            "evidence": rel(TOOLFLOW_MATRIX),
+            "impact": "the current matrix answers a targeted reviewer concern but does not characterize all Vivado seeds/directives",
+            "handling": "claim stable-route robustness and route-moving boundary only; do not claim complete toolflow invariance",
+        },
     ]
 
 
@@ -320,7 +386,7 @@ def write_report(summary_rows: list[dict[str, Any]]) -> None:
         "",
         "## Interpretation Boundary",
         "",
-        "The warmup sweep strengthens the startup/aperture mechanism evidence, especially the all640 transition between w8 and w9 and the data_ro4 sign reversals. Board2 PVT remains unusable because the same sentinel values appear even after programming a historical Board1 TRNG bitstream.",
+        "The warmup sweep strengthens the startup/aperture mechanism evidence, especially the all640 transition between w8 and w9 and the data_ro4 sign reversals. The toolflow/directive matrix shows that stable-route original-vs-Explore pairs preserve bias within the current measurement scale, while route-moving pairs are treated as implementation-boundary cases. Board2 PVT remains unusable because the same sentinel values appear even after programming a historical Board1 TRNG bitstream.",
         "",
     ])
     (OUT / "tvlsi_mechanism_validation_20260531.md").write_text("\n".join(lines), encoding="utf-8")
@@ -330,7 +396,8 @@ def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     aperture = aperture_sweep_model_fit()
     route = route_delay_bias_shift_model()
-    summary = mechanism_validation_summary(aperture, route)
+    toolflow = toolflow_sensitivity_boundary()
+    summary = mechanism_validation_summary(aperture, route, toolflow)
     boundaries = model_boundary_cases()
     write_csv(OUT / "aperture_sweep_model_fit.csv", aperture, [
         "context", "kind", "index", "observed_warmups", "valid_warmup_count",
@@ -347,6 +414,13 @@ def main() -> None:
         "data_ro_slow_max_mean_ps", "sample_minus_data_delay_mean_ps",
         "sampled_minus_data_delay_mean_ps", "neighborhood_rows",
         "model_boundary", "route_source", "observed_source",
+    ])
+    write_csv(OUT / "toolflow_sensitivity_mechanism_boundary.csv", toolflow, [
+        "context_label", "anchor", "original_p1", "explore1_p1",
+        "delta_p1_explore1_minus_original",
+        "delta_abs_bias_explore1_minus_original", "movement_class",
+        "sample_ro_route_changed", "sampled_data_route_changed",
+        "data_ro_route_changed", "interpretation", "source_file",
     ])
     write_csv(OUT / "mechanism_validation_summary.csv", summary, [
         "evidence_item", "status", "metric", "value", "interpretation", "source_file",

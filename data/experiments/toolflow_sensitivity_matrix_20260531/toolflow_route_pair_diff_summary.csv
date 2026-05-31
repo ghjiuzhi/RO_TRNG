@@ -1,0 +1,7 @@
+anchor,context,context_label,data_ro_bel_changed,data_ro_delay_mean_delta_ps,data_ro_loc_changed,data_ro_route_changed,label_a,label_b,movement_class,route_pair_present,sample_ro_bel_changed,sample_ro_delay_mean_delta_ps,sample_ro_loc_changed,sample_ro_route_changed,sampled_data_bel_changed,sampled_data_delay_mean_delta_ps,sampled_data_loc_changed,sampled_data_route_changed
+all640,heldout_sample_x36y35_regs_x45y31,heldout_x36y35,0,-37.031,0,11,heldout_x36y35_all640_original,heldout_x36y35_all640_explore1,broad_route_shift,True,0,-14.047,0,9,0,0.016,0,8
+data_ro0,heldout_sample_x36y35_regs_x45y31,heldout_x36y35,0,0.000,0,0,heldout_x36y35_data_ro0_original,heldout_x36y35_data_ro0_explore1,no_route_shift,True,0,0.000,0,0,0,0.000,0,0
+data_ro4,heldout_sample_x36y35_regs_x45y31,heldout_x36y35,0,0.000,0,0,heldout_x36y35_data_ro4_original,heldout_x36y35_data_ro4_explore1,no_route_shift,True,0,0.000,0,0,0,0.000,0,0
+all640,second_heldout_sample_ro_local,sample_ro_local,0,0.000,0,0,sample_ro_local_all640_original,sample_ro_local_all640_explore1,no_route_shift,True,0,0.000,0,0,0,0.000,0,0
+data_ro0,second_heldout_sample_ro_local,sample_ro_local,0,0.000,0,0,sample_ro_local_data_ro0_original,sample_ro_local_data_ro0_explore1,no_route_shift,True,0,0.000,0,0,0,0.000,0,0
+data_ro4,second_heldout_sample_ro_local,sample_ro_local,0,0.000,0,0,sample_ro_local_data_ro4_original,sample_ro_local_data_ro4_explore1,sampler_route_shift,True,0,-14.489,0,9,0,0.000,0,0
