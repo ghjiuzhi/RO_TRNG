@@ -1,0 +1,17 @@
+base_label,compare_label,data_ro_bel_changed,data_ro_loc_changed,data_ro_route_changed,data_ro_slow_max_mean_ps,extract_complete,index,kind,neighborhood_rows,sample_ro_bel_changed,sample_ro_loc_changed,sample_ro_route_changed,sample_ro_slow_max_mean_ps,sampled_data_bel_changed,sampled_data_loc_changed,sampled_data_route_changed,sampled_data_slow_max_mean_ps
+second_all640,second_data_ro0,0,0,24,1113.359,True,0,data_ro,218,0,0,26,682.261,56,62,64,493.375
+second_all640,second_data_ro1,0,0,24,1186.117,True,1,data_ro,415,0,0,26,602.993,50,64,64,444.125
+second_all640,second_data_ro2,0,0,26,1077.542,True,2,data_ro,234,0,0,26,626.475,51,64,64,416.875
+second_all640,second_data_ro3,0,0,28,1092.958,True,3,data_ro,252,0,0,26,637.899,59,64,64,433.750
+second_all640,second_data_ro4,0,0,26,1079.070,True,4,data_ro,149,0,0,26,763.920,60,64,64,443.125
+second_all640,second_data_ro5,0,0,28,1144.958,True,5,data_ro,378,0,0,26,588.228,51,64,64,580.500
+second_all640,second_data_ro6,0,0,24,1061.682,True,6,data_ro,165,0,0,26,645.297,45,64,64,634.000
+second_all640,second_data_ro7,0,0,24,1041.419,True,7,data_ro,243,0,0,26,632.754,43,64,64,566.625
+second_all640,second_except_data_ro0,0,0,24,1083.680,True,0,except_data_ro,455,0,0,26,601.259,53,64,64,493.403
+second_all640,second_except_data_ro1,0,0,24,1041.799,True,1,except_data_ro,513,0,0,26,624.137,54,64,64,489.931
+second_all640,second_except_data_ro2,0,0,24,1118.409,True,2,except_data_ro,624,0,0,26,531.856,56,64,64,517.306
+second_all640,second_except_data_ro3,0,0,28,1152.435,True,3,except_data_ro,299,0,0,26,614.590,50,64,64,490.472
+second_all640,second_except_data_ro4,0,0,24,1196.854,True,4,except_data_ro,612,0,0,26,549.691,46,64,64,505.181
+second_all640,second_except_data_ro5,0,0,26,1074.914,True,5,except_data_ro,505,0,0,26,630.464,44,64,64,505.111
+second_all640,second_except_data_ro6,0,0,26,1132.156,True,6,except_data_ro,269,0,0,26,654.252,45,64,64,484.472
+second_all640,second_except_data_ro7,0,0,26,1120.690,True,7,except_data_ro,563,0,0,26,610.471,50,60,64,501.667

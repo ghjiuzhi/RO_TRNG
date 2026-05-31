@@ -1,0 +1,5 @@
+baseline,rows_evaluated,contributor_rows_evaluated,sign_accuracy,rank_correlation_spearman,class_accuracy,mae_p1,residual_direction_accuracy,status
+aggregate_only,17,8,0.352941176,0.071428571,0.235294118,0.072533118,1.000000000,evaluated
+contributor_only_independent_xor,17,8,0.666666667,0.071428571,1.000000000,0.096518330,0.000000000,evaluated
+contributor_plus_warmup,17,8,0.588235294,0.071428571,0.647058824,0.083303206,1.000000000,evaluated
+contributor_plus_warmup_plus_route_aperture,17,8,0.647058824,0.071428571,0.647058824,0.085844382,1.000000000,evaluated

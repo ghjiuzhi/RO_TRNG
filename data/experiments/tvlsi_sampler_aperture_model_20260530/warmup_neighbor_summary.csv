@@ -1,0 +1,7 @@
+board,context,mode,data_ro,warmup,p1,signed_bias,abs_bias,min_entropy,worst_x,worst_p1,source_file
+z7020_b01,ro3_warmup_neighbors,data_ro,3,5,0.576638000,0.076638000,0.076638000,0.794262182,769,0.769000000,data\experiments\restart_reduced_xor_ro3_warmup_neighbors_20260528\reduced_xor_ro3_warmup_neighbors_20260528.csv
+z7020_b01,ro3_warmup_neighbors,except_data_ro,3,5,0.503005000,0.003005000,0.003005000,0.991355354,557,0.557000000,data\experiments\restart_reduced_xor_ro3_warmup_neighbors_20260528\reduced_xor_ro3_warmup_neighbors_20260528.csv
+z7020_b01,ro3_warmup_neighbors,data_ro,3,10,0.671833000,0.171833000,0.171833,0.573825433,804,0.804,data\experiments\restart_reduced_xor_ro3_warmup_neighbors_20260528\reduced_xor_ro3_warmup_neighbors_20260528.csv
+z7020_b01,ro3_warmup_neighbors,except_data_ro,3,10,0.553930000,0.053930000,0.05393,0.85222442,603,0.603,data\experiments\restart_reduced_xor_ro3_warmup_neighbors_20260528\reduced_xor_ro3_warmup_neighbors_20260528.csv
+z7020_b01,ro3_warmup_neighbors,data_ro,3,11,0.544560000,0.044560000,0.044560000,0.876837080,730,0.730000000,data\experiments\restart_reduced_xor_ro3_warmup_neighbors_20260528\reduced_xor_ro3_warmup_neighbors_20260528.csv
+z7020_b01,ro3_warmup_neighbors,except_data_ro,3,11,0.501558000,0.001558000,0.001558000,0.995511552,560,0.560000000,data\experiments\restart_reduced_xor_ro3_warmup_neighbors_20260528\reduced_xor_ro3_warmup_neighbors_20260528.csv

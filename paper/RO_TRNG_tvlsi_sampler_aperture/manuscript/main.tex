@@ -1,0 +1,51 @@
+\documentclass[journal]{IEEEtran}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{siunitx}
+
+\title{Sampler-Aperture-Aware Implementation Analysis of FPGA Ring-Oscillator TRNGs}
+
+\author{TODO}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+TODO. This TVLSI-track manuscript is intentionally separate from the TIM-track manuscript. Current claims must be filled only after the offline model and follow-on validation evidence mature.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Ring oscillator, true random number generator, FPGA, physical implementation, timing, sampling aperture.
+\end{IEEEkeywords}
+
+\section{Introduction}
+TODO. Frame the problem as an implementation-methodology problem rather than only a measurement anomaly.
+
+\section{Background and Motivation}
+TODO. Define restarted RO-TRNG sampling, XOR aggregation, warmup, placement/routing sensitivity, and the sampler-aperture hypothesis.
+
+\section{Stochastic Contributor and Sampler-Aperture Model}
+TODO. Introduce contributor variables, signed bias factors, XOR cancellation, board and implementation variables, and route/timing feature variables.
+
+\section{Implementation and Evidence Extraction Methodology}
+TODO. Describe reduced-XOR decomposition, repeat protocol, route/PIP/net-delay audit, and board-level held-out sampler checks.
+
+\section{Results}
+TODO. Insert generated TVLSI offline model tables only after claim-evidence review.
+
+\section{Discussion and Design Implications}
+TODO. Separate observed effects from candidate design rules.
+
+\section{Limitations and Future Work}
+TODO. Calibrated jitter propagation, metastability transfer fitting, formal timing-to-aperture derivation, and broader PVT/toolflow validation belong here unless directly validated.
+
+\section{Conclusion}
+TODO.
+
+\bibliographystyle{IEEEtran}
+\bibliography{../refs/references}
+
+\end{document}

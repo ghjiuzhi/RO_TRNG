@@ -2,6 +2,8 @@ param(
     [string]$SourceRoot = "E:\Project\MLDSA\RO_TRNG",
     [string]$ExportRoot = "E:\Project\MLDSA\RO_TRNG_github_export",
     [string]$SnapshotTag = "20260525",
+    [ValidateSet("Default", "Tvlsi")]
+    [string]$Profile = "Default",
     [double]$MaxFileMiB = 5.0,
     [switch]$DryRun
 )
@@ -14,7 +16,7 @@ if (-not (Test-Path $ExportRoot)) {
 }
 $ExportRoot = (Resolve-Path $ExportRoot).Path
 
-$includeRoots = @(
+$defaultIncludeRoots = @(
     "README.md",
     "doc",
     "paper/RO_TRNG_entropy_boundary",
@@ -32,6 +34,33 @@ $includeRoots = @(
     "data/hardware/20260511_fpga1_board1/tdc_pairs",
     "data/hardware/20260511_fpga1_board1/trng"
 )
+
+$tvlsiIncludeRoots = @(
+    "paper/RO_TRNG_tvlsi_sampler_aperture",
+    "scripts/update_github_export_snapshot.ps1",
+    "scripts/build_tvlsi_mechanism_validation_20260531.py",
+    "scripts/summarize_pvt_xadc_manifest_20260530.py",
+    "scripts/summarize_second_heldout_warmup_aperture_sweep_20260530.py",
+    "scripts/tvlsi_build_sampler_aperture_model_20260530.py",
+    "scripts/run_board2_second_heldout_warmup_aperture_sweep_20260530.ps1",
+    "scripts/run_board2_second_heldout_sample_ro_local_20260530.ps1",
+    "scripts/diagnose_xadc_sysmon_20260530.ps1",
+    "scripts/vivado/diagnose_xadc_sysmon_20260530.tcl",
+    "data/experiments/tvlsi_mechanism_validation_20260531",
+    "data/experiments/second_heldout_warmup_aperture_sweep_20260530",
+    "data/experiments/tvlsi_sampler_aperture_model_20260530",
+    "data/experiments/second_heldout_sampler_route_diff_20260530",
+    "data/experiments/xadc_summary/board2_bitstream_xadc_compare_20260531.csv",
+    "data/experiments/xadc_summary/pvt_xadc_manifest_validation_20260530.csv",
+    "data/experiments/xadc_summary/pvt_xadc_manifest_validation_20260531.csv",
+    "data/hardware/20260529_fpga1_board2/restart_reduced_xor_second_heldout_sampler_20260530/summary"
+)
+
+$includeRoots = if ($Profile -eq "Tvlsi") {
+    $tvlsiIncludeRoots
+} else {
+    $defaultIncludeRoots
+}
 
 $excludeExt = @(
     ".bin", ".bit", ".dcp", ".jou", ".log", ".pb", ".rpx", ".wdb",
@@ -150,6 +179,8 @@ if (-not $DryRun) {
     $summary += ""
     $summary += "Export root: ``$ExportRoot``"
     $summary += ""
+    $summary += "Profile: ``$Profile``"
+    $summary += ""
     $summary += "Included files: $($copied.Count)"
     $summary += ""
     $summary += "Included size: $([math]::Round($totalBytes / 1MB, 3)) MiB"
@@ -160,12 +191,20 @@ if (-not $DryRun) {
     $summary += ""
     $summary += "Key post-2026-05-15 evidence to inspect:"
     $summary += ""
-    $summary += "- ``doc/restart_fifo_diag_mechanism_update_20260524.md``"
-    $summary += "- ``doc/restart_fifo_diag_queue_status_20260524.md``"
-    $summary += "- ``doc/regs_only_restart_breakthrough_20260524.md``"
-    $summary += "- ``doc/random1_sampler_island_ablation_20260523.md``"
-    $summary += "- ``data/experiments/restart_fifo_diag_20260524/``"
-    $summary += "- ``data/experiments/xdc_sampler_island/``"
+    if ($Profile -eq "Tvlsi") {
+        $summary += "- ``paper/RO_TRNG_tvlsi_sampler_aperture/``"
+        $summary += "- ``data/experiments/tvlsi_mechanism_validation_20260531/``"
+        $summary += "- ``data/experiments/second_heldout_warmup_aperture_sweep_20260530/``"
+        $summary += "- ``data/experiments/xadc_summary/board2_bitstream_xadc_compare_20260531.csv``"
+        $summary += "- ``data/hardware/20260529_fpga1_board2/restart_reduced_xor_second_heldout_sampler_20260530/summary/``"
+    } else {
+        $summary += "- ``doc/restart_fifo_diag_mechanism_update_20260524.md``"
+        $summary += "- ``doc/restart_fifo_diag_queue_status_20260524.md``"
+        $summary += "- ``doc/regs_only_restart_breakthrough_20260524.md``"
+        $summary += "- ``doc/random1_sampler_island_ablation_20260523.md``"
+        $summary += "- ``data/experiments/restart_fifo_diag_20260524/``"
+        $summary += "- ``data/experiments/xdc_sampler_island/``"
+    }
     $summary += ""
     $summary += "Manifests:"
     $summary += ""
@@ -178,6 +217,7 @@ if (-not $DryRun) {
     SourceRoot = $SourceRoot
     ExportRoot = $ExportRoot
     SnapshotTag = $SnapshotTag
+    Profile = $Profile
     DryRun = [bool]$DryRun
     MaxFileMiB = $MaxFileMiB
     IncludedFiles = $copied.Count

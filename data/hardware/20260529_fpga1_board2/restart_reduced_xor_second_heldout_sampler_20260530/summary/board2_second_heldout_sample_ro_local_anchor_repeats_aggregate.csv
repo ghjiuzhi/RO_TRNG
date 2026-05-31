@@ -1,0 +1,4 @@
+board,context,warmup,kind,index,n,target_n,complete,p1_mean,p1_std,abs_bias_mean,min_entropy_min,worst_x_max,same_bias_sign_count,same_bias_sign_fraction,runs,missing_runs
+z7020_b02,second_heldout_sample_ro_local,10,all640,all,3,3,True,0.499575333,0.000479100,0.000451333,0.997356521,761,2,0.666666667,"run01, run02, run03",
+z7020_b02,second_heldout_sample_ro_local,10,data_ro,0,3,3,True,0.266159333,0.001178075,0.233840667,0.443805065,23,3,1.000000000,"run01, run02, run03",
+z7020_b02,second_heldout_sample_ro_local,10,data_ro,4,3,3,True,0.554203667,0.000370433,0.054203667,0.850522100,11,3,1.000000000,"run01, run02, run03",

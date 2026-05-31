@@ -1,0 +1,8 @@
+evidence_item,status,metric,value,interpretation,source_file
+warmup_aperture_sweep,established,anchor warmup points,10,"10-point anchor sweep completed for all640, data_ro0, and data_ro4",data\experiments\second_heldout_warmup_aperture_sweep_20260530\second_heldout_warmup_aperture_sweep.csv
+aggregate_transition,established,all640 transition bracket,8->9,aggregate p1 shifts from biased at w8 to near-balanced at w9/w10,data\experiments\second_heldout_warmup_aperture_sweep_20260530\warmup_transition_points.csv
+contributor_warmup_sensitivity,established,data_ro4 sign changes,3,"data_ro4 reverses signed bias across warmup, supporting startup/aperture sensitivity",data\experiments\second_heldout_warmup_aperture_sweep_20260530\warmup_transition_points.csv
+pvt_manifest,invalid_for_physical_covariate,PVT row validity,invalid=112,PVT rows are parseable but physically invalid and must remain a limitation,data\experiments\xadc_summary\pvt_xadc_manifest_validation_20260531.csv
+board2_bitstream_xadc_compare,invalid_for_physical_covariate,XADC compare validity,invalid_sentinel_temperature=3,Board2 remains at sentinel XADC values even after programming a historical Board1 TRNG bitstream,data\experiments\xadc_summary\board2_bitstream_xadc_compare_20260531.csv
+frozen_prediction,mixed,best sign/class/rank,"sign=0.666666667, class=1.000000000, rank=0.071428571","sign/class transfer has signal, but rank correlation remains weak",data\experiments\tvlsi_sampler_aperture_model_20260530\prediction_metrics_summary.csv
+route_delay_bias_proxy,proxy_only,route rows,17,route/PIP/net-delay features are available but not calibrated to aperture delay,data\experiments\second_heldout_sampler_route_diff_20260530\second_heldout_per_bitstream_route_audit_20260530.csv

@@ -1,0 +1,7 @@
+board,context,warmup,contributor_count,contributor_indices,independent_xor_p1_pred,measured_all_p1,residual_measured_minus_pred,pred_abs_bias,measured_abs_bias,interpretation
+z7020_b01,board1_w10_direction_map,10,8,"0,1,2,3,4,5,6,7",0.500001394,0.458617000,-0.041384394,0.000001394,0.041383000,independence approximation; residual indicates correlation/startup structure/unmodeled aperture effects
+z7020_b02,board2_crossboard_full_map,10,8,"0,1,2,3,4,5,6,7",0.500001857,0.360614000,-0.139387857,0.000001857,0.139386000,independence approximation; residual indicates correlation/startup structure/unmodeled aperture effects
+z7020_b02,board2_crossboard_full_map,11,8,"0,1,2,3,4,5,6,7",0.500000021,0.473738000,-0.026262021,0.000000021,0.026262000,independence approximation; residual indicates correlation/startup structure/unmodeled aperture effects
+z7020_b02,board2_crossboard_full_map,5,8,"0,1,2,3,4,5,6,7",0.500000462,0.501190000,0.001189538,0.000000462,0.001190000,independence approximation; residual indicates correlation/startup structure/unmodeled aperture effects
+z7020_b02,heldout_sample_x36y35_regs_x45y31,10,8,"0,1,2,3,4,5,6,7",0.499996685,0.500718000,0.000721315,0.000003315,0.000718000,independence approximation; residual indicates correlation/startup structure/unmodeled aperture effects
+z7020_b02,second_heldout_sample_ro_local,10,8,"0,1,2,3,4,5,6,7",0.499999029,0.500040000,0.000040971,0.000000971,0.000040000,independence approximation; residual indicates correlation/startup structure/unmodeled aperture effects

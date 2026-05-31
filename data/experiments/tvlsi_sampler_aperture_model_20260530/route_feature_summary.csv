@@ -1,0 +1,9 @@
+board,label,sample_ro_cells,sampled_data_regs,data_ro_cells,sampled_reg_loc_count,data_ro_loc_count,sample_ro_pips,sampled_data_pips,data_ro_pips,total_pips_audited,sample_ro_delay_arcs,sampled_data_delay_arcs,data_ro_delay_arcs,neighborhood_rows,source_file
+z7020_b01,compact_w11_baseline,9,64,16,64,8,9251,282,16456,25989,276,64,384,241,data\experiments\sample_ro_route_diff_20260528\sample_ro_route_evidence_summary_20260528.csv
+z7020_b01,compact_w4_baseline,9,64,16,64,8,9241,282,16469,25992,276,64,384,241,data\experiments\sample_ro_route_diff_20260528\sample_ro_route_evidence_summary_20260528.csv
+z7020_b01,compact_w5_baseline,9,64,16,64,8,9270,282,16496,26048,276,64,384,241,data\experiments\sample_ro_route_diff_20260528\sample_ro_route_evidence_summary_20260528.csv
+z7020_b01,formal_w4_baseline,9,64,16,64,8,9212,282,16382,25876,276,64,384,233,data\experiments\sample_ro_route_diff_20260528\sample_ro_route_evidence_summary_20260528.csv
+z7020_b01,forward_w11_formal_sample,9,64,16,64,8,9261,282,16464,26007,276,64,384,234,data\experiments\sample_ro_route_diff_20260528\sample_ro_route_evidence_summary_20260528.csv
+z7020_b01,forward_w4_formal_sample,9,64,16,64,8,9240,282,16438,25960,276,64,384,233,data\experiments\sample_ro_route_diff_20260528\sample_ro_route_evidence_summary_20260528.csv
+z7020_b01,forward_w5_formal_sample,9,64,16,64,8,9261,282,16478,26021,276,64,384,233,data\experiments\sample_ro_route_diff_20260528\sample_ro_route_evidence_summary_20260528.csv
+z7020_b01,reverse_w4_compact_sample,9,64,16,17,7,8694,259,16104,25057,276,64,384,551,data\experiments\sample_ro_route_diff_20260528\sample_ro_route_evidence_summary_20260528.csv

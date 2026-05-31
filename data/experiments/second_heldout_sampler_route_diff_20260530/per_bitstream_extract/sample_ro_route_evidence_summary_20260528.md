@@ -1,0 +1,35 @@
+# Sample-RO Routed Evidence 20260528
+
+This artifact summarizes routed DCP evidence for the sampler-side counterfactuals.
+It supports bounded physical attribution: sample-RO and local sampler-side routing changed, while this does not isolate LUT delay from every control/FIFO/UART movement.
+
+## Per-Build Summary
+
+| label | sample_ro_cells | sampled_data_regs | data_ro_cells | sample_ro_locs | sampled_reg_loc_count | data_ro_loc_count | sample_ro_nets | sampled_data_nets | data_ro_nets | sample_ro_pips | sampled_data_pips | data_ro_pips | sample_ro_delay_arcs | sampled_data_delay_arcs | data_ro_delay_arcs | neighborhood_rows |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| second_all640 | 9 | 64 | 16 | SLICE_X45Y39 SLICE_X46Y39 SLICE_X47Y39 | 16 | 8 | 36 | 64 | 64 | 8591 | 243 | 15970 | 276 | 64 | 384 | 100 |
+| second_data_ro0 | 9 | 64 | 16 | SLICE_X45Y39 SLICE_X46Y39 SLICE_X47Y39 | 26 | 8 | 36 | 64 | 64 | 8876 | 32 | 16215 | 276 | 8 | 384 | 218 |
+| second_data_ro1 | 9 | 64 | 16 | SLICE_X45Y39 SLICE_X46Y39 SLICE_X47Y39 | 20 | 8 | 36 | 64 | 64 | 8752 | 29 | 16161 | 276 | 8 | 384 | 415 |
+| second_data_ro2 | 9 | 64 | 16 | SLICE_X45Y39 SLICE_X46Y39 SLICE_X47Y39 | 20 | 8 | 36 | 64 | 64 | 8795 | 31 | 16220 | 276 | 8 | 384 | 234 |
+| second_data_ro3 | 9 | 64 | 16 | SLICE_X45Y39 SLICE_X46Y39 SLICE_X47Y39 | 30 | 8 | 36 | 64 | 64 | 8928 | 30 | 16108 | 276 | 8 | 384 | 252 |
+| second_data_ro4 | 9 | 64 | 16 | SLICE_X45Y39 SLICE_X46Y39 SLICE_X47Y39 | 20 | 8 | 36 | 64 | 64 | 8805 | 32 | 16138 | 276 | 8 | 384 | 149 |
+| second_data_ro5 | 9 | 64 | 16 | SLICE_X45Y39 SLICE_X46Y39 SLICE_X47Y39 | 24 | 8 | 36 | 64 | 64 | 8782 | 36 | 16177 | 276 | 8 | 384 | 378 |
+| second_data_ro6 | 9 | 64 | 16 | SLICE_X45Y39 SLICE_X46Y39 SLICE_X47Y39 | 15 | 8 | 36 | 64 | 64 | 8722 | 35 | 16186 | 276 | 8 | 384 | 165 |
+| second_data_ro7 | 9 | 64 | 16 | SLICE_X45Y39 SLICE_X46Y39 SLICE_X47Y39 | 18 | 8 | 36 | 64 | 64 | 8811 | 35 | 16225 | 276 | 8 | 384 | 243 |
+| second_except_data_ro0 | 9 | 64 | 16 | SLICE_X45Y39 SLICE_X46Y39 SLICE_X47Y39 | 19 | 8 | 36 | 64 | 64 | 8760 | 276 | 16282 | 278 | 72 | 384 | 455 |
+| second_except_data_ro1 | 9 | 64 | 16 | SLICE_X45Y39 SLICE_X46Y39 SLICE_X47Y39 | 18 | 8 | 36 | 64 | 64 | 8760 | 273 | 16240 | 278 | 72 | 384 | 513 |
+| second_except_data_ro2 | 9 | 64 | 16 | SLICE_X45Y39 SLICE_X46Y39 SLICE_X47Y39 | 15 | 8 | 36 | 64 | 64 | 8663 | 281 | 16220 | 278 | 72 | 384 | 624 |
+| second_except_data_ro3 | 9 | 64 | 16 | SLICE_X45Y39 SLICE_X46Y39 SLICE_X47Y39 | 16 | 8 | 36 | 64 | 64 | 8719 | 277 | 16214 | 278 | 72 | 384 | 299 |
+| second_except_data_ro4 | 9 | 64 | 16 | SLICE_X45Y39 SLICE_X46Y39 SLICE_X47Y39 | 14 | 8 | 36 | 64 | 64 | 8728 | 271 | 16317 | 278 | 72 | 384 | 612 |
+| second_except_data_ro5 | 9 | 64 | 16 | SLICE_X45Y39 SLICE_X46Y39 SLICE_X47Y39 | 14 | 8 | 36 | 64 | 64 | 8712 | 267 | 16221 | 278 | 72 | 384 | 505 |
+| second_except_data_ro6 | 9 | 64 | 16 | SLICE_X45Y39 SLICE_X46Y39 SLICE_X47Y39 | 20 | 8 | 36 | 64 | 64 | 8763 | 270 | 16274 | 278 | 72 | 384 | 269 |
+| second_except_data_ro7 | 9 | 64 | 16 | SLICE_X45Y39 SLICE_X46Y39 SLICE_X47Y39 | 18 | 8 | 36 | 64 | 64 | 8750 | 281 | 16245 | 278 | 72 | 384 | 563 |
+
+
+## Missing Pair `compact_w5_baseline:forward_w5_formal_sample`
+
+One or both labels were not extracted.
+
+## Missing Pair `formal_w4_baseline:reverse_w4_compact_sample`
+
+One or both labels were not extracted.

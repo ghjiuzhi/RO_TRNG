@@ -1,0 +1,8 @@
+board,context,mode,n,same_bias_sign_count,same_bias_sign_fraction,mean_abs_delta_p1,max_abs_delta_p1,pearson_p1_run01_run02,source_file
+z7020_b01,w10_direction_repeat02,data_ro,8,8,1.000000000,0.003198625,0.009610000,0.999678268,data\experiments\restart_reduced_xor_w10_direction_repeat02_full_20260528\summary\w10_direction_repeat02_full_compare_r01.csv
+z7020_b01,w10_direction_repeat02,except_data_ro,8,8,1.000000000,0.000893375,0.003226000,0.999013042,data\experiments\restart_reduced_xor_w10_direction_repeat02_full_20260528\summary\w10_direction_repeat02_full_compare_r01.csv
+z7020_b02,keypoints_vs_board1_repeat02,data_ro0,1,1,,0.029538000,0.029538000,,data\hardware\20260529_fpga1_board2\restart_reduced_xor_crossboard\summary\board2_reduced_xor_keypoints_vs_board1_r02.csv
+z7020_b02,keypoints_vs_board1_repeat02,except_data_ro0,1,1,,-0.000941000,-0.000941000,,data\hardware\20260529_fpga1_board2\restart_reduced_xor_crossboard\summary\board2_reduced_xor_keypoints_vs_board1_r02.csv
+z7020_b02,keypoints_vs_board1_repeat02,data_ro3,1,0,,-0.219634000,-0.219634000,,data\hardware\20260529_fpga1_board2\restart_reduced_xor_crossboard\summary\board2_reduced_xor_keypoints_vs_board1_r02.csv
+z7020_b02,keypoints_vs_board1_repeat02,except_data_ro3,1,1,,-0.015673000,-0.015673000,,data\hardware\20260529_fpga1_board2\restart_reduced_xor_crossboard\summary\board2_reduced_xor_keypoints_vs_board1_r02.csv
+z7020_b02,keypoints_vs_board1_repeat02,all640,1,,,,,,data\hardware\20260529_fpga1_board2\restart_reduced_xor_crossboard\summary\board2_reduced_xor_keypoints_vs_board1_r02.csv

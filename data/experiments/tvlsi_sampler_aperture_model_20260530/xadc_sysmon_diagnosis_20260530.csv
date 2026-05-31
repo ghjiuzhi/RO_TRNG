@@ -1,0 +1,2 @@
+"timestamp","hw_url","status","error","selected_device","selected_device_name","selected_device_part","sysmon_index","sysmon","sysmon_name","temperature_c","vccint_v","vccaux_v","vccbram_v","vpvn_v","raw_temperature","raw_vccint","raw_vccaux","raw_vccbram"
+"2026-05-30 22:37:36","localhost:3122","ok","","xc7z020_1","xc7z020_1","xc7z020","0","localhost:3122/xilinx_tcf/Digilent/210512180081/xc7z020_1/SYSMON","localhost:3122/xilinx_tcf/Digilent/210512180081/xc7z020_1/SYSMON","-273.1","0.000","0.000","0.000","","","","",""
